@@ -1,0 +1,170 @@
+{% set showModal = true %}
+<div class="d-flex justify-content-between align-items-center mb-3">
+  <div>
+    <form class="row g-2" method="get" action="/ui/players">
+      <input type="hidden" name="tab" value="players" />
+      <div class="col-auto">
+        <label class="form-label">Season</label>
+        <input class="form-control" name="season" value="{{ season }}" />
+      </div>
+      <div class="col-auto">
+        <label class="form-label">Week</label>
+        <input class="form-control" name="week" value="{{ week }}" />
+      </div>
+      <div class="col-auto">
+        <label class="form-label">Position</label>
+        <select class="form-select" name="pos">
+          {% set pf = (pos|default('ALL')|upper) %}
+          {% for opt in ['ALL','RB','WR','TE','QB'] %}
+            <option value="{{ opt }}" {{ 'selected' if pf == opt else '' }}>{{ opt }}</option>
+          {% endfor %}
+        </select>
+      </div>
+      <div class="col-auto">
+        <label class="form-label">Team</label>
+        <select class="form-select" name="team">
+          {% set tf = team|default('ALL') %}
+          <option value="ALL" {{ 'selected' if tf == 'ALL' else '' }}>ALL</option>
+          {% for t in (teams or []) %}
+            <option value="{{ t }}" {{ 'selected' if tf == t else '' }}>{{ t }}</option>
+          {% endfor %}
+        </select>
+      </div>
+      <div class="col-auto">
+        <label class="form-label">Game</label>
+        <select class="form-select" name="game">
+          {% set gf = game|default('ALL') %}
+          <option value="ALL" {{ 'selected' if gf == 'ALL' else '' }}>ALL</option>
+          {% for g in (games or []) %}
+            <option value="{{ g.value }}" {{ 'selected' if gf == g.value else '' }}>{{ g.label }}</option>
+          {% endfor %}
+        </select>
+      </div>
+      <div class="col-auto">
+        <label class="form-label">Sort by</label>
+        <select class="form-select" name="sort">
+          {% set sb = (sort|default('atd')|lower) %}
+          {% set options = [
+            ['atd','ATD % (desc)'],
+            ['adj_exp_td','Expected TD (desc)'],
+            ['adj_exp_rush_td','Rush TD (desc)'],
+            ['adj_exp_rec_td','Rec TD (desc)'],
+            ['td24','2024 Total TD (desc)'],
+            ['career_total','Career Total TD (desc)'],
+            ['team','Team (A→Z)'],
+            ['player','Player (A→Z)'],
+            ['depth','Depth (asc)']
+          ] %}
+          {% for val,label in options %}
+            <option value="{{ val }}" {{ 'selected' if sb == val else '' }}>{{ label }}</option>
+          {% endfor %}
+        </select>
+      </div>
+      <div class="col-auto align-self-end">
+        <button class="btn btn-primary">Load</button>
+      </div>
+      <div class="col-auto align-self-end">
+        <a class="btn btn-outline-secondary" href="/ui?tab=teams&season={{ season }}&week={{ week }}">View Teams</a>
+      </div>
+    </form>
+  </div>
+</div>
+
+<div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-3">
+  {% for c in cards %}
+  <div class="col">
+    <div class="card shadow-sm">
+      <div class="card-body">
+        <div class="card-title">
+          {% if c.headshot %}
+          <img class="headshot" src="{{ c.headshot }}" alt="{{ c.player }}" />
+          {% elif c.logo_url %}
+          <img class="headshot" src="{{ c.logo_url }}" alt="{{ c.team }} logo" />
+          {% else %}
+          <div class="player-avatar {{ c.team_class }}">{{ c.team_abbr }}</div>
+          {% endif %}
+          <div class="flex-grow-1">
+            <div class="d-flex justify-content-between align-items-center">
+              <strong>{{ c.player }}</strong>
+              <div class="d-flex align-items-center gap-2">
+                {% if c.logo_url %}
+                <img class="team-logo-sm" src="{{ c.logo_url }}" alt="{{ c.team }} logo" />
+                {% endif %}
+                <span class="badge text-bg-success card-badge">ATD {{ (c.atd*100)|fmt2 }}%</span>
+              </div>
+            </div>
+            <div class="muted">{{ c.pos }}{% if c.depth_label %} · {{ c.depth_label }}{% endif %} • {{ c.team }} vs {{ c.opp }} {{ '(home)' if c.is_home else '(away)' }}</div>
+          </div>
+        </div>
+        <div class="d-flex justify-content-between small mt-2">
+          <div>2025 TDs: <strong>{{ c.td_2025 }}</strong></div>
+          <div>Exp: <strong>{{ c.adj_exp_td|fmt2 }}</strong></div>
+        </div>
+        {% if c.td24_total is not none %}
+        <div class="d-flex justify-content-between small mt-1">
+          <div>2024 Rush TD: <strong>{{ c.td24_rush }}</strong></div>
+          <div>2024 Rec TD: <strong>{{ c.td24_rec }}</strong></div>
+          <div>2024 Total: <strong>{{ c.td24_total }}</strong></div>
+        </div>
+        {% endif %}
+        <div class="d-flex justify-content-between small mt-1">
+          <div>Career Rush TD: <strong>{{ c.career_rush }}</strong></div>
+          <div>Career Rec TD: <strong>{{ c.career_rec }}</strong></div>
+          <div>Career Total: <strong>{{ c.career_total }}</strong></div>
+        </div>
+        <div class="d-flex justify-content-between small mt-1">
+          <div>Rush: <strong>{{ c.adj_exp_rush_td|fmt2 }}</strong></div>
+          <div>Rec: <strong>{{ c.adj_exp_rec_td|fmt2 }}</strong></div>
+          <div>Team Exp TDs (adj): <strong>{{ c.game_exp_tds_adj|fmt2 if c.game_exp_tds_adj is not none else '-' }}</strong></div>
+        </div>
+        <div class="mt-3 d-flex justify-content-end">
+          <button class="btn btn-sm btn-outline-primary" data-bs-toggle="modal" data-bs-target="#modal_{{ loop.index }}">Details</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal -->
+  <div class="modal fade" id="modal_{{ loop.index }}" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-scrollable">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">{{ c.player }} — Details</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="row g-3">
+            <div class="col-md-6">
+              <h6>Context</h6>
+              <ul class="small">
+                <li>Matchup: {{ c.team }} vs {{ c.opp }} {{ '(home)' if c.is_home else '(away)' }}</li>
+                <li>Projected team TDs: {{ c.game_exp_tds_adj if c.game_exp_tds_adj is not none else 'n/a' }}</li>
+                <li>Expected TD (any): {{ c.adj_exp_td|fmt2 }} (Rush {{ c.adj_exp_rush_td|fmt2 }}, Rec {{ c.adj_exp_rec_td|fmt2 }})</li>
+                <li>ATD probability: {{ (c.atd*100)|fmt2 }}%</li>
+                {% if c.td24_total is not none %}
+                <li>2024 TDs: Rush {{ c.td24_rush }}, Rec {{ c.td24_rec }}, Total {{ c.td24_total }}</li>
+                {% endif %}
+              </ul>
+            </div>
+            <div class="col-md-6">
+              <h6>Signals used</h6>
+              <ul class="small">
+                <li>Market implied team points (converted to expected TDs)</li>
+                <li>EPA, pace, weather adjustments</li>
+                <li>Team position TD shares (last 5y)</li>
+                <li>Opponent position TDs allowed (last 5y) — small overlay</li>
+                <li>Roster-informed usage (depth, FB caps)</li>
+                <li>Historic player TDs (within-position nudge; 5y)</li>
+                <li>2024 per-player TD totals (stronger within-position prior)</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+</div>

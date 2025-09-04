@@ -1,0 +1,495 @@
+season,week,date,game_id,team,opponent,player,position,is_home,expected_td,anytime_td_prob,exp_rush_td,exp_rec_td
+2025,1,2025-09-07,2025_01_ARI_NO,Arizona Cardinals,New Orleans Saints,Greg Dortch,WR,0,0.9575227168248915,0.6161574040560216,0.0,0.9575227168248915
+2025,1,2025-09-07,2025_01_ARI_NO,Arizona Cardinals,New Orleans Saints,James Conner,RB,0,0.7806812405054785,0.5419061670912748,0.44993538998576044,0.33074585051971805
+2025,1,2025-09-07,2025_01_ARI_NO,Arizona Cardinals,New Orleans Saints,Trey McBride,TE,0,0.5172898517759182,0.40386602790081205,0.0,0.5172898517759182
+2025,1,2025-09-07,2025_01_ARI_NO,Arizona Cardinals,New Orleans Saints,Kyler Murray,QB,0,0.254088715082456,0.22437701046330405,0.254088715082456,0.0
+2025,1,2025-09-07,2025_01_ARI_NO,Arizona Cardinals,New Orleans Saints,Bam Knight,RB,0,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_ARI_NO,Arizona Cardinals,New Orleans Saints,Elijah Higgins,TE,0,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_ARI_NO,Arizona Cardinals,New Orleans Saints,Emari Demercado,RB,0,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_ARI_NO,Arizona Cardinals,New Orleans Saints,Jacoby Brissett,QB,0,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_ARI_NO,Arizona Cardinals,New Orleans Saints,Marvin Harrison Jr.,WR,0,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_ARI_NO,Arizona Cardinals,New Orleans Saints,Michael Wilson,WR,0,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_ARI_NO,Arizona Cardinals,New Orleans Saints,Tip Reiman,TE,0,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_ARI_NO,Arizona Cardinals,New Orleans Saints,Travis Vokolek,TE,0,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_ARI_NO,Arizona Cardinals,New Orleans Saints,Trey Benson,RB,0,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_ARI_NO,Arizona Cardinals,New Orleans Saints,Xavier Weaver,WR,0,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_ARI_NO,Arizona Cardinals,New Orleans Saints,Zay Jones,WR,0,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_ARI_NO,New Orleans Saints,Arizona Cardinals,Chris Olave,WR,1,0.8119882962285623,0.5560255646413116,0.0,0.8119882962285623
+2025,1,2025-09-07,2025_01_ARI_NO,New Orleans Saints,Arizona Cardinals,Alvin Kamara,RB,1,0.6615951501964683,0.4839724638003765,0.3592645998221934,0.302330550374275
+2025,1,2025-09-07,2025_01_ARI_NO,New Orleans Saints,Arizona Cardinals,Juwan Johnson,TE,1,0.38863691093966624,0.32201960740726954,0.0,0.38863691093966624
+2025,1,2025-09-07,2025_01_ARI_NO,New Orleans Saints,Arizona Cardinals,Spencer Rattler,QB,1,0.22676854701798696,0.2028947466710086,0.22676854701798696,0.0
+2025,1,2025-09-07,2025_01_ARI_NO,New Orleans Saints,Arizona Cardinals,Brandin Cooks,WR,1,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_ARI_NO,New Orleans Saints,Arizona Cardinals,Devaughn Vele,WR,1,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_ARI_NO,New Orleans Saints,Arizona Cardinals,Devin Neal,RB,1,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_ARI_NO,New Orleans Saints,Arizona Cardinals,Jake Haener,QB,1,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_ARI_NO,New Orleans Saints,Arizona Cardinals,Kendre Miller,RB,1,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_ARI_NO,New Orleans Saints,Arizona Cardinals,Mason Tipton,WR,1,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_ARI_NO,New Orleans Saints,Arizona Cardinals,Moliki Matavao,TE,1,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_ARI_NO,New Orleans Saints,Arizona Cardinals,Rashid Shaheed,WR,1,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_ARI_NO,New Orleans Saints,Arizona Cardinals,Trey Palmer,WR,1,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_ARI_NO,New Orleans Saints,Arizona Cardinals,Tyler Shough,QB,1,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_ARI_NO,New Orleans Saints,Arizona Cardinals,Velus Jones Jr.,RB,1,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_BAL_BUF,Baltimore Ravens,Buffalo Bills,Tylan Wallace,WR,0,0.9272949158440027,0.6043775437657433,0.0,0.9272949158440027
+2025,1,2025-09-07,2025_01_BAL_BUF,Baltimore Ravens,Buffalo Bills,Derrick Henry,RB,0,0.8410238205843015,0.5687312445071245,0.49410011980550067,0.3469237007788008
+2025,1,2025-09-07,2025_01_BAL_BUF,Baltimore Ravens,Buffalo Bills,Mark Andrews,TE,0,0.6468865029099325,0.47632630228364803,0.0,0.6468865029099325
+2025,1,2025-09-07,2025_01_BAL_BUF,Baltimore Ravens,Buffalo Bills,Lamar Jackson,QB,0,0.2549780037258314,0.22506645657570445,0.2549780037258314,0.0
+2025,1,2025-09-07,2025_01_BAL_BUF,Baltimore Ravens,Buffalo Bills,Charlie Kolar,TE,0,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_BAL_BUF,Baltimore Ravens,Buffalo Bills,Cooper Rush,QB,0,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_BAL_BUF,Baltimore Ravens,Buffalo Bills,DeAndre Hopkins,WR,0,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_BAL_BUF,Baltimore Ravens,Buffalo Bills,Devontez Walker,WR,0,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_BAL_BUF,Baltimore Ravens,Buffalo Bills,Isaiah Likely,TE,0,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_BAL_BUF,Baltimore Ravens,Buffalo Bills,Justice Hill,RB,0,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_BAL_BUF,Baltimore Ravens,Buffalo Bills,Keaton Mitchell,RB,0,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_BAL_BUF,Baltimore Ravens,Buffalo Bills,LaJohntay Wester,WR,0,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_BAL_BUF,Baltimore Ravens,Buffalo Bills,Patrick Ricard,FB,0,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_BAL_BUF,Baltimore Ravens,Buffalo Bills,Rasheen Ali,RB,0,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_BAL_BUF,Baltimore Ravens,Buffalo Bills,Rashod Bateman,WR,0,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_BAL_BUF,Baltimore Ravens,Buffalo Bills,Zay Flowers,WR,0,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_BAL_BUF,Buffalo Bills,Baltimore Ravens,Khalil Shakir,WR,1,1.2214047303127151,0.7051842606930259,0.0,1.2214047303127151
+2025,1,2025-09-07,2025_01_BAL_BUF,Buffalo Bills,Baltimore Ravens,Dalton Kincaid,TE,1,0.6984089069702526,0.5026239538875741,0.0,0.6984089069702526
+2025,1,2025-09-07,2025_01_BAL_BUF,Buffalo Bills,Baltimore Ravens,Josh Allen,QB,1,0.2791847820334185,0.24359987885162593,0.2791847820334185,0.0
+2025,1,2025-09-07,2025_01_BAL_BUF,Buffalo Bills,Baltimore Ravens,Ray Davis,RB,1,0.12984668235888977,0.12176993123838586,0.12984668235888977,0.0
+2025,1,2025-09-07,2025_01_BAL_BUF,Buffalo Bills,Baltimore Ravens,Ty Johnson,RB,1,0.12984668235888977,0.12176993123838586,0.12984668235888977,0.0
+2025,1,2025-09-07,2025_01_BAL_BUF,Buffalo Bills,Baltimore Ravens,James Cook,RB,1,0.1257889735351745,0.11819908952063807,0.1257889735351745,0.0
+2025,1,2025-09-07,2025_01_BAL_BUF,Buffalo Bills,Baltimore Ravens,Reggie Gilliam,FB,1,0.08390742793802075,0.08048362631795591,0.08390742793802075,0.0
+2025,1,2025-09-07,2025_01_BAL_BUF,Buffalo Bills,Baltimore Ravens,Curtis Samuel,WR,1,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_BAL_BUF,Buffalo Bills,Baltimore Ravens,Dawson Knox,TE,1,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_BAL_BUF,Buffalo Bills,Baltimore Ravens,Elijah Moore,WR,1,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_BAL_BUF,Buffalo Bills,Baltimore Ravens,Jackson Hawes,TE,1,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_BAL_BUF,Buffalo Bills,Baltimore Ravens,Josh Palmer,WR,1,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_BAL_BUF,Buffalo Bills,Baltimore Ravens,Keon Coleman,WR,1,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_BAL_BUF,Buffalo Bills,Baltimore Ravens,Mitchell Trubisky,QB,1,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_BAL_BUF,Buffalo Bills,Baltimore Ravens,Tyrell Shavers,WR,1,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_CAR_JAX,Carolina Panthers,Jacksonville Jaguars,David Moore,WR,0,0.9971731096757869,0.6310791326906267,0.0,0.9971731096757869
+2025,1,2025-09-07,2025_01_CAR_JAX,Carolina Panthers,Jacksonville Jaguars,Rico Dowdle,RB,0,0.7835682751933062,0.5432267926140344,0.4661241073789652,0.317444167814341
+2025,1,2025-09-07,2025_01_CAR_JAX,Carolina Panthers,Jacksonville Jaguars,Tommy Tremble,TE,0,0.5268354039563359,0.40952938291009733,0.0,0.5268354039563359
+2025,1,2025-09-07,2025_01_CAR_JAX,Carolina Panthers,Jacksonville Jaguars,Bryce,QB,0,0.25189590368901926,0.22267434940981723,0.25189590368901926,0.0
+2025,1,2025-09-07,2025_01_CAR_JAX,Carolina Panthers,Jacksonville Jaguars,Andy Dalton,QB,0,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_CAR_JAX,Carolina Panthers,Jacksonville Jaguars,Brycen Tremayne,WR,0,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_CAR_JAX,Carolina Panthers,Jacksonville Jaguars,Chuba Hubbard,RB,0,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_CAR_JAX,Carolina Panthers,Jacksonville Jaguars,Dalevon Campbell,WR,0,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_CAR_JAX,Carolina Panthers,Jacksonville Jaguars,Hunter Renfrow,WR,0,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_CAR_JAX,Carolina Panthers,Jacksonville Jaguars,Ja'Tavion Sanders,TE,0,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_CAR_JAX,Carolina Panthers,Jacksonville Jaguars,James Mitchell,TE,0,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_CAR_JAX,Carolina Panthers,Jacksonville Jaguars,Jimmy Horn Jr.,WR,0,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_CAR_JAX,Carolina Panthers,Jacksonville Jaguars,Mitchell Evans,TE,0,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_CAR_JAX,Carolina Panthers,Jacksonville Jaguars,Tetairoa McMillan,WR,0,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_CAR_JAX,Carolina Panthers,Jacksonville Jaguars,Trevor Etienne,RB,0,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_CAR_JAX,Carolina Panthers,Jacksonville Jaguars,Xavier Legette,WR,0,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_CAR_JAX,Jacksonville Jaguars,Carolina Panthers,Parker Washington,WR,1,0.9415009888611918,0.6099580528553832,0.0,0.9415009888611918
+2025,1,2025-09-07,2025_01_CAR_JAX,Jacksonville Jaguars,Carolina Panthers,Tank Bigsby,RB,1,0.7237299374829989,0.5150599177761173,0.43572659587864626,0.28800334160435265
+2025,1,2025-09-07,2025_01_CAR_JAX,Jacksonville Jaguars,Carolina Panthers,Brenton Strange,TE,1,0.465730556245027,0.372323615253232,0.0,0.465730556245027
+2025,1,2025-09-07,2025_01_CAR_JAX,Jacksonville Jaguars,Carolina Panthers,Trevor Lawrence,QB,1,0.22528011061062161,0.20170742278260423,0.22528011061062161,0.0
+2025,1,2025-09-07,2025_01_CAR_JAX,Jacksonville Jaguars,Carolina Panthers,Bhayshul Tuten,RB,1,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_CAR_JAX,Jacksonville Jaguars,Carolina Panthers,Brian Thomas Jr.,WR,1,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_CAR_JAX,Jacksonville Jaguars,Carolina Panthers,Dyami Brown,WR,1,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_CAR_JAX,Jacksonville Jaguars,Carolina Panthers,Hunter Long,TE,1,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_CAR_JAX,Jacksonville Jaguars,Carolina Panthers,Johnny Mundt,TE,1,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_CAR_JAX,Jacksonville Jaguars,Carolina Panthers,LeQuint Allen Jr.,RB,1,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_CAR_JAX,Jacksonville Jaguars,Carolina Panthers,Nick Mullens,QB,1,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_CAR_JAX,Jacksonville Jaguars,Carolina Panthers,Tim Patrick,WR,1,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_CAR_JAX,Jacksonville Jaguars,Carolina Panthers,Travis Etienne,RB,1,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_CAR_JAX,Jacksonville Jaguars,Carolina Panthers,Travis Hunter,WR,1,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_CIN_CLE,Cincinnati Bengals,Cleveland Browns,Ja'Marr Chase,WR,0,1.2157266587655096,0.7035055143212934,0.0,1.2157266587655096
+2025,1,2025-09-07,2025_01_CIN_CLE,Cincinnati Bengals,Cleveland Browns,Chase Brown,RB,0,0.9862273512280264,0.6270188329993991,0.5731406609818689,0.4130866902461576
+2025,1,2025-09-07,2025_01_CIN_CLE,Cincinnati Bengals,Cleveland Browns,Mike Gesicki,TE,0,0.5910602605756706,0.4462601351674047,0.0,0.5910602605756706
+2025,1,2025-09-07,2025_01_CIN_CLE,Cincinnati Bengals,Cleveland Browns,Joe Burrow,QB,0,0.2924333989898516,0.2535550426314015,0.2924333989898516,0.0
+2025,1,2025-09-07,2025_01_CIN_CLE,Cincinnati Bengals,Cleveland Browns,Andrei Iosivas,WR,0,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_CIN_CLE,Cincinnati Bengals,Cleveland Browns,Cam Grandy,TE,0,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_CIN_CLE,Cincinnati Bengals,Cleveland Browns,Charlie Jones,WR,0,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_CIN_CLE,Cincinnati Bengals,Cleveland Browns,Drew Sample,TE,0,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_CIN_CLE,Cincinnati Bengals,Cleveland Browns,Jake Browning,QB,0,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_CIN_CLE,Cincinnati Bengals,Cleveland Browns,Jermaine Burton,WR,0,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_CIN_CLE,Cincinnati Bengals,Cleveland Browns,Mitchell Tinsley,WR,0,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_CIN_CLE,Cincinnati Bengals,Cleveland Browns,Noah Fant,TE,0,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_CIN_CLE,Cincinnati Bengals,Cleveland Browns,Samaje Perine,RB,0,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_CIN_CLE,Cincinnati Bengals,Cleveland Browns,Tahj Brooks,RB,0,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_CIN_CLE,Cincinnati Bengals,Cleveland Browns,Tanner,TE,0,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_CIN_CLE,Cincinnati Bengals,Cleveland Browns,Tee Higgins,WR,0,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_CIN_CLE,Cleveland Browns,Cincinnati Bengals,DeAndre Carter,WR,1,0.662168682796472,0.48426833756015286,0.0,0.662168682796472
+2025,1,2025-09-07,2025_01_CIN_CLE,Cleveland Browns,Cincinnati Bengals,Jerome Ford,RB,1,0.6514839139754207,0.47872831977454855,0.38494074495054326,0.2665431690248774
+2025,1,2025-09-07,2025_01_CIN_CLE,Cleveland Browns,Cincinnati Bengals,David Njoku,TE,1,0.46415990391301415,0.37133697924754017,0.0,0.46415990391301415
+2025,1,2025-09-07,2025_01_CIN_CLE,Cleveland Browns,Cincinnati Bengals,Joe Flacco,QB,1,0.1581684011846065,0.1462939952398119,0.1581684011846065,0.0
+2025,1,2025-09-07,2025_01_CIN_CLE,Cleveland Browns,Cincinnati Bengals,Blake Whiteheart,TE,1,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_CIN_CLE,Cleveland Browns,Cincinnati Bengals,Cedric Tillman,WR,1,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_CIN_CLE,Cleveland Browns,Cincinnati Bengals,Dillon Gabriel,QB,1,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_CIN_CLE,Cleveland Browns,Cincinnati Bengals,Dylan Sampson,RB,1,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_CIN_CLE,Cleveland Browns,Cincinnati Bengals,Gage Larvadain,WR,1,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_CIN_CLE,Cleveland Browns,Cincinnati Bengals,Harold Fannin Jr.,TE,1,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_CIN_CLE,Cleveland Browns,Cincinnati Bengals,Isaiah Bond,WR,1,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_CIN_CLE,Cleveland Browns,Cincinnati Bengals,Jamari Thrash,WR,1,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_CIN_CLE,Cleveland Browns,Cincinnati Bengals,Jerry Jeudy,WR,1,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_CIN_CLE,Cleveland Browns,Cincinnati Bengals,Raheim Sanders,RB,1,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_CIN_CLE,Cleveland Browns,Cincinnati Bengals,Shedeur Sanders,QB,1,0.0,0.0,0.0,0.0
+2025,1,2025-09-04,2025_01_DAL_PHI,Dallas Cowboys,Philadelphia Eagles,CeeDee Lamb,WR,0,0.8636712219555716,0.5783885914342115,0.0,0.8636712219555716
+2025,1,2025-09-04,2025_01_DAL_PHI,Dallas Cowboys,Philadelphia Eagles,Javonte Williams,RB,0,0.6817152186472435,0.4942512217453545,0.42822876568038415,0.2534864529668593
+2025,1,2025-09-04,2025_01_DAL_PHI,Dallas Cowboys,Philadelphia Eagles,Jake Ferguson,TE,0,0.4783337933968303,0.3801847277962632,0.0,0.4783337933968303
+2025,1,2025-09-04,2025_01_DAL_PHI,Dallas Cowboys,Philadelphia Eagles,Dak Prescott,QB,0,0.19388594477831986,0.17624814788904408,0.19388594477831986,0.0
+2025,1,2025-09-04,2025_01_DAL_PHI,Dallas Cowboys,Philadelphia Eagles,Brevyn Spann-Ford,TE,0,0.0,0.0,0.0,0.0
+2025,1,2025-09-04,2025_01_DAL_PHI,Dallas Cowboys,Philadelphia Eagles,George Pickens,WR,0,0.0,0.0,0.0,0.0
+2025,1,2025-09-04,2025_01_DAL_PHI,Dallas Cowboys,Philadelphia Eagles,Hunter Luepke,RB,0,0.0,0.0,0.0,0.0
+2025,1,2025-09-04,2025_01_DAL_PHI,Dallas Cowboys,Philadelphia Eagles,Jalen,WR,0,0.0,0.0,0.0,0.0
+2025,1,2025-09-04,2025_01_DAL_PHI,Dallas Cowboys,Philadelphia Eagles,Jaydon Blue,RB,0,0.0,0.0,0.0,0.0
+2025,1,2025-09-04,2025_01_DAL_PHI,Dallas Cowboys,Philadelphia Eagles,Joe Milton III,QB,0,0.0,0.0,0.0,0.0
+2025,1,2025-09-04,2025_01_DAL_PHI,Dallas Cowboys,Philadelphia Eagles,KaVontae Turpin,WR,0,0.0,0.0,0.0,0.0
+2025,1,2025-09-04,2025_01_DAL_PHI,Dallas Cowboys,Philadelphia Eagles,Luke Schoonmaker,TE,0,0.0,0.0,0.0,0.0
+2025,1,2025-09-04,2025_01_DAL_PHI,Dallas Cowboys,Philadelphia Eagles,Miles Sanders,RB,0,0.0,0.0,0.0,0.0
+2025,1,2025-09-04,2025_01_DAL_PHI,Philadelphia Eagles,Dallas Cowboys,A.J. Brown,WR,1,1.1533133997186136,0.6844106386045934,0.0,1.1533133997186136
+2025,1,2025-09-04,2025_01_DAL_PHI,Philadelphia Eagles,Dallas Cowboys,Saquon Barkley,RB,1,0.769031434076836,0.5365382557577935,0.46691452412248446,0.3021169099543516
+2025,1,2025-09-04,2025_01_DAL_PHI,Philadelphia Eagles,Dallas Cowboys,Dallas Goedert,TE,1,0.561823587329474,0.4298316365700502,0.0,0.561823587329474
+2025,1,2025-09-04,2025_01_DAL_PHI,Philadelphia Eagles,Dallas Cowboys,Jalen Hurts,QB,1,0.31965397152568165,0.2735996512048845,0.31965397152568165,0.0
+2025,1,2025-09-04,2025_01_DAL_PHI,Philadelphia Eagles,Dallas Cowboys,AJ Dillon,RB,1,0.0,0.0,0.0,0.0
+2025,1,2025-09-04,2025_01_DAL_PHI,Philadelphia Eagles,Dallas Cowboys,Ben VanSumeren,RB,1,0.0,0.0,0.0,0.0
+2025,1,2025-09-04,2025_01_DAL_PHI,Philadelphia Eagles,Dallas Cowboys,Darius Cooper,WR,1,0.0,0.0,0.0,0.0
+2025,1,2025-09-04,2025_01_DAL_PHI,Philadelphia Eagles,Dallas Cowboys,DeVonta Smith,WR,1,0.0,0.0,0.0,0.0
+2025,1,2025-09-04,2025_01_DAL_PHI,Philadelphia Eagles,Dallas Cowboys,Grant Calcaterra,TE,1,0.0,0.0,0.0,0.0
+2025,1,2025-09-04,2025_01_DAL_PHI,Philadelphia Eagles,Dallas Cowboys,Jahan Dotson,WR,1,0.0,0.0,0.0,0.0
+2025,1,2025-09-04,2025_01_DAL_PHI,Philadelphia Eagles,Dallas Cowboys,John Metchie III,WR,1,0.0,0.0,0.0,0.0
+2025,1,2025-09-04,2025_01_DAL_PHI,Philadelphia Eagles,Dallas Cowboys,Kylen Granson,TE,1,0.0,0.0,0.0,0.0
+2025,1,2025-09-04,2025_01_DAL_PHI,Philadelphia Eagles,Dallas Cowboys,Sam Howell,QB,1,0.0,0.0,0.0,0.0
+2025,1,2025-09-04,2025_01_DAL_PHI,Philadelphia Eagles,Dallas Cowboys,Tanner McKee,QB,1,0.0,0.0,0.0,0.0
+2025,1,2025-09-04,2025_01_DAL_PHI,Philadelphia Eagles,Dallas Cowboys,Will Shipley,RB,1,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_DET_GB,Detroit Lions,Green Bay Packers,Kalif Raymond,WR,0,1.0281759006295887,0.6423412289560404,0.0,1.0281759006295887
+2025,1,2025-09-07,2025_01_DET_GB,Detroit Lions,Green Bay Packers,Jahmyr Gibbs,RB,0,0.9498118554237654,0.6131862064740959,0.5900022537292069,0.35980960169455856
+2025,1,2025-09-07,2025_01_DET_GB,Detroit Lions,Green Bay Packers,Sam LaPorta,TE,0,0.6572946494608218,0.4817485083678912,0.0,0.6572946494608218
+2025,1,2025-09-07,2025_01_DET_GB,Detroit Lions,Green Bay Packers,Jared Goff,QB,0,0.20749425107819486,0.1873820865634891,0.20749425107819486,0.0
+2025,1,2025-09-07,2025_01_DET_GB,Detroit Lions,Green Bay Packers,Amon-Ra St. Brown,WR,0,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_DET_GB,Detroit Lions,Green Bay Packers,Brock Wright,TE,0,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_DET_GB,Detroit Lions,Green Bay Packers,Craig Reynolds,RB,0,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_DET_GB,Detroit Lions,Green Bay Packers,David Montgomery,RB,0,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_DET_GB,Detroit Lions,Green Bay Packers,Dominic Lovett,WR,0,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_DET_GB,Detroit Lions,Green Bay Packers,Isaac TeSlaa,WR,0,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_DET_GB,Detroit Lions,Green Bay Packers,Jameson Williams,WR,0,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_DET_GB,Detroit Lions,Green Bay Packers,Kyle Allen,QB,0,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_DET_GB,Detroit Lions,Green Bay Packers,Shane Zylstra,TE,0,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_DET_GB,Detroit Lions,Green Bay Packers,Sione Vaki,RB,0,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_DET_GB,Green Bay Packers,Detroit Lions,Jayden Reed,WR,1,0.8301556424301257,0.5640185761677637,0.0,0.8301556424301257
+2025,1,2025-09-07,2025_01_DET_GB,Green Bay Packers,Detroit Lions,Josh Jacobs,RB,1,0.7016861748437244,0.5042513203101269,0.41234639548560764,0.2893397793581167
+2025,1,2025-09-07,2025_01_DET_GB,Green Bay Packers,Detroit Lions,Tucker Kraft,TE,1,0.44796979174848905,0.3610760154831816,0.0,0.44796979174848905
+2025,1,2025-09-07,2025_01_DET_GB,Green Bay Packers,Detroit Lions,Jordan Love,QB,1,0.19884030581386064,0.18031921886312552,0.19884030581386064,0.0
+2025,1,2025-09-07,2025_01_DET_GB,Green Bay Packers,Detroit Lions,Ben Sims,TE,1,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_DET_GB,Green Bay Packers,Detroit Lions,Bo Melton,WR,1,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_DET_GB,Green Bay Packers,Detroit Lions,Chris Brooks,RB,1,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_DET_GB,Green Bay Packers,Detroit Lions,Dontayvion Wicks,WR,1,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_DET_GB,Green Bay Packers,Detroit Lions,Emanuel Wilson,RB,1,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_DET_GB,Green Bay Packers,Detroit Lions,John FitzPatrick,TE,1,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_DET_GB,Green Bay Packers,Detroit Lions,Luke Musgrave,TE,1,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_DET_GB,Green Bay Packers,Detroit Lions,Malik Willis,QB,1,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_DET_GB,Green Bay Packers,Detroit Lions,Malik Heath,WR,1,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_DET_GB,Green Bay Packers,Detroit Lions,Matthew Golden,WR,1,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_DET_GB,Green Bay Packers,Detroit Lions,Romeo Doubs,WR,1,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_DET_GB,Green Bay Packers,Detroit Lions,Savion Williams,WR,1,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_HOU_LA,Houston Texans,Los Angeles Rams,Braxton Berrios,WR,0,0.922109505547592,0.6023207509590635,0.0,0.922109505547592
+2025,1,2025-09-07,2025_01_HOU_LA,Houston Texans,Los Angeles Rams,Nick Chubb,RB,0,0.7501726823579563,0.5277150095867421,0.45548185287670495,0.29469082948125136
+2025,1,2025-09-07,2025_01_HOU_LA,Houston Texans,Los Angeles Rams,Dalton Schultz,TE,0,0.5564871756396028,0.42678085056503723,0.0,0.5564871756396028
+2025,1,2025-09-07,2025_01_HOU_LA,Houston Texans,Los Angeles Rams,C.J. Stroud,QB,0,0.2359591658719995,0.21018707540360615,0.2359591658719995,0.0
+2025,1,2025-09-07,2025_01_HOU_LA,Houston Texans,Los Angeles Rams,British Brooks,RB,0,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_HOU_LA,Houston Texans,Los Angeles Rams,Cade Stover,TE,0,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_HOU_LA,Houston Texans,Los Angeles Rams,Christian Kirk,WR,0,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_HOU_LA,Houston Texans,Los Angeles Rams,Dameon Pierce,RB,0,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_HOU_LA,Houston Texans,Los Angeles Rams,Dare Ogunbowale,RB,0,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_HOU_LA,Houston Texans,Los Angeles Rams,Davis Mills,QB,0,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_HOU_LA,Houston Texans,Los Angeles Rams,Graham Mertz,QB,0,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_HOU_LA,Houston Texans,Los Angeles Rams,Jayden Higgins,WR,0,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_HOU_LA,Houston Texans,Los Angeles Rams,Jaylin Noel,WR,0,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_HOU_LA,Houston Texans,Los Angeles Rams,Justin Watson,WR,0,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_HOU_LA,Houston Texans,Los Angeles Rams,Nico Collins,WR,0,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_HOU_LA,Houston Texans,Los Angeles Rams,Woody Marks,RB,0,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_HOU_LA,Houston Texans,Los Angeles Rams,Xavier,WR,0,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_HOU_LA,Los Angeles Rams,Houston Texans,Xavier Smith,WR,1,0.8408447261107734,0.5686539997395614,0.0,0.8408447261107734
+2025,1,2025-09-07,2025_01_HOU_LA,Los Angeles Rams,Houston Texans,Kyren Williams,RB,1,0.6777362841031613,0.492234871658647,0.4160828463773308,0.2616534377258305
+2025,1,2025-09-07,2025_01_HOU_LA,Los Angeles Rams,Houston Texans,Tyler Higbee,TE,1,0.4327285021579806,0.3512634015158699,0.0,0.4327285021579806
+2025,1,2025-09-07,2025_01_HOU_LA,Los Angeles Rams,Houston Texans,Matthew Stafford,QB,1,0.1825333867823614,0.16684317296168238,0.1825333867823614,0.0
+2025,1,2025-09-07,2025_01_HOU_LA,Los Angeles Rams,Houston Texans,Blake Corum,RB,1,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_HOU_LA,Los Angeles Rams,Houston Texans,Colby Parkinson,TE,1,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_HOU_LA,Los Angeles Rams,Houston Texans,Davante Adams,WR,1,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_HOU_LA,Los Angeles Rams,Houston Texans,Davis Allen,TE,1,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_HOU_LA,Los Angeles Rams,Houston Texans,Jarquez Hunter,RB,1,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_HOU_LA,Los Angeles Rams,Houston Texans,Jimmy Garoppolo,QB,1,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_HOU_LA,Los Angeles Rams,Houston Texans,Jordan Whittington,WR,1,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_HOU_LA,Los Angeles Rams,Houston Texans,Konata Mumpfield,WR,1,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_HOU_LA,Los Angeles Rams,Houston Texans,Puka Nacua,WR,1,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_HOU_LA,Los Angeles Rams,Houston Texans,Stetson Bennett,QB,1,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_HOU_LA,Los Angeles Rams,Houston Texans,Terrance Ferguson,TE,1,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_HOU_LA,Los Angeles Rams,Houston Texans,Tutu Atwell,WR,1,0.0,0.0,0.0,0.0
+2025,1,2025-09-05,2025_01_KC_LAC,Kansas City Chiefs,Los Angeles Chargers,Nikko Remigio,WR,0,0.9308051962782785,0.6057638549392104,0.0,0.9308051962782785
+2025,1,2025-09-05,2025_01_KC_LAC,Kansas City Chiefs,Los Angeles Chargers,Isiah Pacheco,RB,0,0.8353442163665548,0.5662748395637089,0.4780254455377416,0.3573187708288131
+2025,1,2025-09-05,2025_01_KC_LAC,Kansas City Chiefs,Los Angeles Chargers,Travis Kelce,TE,0,0.600494909780379,0.4514599089515703,0.0,0.600494909780379
+2025,1,2025-09-05,2025_01_KC_LAC,Kansas City Chiefs,Los Angeles Chargers,Patrick Mahomes,QB,0,0.2583856284740838,0.2277026451748415,0.2583856284740838,0.0
+2025,1,2025-09-05,2025_01_KC_LAC,Kansas City Chiefs,Los Angeles Chargers,Brashard Smith,RB,0,0.0,0.0,0.0,0.0
+2025,1,2025-09-05,2025_01_KC_LAC,Kansas City Chiefs,Los Angeles Chargers,Elijah Mitchell,RB,0,0.0,0.0,0.0,0.0
+2025,1,2025-09-05,2025_01_KC_LAC,Kansas City Chiefs,Los Angeles Chargers,Gardner Minshew,QB,0,0.0,0.0,0.0,0.0
+2025,1,2025-09-05,2025_01_KC_LAC,Kansas City Chiefs,Los Angeles Chargers,Jalen Royals,WR,0,0.0,0.0,0.0,0.0
+2025,1,2025-09-05,2025_01_KC_LAC,Kansas City Chiefs,Los Angeles Chargers,Jared Wiley,TE,0,0.0,0.0,0.0,0.0
+2025,1,2025-09-05,2025_01_KC_LAC,Kansas City Chiefs,Los Angeles Chargers,Jason Brownlee,WR,0,0.0,0.0,0.0,0.0
+2025,1,2025-09-05,2025_01_KC_LAC,Kansas City Chiefs,Los Angeles Chargers,JuJu Smith-Schuster,WR,0,0.0,0.0,0.0,0.0
+2025,1,2025-09-05,2025_01_KC_LAC,Kansas City Chiefs,Los Angeles Chargers,Kareem Hunt,RB,0,0.0,0.0,0.0,0.0
+2025,1,2025-09-05,2025_01_KC_LAC,Kansas City Chiefs,Los Angeles Chargers,Marquise Brown,WR,0,0.0,0.0,0.0,0.0
+2025,1,2025-09-05,2025_01_KC_LAC,Kansas City Chiefs,Los Angeles Chargers,Noah Gray,TE,0,0.0,0.0,0.0,0.0
+2025,1,2025-09-05,2025_01_KC_LAC,Kansas City Chiefs,Los Angeles Chargers,Robert Tonyan,TE,0,0.0,0.0,0.0,0.0
+2025,1,2025-09-05,2025_01_KC_LAC,Kansas City Chiefs,Los Angeles Chargers,Tyquan Thornton,WR,0,0.0,0.0,0.0,0.0
+2025,1,2025-09-05,2025_01_KC_LAC,Kansas City Chiefs,Los Angeles Chargers,Xavier Worthy,WR,0,0.0,0.0,0.0,0.0
+2025,1,2025-09-05,2025_01_KC_LAC,Los Angeles Chargers,Kansas City Chiefs,Derius Davis,WR,1,0.8668045966472142,0.5797075904133446,0.0,0.8668045966472142
+2025,1,2025-09-05,2025_01_KC_LAC,Los Angeles Chargers,Kansas City Chiefs,Najee Harris,RB,1,0.7159848847563354,0.5112894488776866,0.4040831041435907,0.31190178061274465
+2025,1,2025-09-05,2025_01_KC_LAC,Los Angeles Chargers,Kansas City Chiefs,Will Dissly,TE,1,0.4693623140096034,0.3745990494233026,0.0,0.4693623140096034
+2025,1,2025-09-05,2025_01_KC_LAC,Los Angeles Chargers,Kansas City Chiefs,Justin Herbert,QB,1,0.23853253940183552,0.21221694614926923,0.23853253940183552,0.0
+2025,1,2025-09-05,2025_01_KC_LAC,Los Angeles Chargers,Kansas City Chiefs,Hassan Haskins,RB,1,0.0,0.0,0.0,0.0
+2025,1,2025-09-05,2025_01_KC_LAC,Los Angeles Chargers,Kansas City Chiefs,KeAndre Lambert-Smith,WR,1,0.0,0.0,0.0,0.0
+2025,1,2025-09-05,2025_01_KC_LAC,Los Angeles Chargers,Kansas City Chiefs,Keenan Allen,WR,1,0.0,0.0,0.0,0.0
+2025,1,2025-09-05,2025_01_KC_LAC,Los Angeles Chargers,Kansas City Chiefs,Ladd McConkey,WR,1,0.0,0.0,0.0,0.0
+2025,1,2025-09-05,2025_01_KC_LAC,Los Angeles Chargers,Kansas City Chiefs,Omarion Hampton,RB,1,0.0,0.0,0.0,0.0
+2025,1,2025-09-05,2025_01_KC_LAC,Los Angeles Chargers,Kansas City Chiefs,Oronde Gadsden II,TE,1,0.0,0.0,0.0,0.0
+2025,1,2025-09-05,2025_01_KC_LAC,Los Angeles Chargers,Kansas City Chiefs,Quentin Johnston,WR,1,0.0,0.0,0.0,0.0
+2025,1,2025-09-05,2025_01_KC_LAC,Los Angeles Chargers,Kansas City Chiefs,Scott Matlock,RB,1,0.0,0.0,0.0,0.0
+2025,1,2025-09-05,2025_01_KC_LAC,Los Angeles Chargers,Kansas City Chiefs,Tre Harris,WR,1,0.0,0.0,0.0,0.0
+2025,1,2025-09-05,2025_01_KC_LAC,Los Angeles Chargers,Kansas City Chiefs,Trey Lance,QB,1,0.0,0.0,0.0,0.0
+2025,1,2025-09-05,2025_01_KC_LAC,Los Angeles Chargers,Kansas City Chiefs,Tucker Fisk,TE,1,0.0,0.0,0.0,0.0
+2025,1,2025-09-05,2025_01_KC_LAC,Los Angeles Chargers,Kansas City Chiefs,Tyler Conklin,TE,1,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_LV_NE,Las Vegas Raiders,New England Patriots,Jakobi Meyers,WR,0,0.8414610557230681,0.568919769143477,0.0,0.8414610557230681
+2025,1,2025-09-07,2025_01_LV_NE,Las Vegas Raiders,New England Patriots,Ashton Jeanty,RB,0,0.6967577931026019,0.501802051059543,0.4247358763408315,0.2720219167617704
+2025,1,2025-09-07,2025_01_LV_NE,Las Vegas Raiders,New England Patriots,Brock Bowers,TE,0,0.45803801202099154,0.3674765677435978,0.0,0.45803801202099154
+2025,1,2025-09-07,2025_01_LV_NE,Las Vegas Raiders,New England Patriots,Geno Smith,QB,0,0.1880322528961898,0.17141201756047475,0.1880322528961898,0.0
+2025,1,2025-09-07,2025_01_LV_NE,Las Vegas Raiders,New England Patriots,Amari Cooper,WR,0,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_LV_NE,Las Vegas Raiders,New England Patriots,Dont'e Thornton Jr.,WR,0,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_LV_NE,Las Vegas Raiders,New England Patriots,Dylan Laube,RB,0,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_LV_NE,Las Vegas Raiders,New England Patriots,Ian Thomas,TE,0,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_LV_NE,Las Vegas Raiders,New England Patriots,Jack Bech,WR,0,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_LV_NE,Las Vegas Raiders,New England Patriots,Kenny Pickett,QB,0,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_LV_NE,Las Vegas Raiders,New England Patriots,Michael Mayer,TE,0,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_LV_NE,Las Vegas Raiders,New England Patriots,Raheem Mostert,RB,0,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_LV_NE,Las Vegas Raiders,New England Patriots,Tre Tucker,WR,0,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_LV_NE,Las Vegas Raiders,New England Patriots,Zamir White,RB,0,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_LV_NE,New England Patriots,Las Vegas Raiders,Stefon Diggs,WR,1,0.8298309685342882,0.563877001398803,0.0,0.8298309685342882
+2025,1,2025-09-07,2025_01_LV_NE,New England Patriots,Las Vegas Raiders,Antonio Gibson,RB,1,0.8187969476513286,0.5590381643037008,0.4626158288855262,0.3561811187658024
+2025,1,2025-09-07,2025_01_LV_NE,New England Patriots,Las Vegas Raiders,Hunter Henry,TE,1,0.5509811048571113,0.4236159602952254,0.0,0.5509811048571113
+2025,1,2025-09-07,2025_01_LV_NE,New England Patriots,Las Vegas Raiders,Drake Maye,QB,1,0.21467329378584954,0.19319501467362254,0.21467329378584954,0.0
+2025,1,2025-09-07,2025_01_LV_NE,New England Patriots,Las Vegas Raiders,Austin Hooper,TE,1,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_LV_NE,New England Patriots,Las Vegas Raiders,DeMario Douglas,WR,1,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_LV_NE,New England Patriots,Las Vegas Raiders,Efton Chism III,WR,1,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_LV_NE,New England Patriots,Las Vegas Raiders,Jack Westover,TE,1,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_LV_NE,New England Patriots,Las Vegas Raiders,Joshua Dobbs,QB,1,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_LV_NE,New England Patriots,Las Vegas Raiders,Kayshon Boutte,WR,1,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_LV_NE,New England Patriots,Las Vegas Raiders,Kyle Williams,WR,1,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_LV_NE,New England Patriots,Las Vegas Raiders,Mack Hollins,WR,1,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_LV_NE,New England Patriots,Las Vegas Raiders,Rhamondre Stevenson,RB,1,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_LV_NE,New England Patriots,Las Vegas Raiders,Tommy DeVito,QB,1,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_LV_NE,New England Patriots,Las Vegas Raiders,TreVeyon Henderson,RB,1,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_MIA_IND,Indianapolis Colts,Miami Dolphins,Anthony Gould,WR,1,0.8821032102387407,0.5860885472332249,0.0,0.8821032102387407
+2025,1,2025-09-07,2025_01_MIA_IND,Indianapolis Colts,Miami Dolphins,Jonathan Taylor,RB,1,0.8114913941311481,0.5558048979928638,0.4680874184485594,0.3434039756825887
+2025,1,2025-09-07,2025_01_MIA_IND,Indianapolis Colts,Miami Dolphins,Tyler Warren,TE,1,0.5548385490200712,0.4258350467920372,0.0,0.5548385490200712
+2025,1,2025-09-07,2025_01_MIA_IND,Indianapolis Colts,Miami Dolphins,Daniel Jones,QB,1,0.22610574610418835,0.2023662494558376,0.22610574610418835,0.0
+2025,1,2025-09-07,2025_01_MIA_IND,Indianapolis Colts,Miami Dolphins,Adonai Mitchell,WR,1,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_MIA_IND,Indianapolis Colts,Miami Dolphins,Alec Pierce,WR,1,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_MIA_IND,Indianapolis Colts,Miami Dolphins,Andrew Ogletree,TE,1,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_MIA_IND,Indianapolis Colts,Miami Dolphins,Anthony Richardson,QB,1,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_MIA_IND,Indianapolis Colts,Miami Dolphins,Ashton Dulin,WR,1,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_MIA_IND,Indianapolis Colts,Miami Dolphins,DJ Giddens,RB,1,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_MIA_IND,Indianapolis Colts,Miami Dolphins,Josh Downs,WR,1,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_MIA_IND,Indianapolis Colts,Miami Dolphins,Michael Pittman,WR,1,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_MIA_IND,Indianapolis Colts,Miami Dolphins,Mo Alie-Cox,TE,1,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_MIA_IND,Indianapolis Colts,Miami Dolphins,Riley Leonard,QB,1,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_MIA_IND,Indianapolis Colts,Miami Dolphins,Tyler Goodson,RB,1,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_MIA_IND,Indianapolis Colts,Miami Dolphins,Will Mallory,TE,1,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_MIA_IND,Miami Dolphins,Indianapolis Colts,Tyreek Hill,WR,0,1.1456613377509062,0.6819864661245765,0.0,1.1456613377509062
+2025,1,2025-09-07,2025_01_MIA_IND,Miami Dolphins,Indianapolis Colts,Darren Waller,TE,0,0.686738292629394,0.49678526560193337,0.0,0.686738292629394
+2025,1,2025-09-07,2025_01_MIA_IND,Miami Dolphins,Indianapolis Colts,Tua Tagovailoa,QB,0,0.21305770203475444,0.19189049369166622,0.21305770203475444,0.0
+2025,1,2025-09-07,2025_01_MIA_IND,Miami Dolphins,Indianapolis Colts,Jaylen Wright,RB,0,0.208520721514521,0.1882157868701001,0.208520721514521,0.0
+2025,1,2025-09-07,2025_01_MIA_IND,Miami Dolphins,Indianapolis Colts,De'Von Achane,RB,0,0.10596954699918278,0.10054796132747224,0.10596954699918278,0.0
+2025,1,2025-09-07,2025_01_MIA_IND,Miami Dolphins,Indianapolis Colts,Ollie Gordon II,RB,0,0.10596954699918278,0.10054796132747224,0.10596954699918278,0.0
+2025,1,2025-09-07,2025_01_MIA_IND,Miami Dolphins,Indianapolis Colts,Alec Ingold,FB,0,0.08097252400648138,0.07778097001940376,0.08097252400648138,0.0
+2025,1,2025-09-07,2025_01_MIA_IND,Miami Dolphins,Indianapolis Colts,Dee Eskridge,WR,0,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_MIA_IND,Miami Dolphins,Indianapolis Colts,Jaylen Waddle,WR,0,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_MIA_IND,Miami Dolphins,Indianapolis Colts,Julian Hill,TE,0,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_MIA_IND,Miami Dolphins,Indianapolis Colts,Malik Washington,WR,0,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_MIA_IND,Miami Dolphins,Indianapolis Colts,Nick Westbrook-Ikhine,WR,0,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_MIA_IND,Miami Dolphins,Indianapolis Colts,Quinn Ewers,QB,0,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_MIA_IND,Miami Dolphins,Indianapolis Colts,Tahj Washington,WR,0,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_MIA_IND,Miami Dolphins,Indianapolis Colts,Tanner Conner,WR,0,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_MIA_IND,Miami Dolphins,Indianapolis Colts,Zach Wilson,QB,0,0.0,0.0,0.0,0.0
+2025,1,2025-09-08,2025_01_MIN_CHI,Chicago Bears,Minnesota Vikings,DJ Moore,WR,1,0.8906171769444493,0.5895976163155426,0.0,0.8906171769444493
+2025,1,2025-09-08,2025_01_MIN_CHI,Chicago Bears,Minnesota Vikings,D'Andre Swift,RB,1,0.7433673192207911,0.5244899774119325,0.45298265452319797,0.29038466469759316
+2025,1,2025-09-08,2025_01_MIN_CHI,Chicago Bears,Minnesota Vikings,Cole Kmet,TE,1,0.5336197874451785,0.41352180364513447,0.0,0.5336197874451785
+2025,1,2025-09-08,2025_01_MIN_CHI,Chicago Bears,Minnesota Vikings,Caleb Williams,QB,1,0.21558333878136837,0.1939289095235609,0.21558333878136837,0.0
+2025,1,2025-09-08,2025_01_MIN_CHI,Chicago Bears,Minnesota Vikings,Case Keenum,QB,1,0.0,0.0,0.0,0.0
+2025,1,2025-09-08,2025_01_MIN_CHI,Chicago Bears,Minnesota Vikings,Colston Loveland,TE,1,0.0,0.0,0.0,0.0
+2025,1,2025-09-08,2025_01_MIN_CHI,Chicago Bears,Minnesota Vikings,Devin Duvernay,WR,1,0.0,0.0,0.0,0.0
+2025,1,2025-09-08,2025_01_MIN_CHI,Chicago Bears,Minnesota Vikings,Durham Smythe,TE,1,0.0,0.0,0.0,0.0
+2025,1,2025-09-08,2025_01_MIN_CHI,Chicago Bears,Minnesota Vikings,Jahdae Walker,WR,1,0.0,0.0,0.0,0.0
+2025,1,2025-09-08,2025_01_MIN_CHI,Chicago Bears,Minnesota Vikings,Kyle Monangai,RB,1,0.0,0.0,0.0,0.0
+2025,1,2025-09-08,2025_01_MIN_CHI,Chicago Bears,Minnesota Vikings,Luther Burden III,WR,1,0.0,0.0,0.0,0.0
+2025,1,2025-09-08,2025_01_MIN_CHI,Chicago Bears,Minnesota Vikings,Olamide Zaccheaus,WR,1,0.0,0.0,0.0,0.0
+2025,1,2025-09-08,2025_01_MIN_CHI,Chicago Bears,Minnesota Vikings,Rome Odunze,WR,1,0.0,0.0,0.0,0.0
+2025,1,2025-09-08,2025_01_MIN_CHI,Chicago Bears,Minnesota Vikings,Roschon Johnson,RB,1,0.0,0.0,0.0,0.0
+2025,1,2025-09-08,2025_01_MIN_CHI,Chicago Bears,Minnesota Vikings,Tyson Bagent,QB,1,0.0,0.0,0.0,0.0
+2025,1,2025-09-08,2025_01_MIN_CHI,Minnesota Vikings,Chicago Bears,Justin Jefferson,WR,0,0.8665254396442663,0.5795902464659924,0.0,0.8665254396442663
+2025,1,2025-09-08,2025_01_MIN_CHI,Minnesota Vikings,Chicago Bears,Ty Chandler,RB,0,0.7102407278698675,0.5084741407551976,0.43205629693087677,0.2781844309389907
+2025,1,2025-09-08,2025_01_MIN_CHI,Minnesota Vikings,Chicago Bears,T.J. Hockenson,TE,0,0.44918267699255376,0.3618504871884862,0.0,0.44918267699255376
+2025,1,2025-09-08,2025_01_MIN_CHI,Minnesota Vikings,Chicago Bears,J.J. McCarthy,QB,0,0.189434961672954,0.17257347041526871,0.189434961672954,0.0
+2025,1,2025-09-08,2025_01_MIN_CHI,Minnesota Vikings,Chicago Bears,Aaron Jones,RB,0,0.0,0.0,0.0,0.0
+2025,1,2025-09-08,2025_01_MIN_CHI,Minnesota Vikings,Chicago Bears,Adam Thielen,WR,0,0.0,0.0,0.0,0.0
+2025,1,2025-09-08,2025_01_MIN_CHI,Minnesota Vikings,Chicago Bears,Ben Yurosek,TE,0,0.0,0.0,0.0,0.0
+2025,1,2025-09-08,2025_01_MIN_CHI,Minnesota Vikings,Chicago Bears,Carson Wentz,QB,0,0.0,0.0,0.0,0.0
+2025,1,2025-09-08,2025_01_MIN_CHI,Minnesota Vikings,Chicago Bears,Jalen Nailor,WR,0,0.0,0.0,0.0,0.0
+2025,1,2025-09-08,2025_01_MIN_CHI,Minnesota Vikings,Chicago Bears,Jordan Mason,RB,0,0.0,0.0,0.0,0.0
+2025,1,2025-09-08,2025_01_MIN_CHI,Minnesota Vikings,Chicago Bears,Josh Oliver,TE,0,0.0,0.0,0.0,0.0
+2025,1,2025-09-08,2025_01_MIN_CHI,Minnesota Vikings,Chicago Bears,Max Brosmer,QB,0,0.0,0.0,0.0,0.0
+2025,1,2025-09-08,2025_01_MIN_CHI,Minnesota Vikings,Chicago Bears,Myles Price,WR,0,0.0,0.0,0.0,0.0
+2025,1,2025-09-08,2025_01_MIN_CHI,Minnesota Vikings,Chicago Bears,Tai Felton,WR,0,0.0,0.0,0.0,0.0
+2025,1,2025-09-08,2025_01_MIN_CHI,Minnesota Vikings,Chicago Bears,Zavier Scott,RB,0,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_NYG_WAS,New York Giants,Washington Commanders,Gunner Olszewski,WR,0,0.7992891467234806,0.5503515153637515,0.0,0.7992891467234806
+2025,1,2025-09-07,2025_01_NYG_WAS,New York Giants,Washington Commanders,Tyrone Tracy Jr.,RB,0,0.6790613520145152,0.49290724936527464,0.38121362599324016,0.2978477260212751
+2025,1,2025-09-07,2025_01_NYG_WAS,New York Giants,Washington Commanders,Theo Johnson,TE,0,0.39895886281627463,0.3289816954110387,0.0,0.39895886281627463
+2025,1,2025-09-07,2025_01_NYG_WAS,New York Giants,Washington Commanders,Russell Wilson,QB,0,0.2021446581645091,0.18302326296142346,0.2021446581645091,0.0
+2025,1,2025-09-07,2025_01_NYG_WAS,New York Giants,Washington Commanders,Beaux Collins,WR,0,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_NYG_WAS,New York Giants,Washington Commanders,Cam Skattebo,RB,0,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_NYG_WAS,New York Giants,Washington Commanders,Chris Manhertz,TE,0,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_NYG_WAS,New York Giants,Washington Commanders,Daniel Bellinger,TE,0,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_NYG_WAS,New York Giants,Washington Commanders,Darius Slayton,WR,0,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_NYG_WAS,New York Giants,Washington Commanders,Devin Singletary,RB,0,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_NYG_WAS,New York Giants,Washington Commanders,Jalin Hyatt,WR,0,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_NYG_WAS,New York Giants,Washington Commanders,Jameis Winston,QB,0,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_NYG_WAS,New York Giants,Washington Commanders,Jaxson Dart,QB,0,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_NYG_WAS,New York Giants,Washington Commanders,Malik Nabers,WR,0,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_NYG_WAS,New York Giants,Washington Commanders,Thomas Fidone II,TE,0,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_NYG_WAS,New York Giants,Washington Commanders,Wan'Dale Robinson,WR,0,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_NYG_WAS,Washington Commanders,New York Giants,Terry McLaurin,WR,1,1.0610864742822461,0.6539204005890493,0.0,1.0610864742822461
+2025,1,2025-09-07,2025_01_NYG_WAS,Washington Commanders,New York Giants,Austin Ekeler,RB,1,0.8738195683601069,0.582645612657982,0.5177457820101494,0.35607378634995746
+2025,1,2025-09-07,2025_01_NYG_WAS,Washington Commanders,New York Giants,Zach Ertz,TE,1,0.5473737747991324,0.42153299811658973,0.0,0.5473737747991324
+2025,1,2025-09-07,2025_01_NYG_WAS,Washington Commanders,New York Giants,Jayden Daniels,QB,1,0.2482661628397349,0.21984773190155016,0.2482661628397349,0.0
+2025,1,2025-09-07,2025_01_NYG_WAS,Washington Commanders,New York Giants,Ben Sinnott,TE,1,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_NYG_WAS,Washington Commanders,New York Giants,Chris Rodriguez Jr.,RB,1,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_NYG_WAS,Washington Commanders,New York Giants,Colson Yankoff,RB,1,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_NYG_WAS,Washington Commanders,New York Giants,Deebo Samuel Sr.,WR,1,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_NYG_WAS,Washington Commanders,New York Giants,Jacory Croskey-Merritt,RB,1,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_NYG_WAS,Washington Commanders,New York Giants,Jaylin Lane,WR,1,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_NYG_WAS,Washington Commanders,New York Giants,Jeremy McNichols,RB,1,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_NYG_WAS,Washington Commanders,New York Giants,John Bates,TE,1,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_NYG_WAS,Washington Commanders,New York Giants,Josh Johnson,QB,1,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_NYG_WAS,Washington Commanders,New York Giants,Luke McCaffrey,WR,1,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_NYG_WAS,Washington Commanders,New York Giants,Marcus Mariota,QB,1,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_NYG_WAS,Washington Commanders,New York Giants,Noah Brown,WR,1,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_PIT_NYJ,New York Jets,Pittsburgh Steelers,Garrett Wilson,WR,1,1.0585814243855403,0.6530523671446768,0.0,1.0585814243855403
+2025,1,2025-09-07,2025_01_PIT_NYJ,New York Jets,Pittsburgh Steelers,Mason Taylor,TE,1,0.5864215666042125,0.4436855386284956,0.0,0.5864215666042125
+2025,1,2025-09-07,2025_01_PIT_NYJ,New York Jets,Pittsburgh Steelers,Justin Fields,QB,1,0.1742041512722691,0.1598746325126622,0.1742041512722691,0.0
+2025,1,2025-09-07,2025_01_PIT_NYJ,New York Jets,Pittsburgh Steelers,Kene Nwangwu,RB,1,0.1566964902805902,0.14503649082238346,0.1566964902805902,0.0
+2025,1,2025-09-07,2025_01_PIT_NYJ,New York Jets,Pittsburgh Steelers,Isaiah Davis,RB,1,0.08207911395649965,0.07880092389026305,0.08207911395649965,0.0
+2025,1,2025-09-07,2025_01_PIT_NYJ,New York Jets,Pittsburgh Steelers,Braelon Allen,RB,1,0.07710462220156027,0.07420700996126306,0.07710462220156027,0.0
+2025,1,2025-09-07,2025_01_PIT_NYJ,New York Jets,Pittsburgh Steelers,Breece Hall,RB,1,0.07710462220156027,0.07420700996126306,0.07710462220156027,0.0
+2025,1,2025-09-07,2025_01_PIT_NYJ,New York Jets,Pittsburgh Steelers,Andrew Beck,FB,1,0.07423126447875045,0.0715430501016392,0.07423126447875045,0.0
+2025,1,2025-09-07,2025_01_PIT_NYJ,New York Jets,Pittsburgh Steelers,Allen Lazard,WR,1,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_PIT_NYJ,New York Jets,Pittsburgh Steelers,Arian Smith,WR,1,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_PIT_NYJ,New York Jets,Pittsburgh Steelers,Jelani Woods,TE,1,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_PIT_NYJ,New York Jets,Pittsburgh Steelers,Jeremy Ruckert,TE,1,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_PIT_NYJ,New York Jets,Pittsburgh Steelers,Josh Reynolds,WR,1,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_PIT_NYJ,New York Jets,Pittsburgh Steelers,Stone Smartt,TE,1,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_PIT_NYJ,New York Jets,Pittsburgh Steelers,Tyrod Taylor,QB,1,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_PIT_NYJ,New York Jets,Pittsburgh Steelers,Xavier Gipson,WR,1,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_PIT_NYJ,Pittsburgh Steelers,New York Jets,DK Metcalf,WR,0,0.6464021916305986,0.476072619779463,0.0,0.6464021916305986
+2025,1,2025-09-07,2025_01_PIT_NYJ,Pittsburgh Steelers,New York Jets,Kenneth Gainwell,RB,0,0.5462362531025472,0.42087460495392925,0.3253267221033444,0.22090953099920277
+2025,1,2025-09-07,2025_01_PIT_NYJ,Pittsburgh Steelers,New York Jets,Pat Freiermuth,TE,0,0.4159104772201408,0.34026067046045294,0.0,0.4159104772201408
+2025,1,2025-09-07,2025_01_PIT_NYJ,Pittsburgh Steelers,New York Jets,Aaron Rodgers,QB,0,0.17502782266573125,0.16056633483796812,0.17502782266573125,0.0
+2025,1,2025-09-07,2025_01_PIT_NYJ,Pittsburgh Steelers,New York Jets,Ben Skowronek,WR,0,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_PIT_NYJ,Pittsburgh Steelers,New York Jets,Calvin Austin III,WR,0,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_PIT_NYJ,Pittsburgh Steelers,New York Jets,Connor Heyward,FB,0,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_PIT_NYJ,Pittsburgh Steelers,New York Jets,Darnell Washington,TE,0,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_PIT_NYJ,Pittsburgh Steelers,New York Jets,Jaylen Warren,RB,0,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_PIT_NYJ,Pittsburgh Steelers,New York Jets,Jonnu Smith,TE,0,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_PIT_NYJ,Pittsburgh Steelers,New York Jets,Kaleb Johnson,RB,0,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_PIT_NYJ,Pittsburgh Steelers,New York Jets,Mason Rudolph,QB,0,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_PIT_NYJ,Pittsburgh Steelers,New York Jets,Roman Wilson,WR,0,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_PIT_NYJ,Pittsburgh Steelers,New York Jets,Scott Miller,WR,0,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_PIT_NYJ,Pittsburgh Steelers,New York Jets,Skylar Thompson,QB,0,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_SF_SEA,San Francisco 49ers,Seattle Seahawks,Jauan Jennings,WR,0,0.972257891231268,0.621771924594646,0.0,0.972257891231268
+2025,1,2025-09-07,2025_01_SF_SEA,San Francisco 49ers,Seattle Seahawks,George Kittle,TE,0,0.6787193903705958,0.4927338134421213,0.0,0.6787193903705958
+2025,1,2025-09-07,2025_01_SF_SEA,San Francisco 49ers,Seattle Seahawks,Brock Purdy,QB,0,0.19152657856495467,0.17430232104455756,0.19152657856495467,0.0
+2025,1,2025-09-07,2025_01_SF_SEA,San Francisco 49ers,Seattle Seahawks,Isaac Guerendo,RB,0,0.1863281433113718,0.16999880904864462,0.1863281433113718,0.0
+2025,1,2025-09-07,2025_01_SF_SEA,San Francisco 49ers,Seattle Seahawks,Christian McCaffrey,RB,0,0.0931640716556859,0.08895598846633357,0.0931640716556859,0.0
+2025,1,2025-09-07,2025_01_SF_SEA,San Francisco 49ers,Seattle Seahawks,Jordan James,RB,0,0.0931640716556859,0.08895598846633357,0.0931640716556859,0.0
+2025,1,2025-09-07,2025_01_SF_SEA,San Francisco 49ers,Seattle Seahawks,Kyle Juszczyk,FB,0,0.07656160450045961,0.07370415146194043,0.07656160450045961,0.0
+2025,1,2025-09-07,2025_01_SF_SEA,San Francisco 49ers,Seattle Seahawks,Brian Robinson,RB,0,0.0030052926340543833,0.0030007812626082764,0.0030052926340543833,0.0
+2025,1,2025-09-07,2025_01_SF_SEA,San Francisco 49ers,Seattle Seahawks,Jake Tonges,TE,0,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_SF_SEA,San Francisco 49ers,Seattle Seahawks,Jordan Watkins,WR,0,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_SF_SEA,San Francisco 49ers,Seattle Seahawks,Luke Farrell,TE,0,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_SF_SEA,San Francisco 49ers,Seattle Seahawks,Mac Jones,QB,0,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_SF_SEA,San Francisco 49ers,Seattle Seahawks,Ricky Pearsall,WR,0,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_SF_SEA,San Francisco 49ers,Seattle Seahawks,Skyy Moore,WR,0,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_SF_SEA,Seattle Seahawks,San Francisco 49ers,Jaxon Smith-Njigba,WR,1,0.8112294397180967,0.5556885238839471,0.0,0.8112294397180967
+2025,1,2025-09-07,2025_01_SF_SEA,Seattle Seahawks,San Francisco 49ers,Kenneth Walker III,RB,1,0.6032619768184094,0.45297565809966456,0.38359385419596553,0.2196681226224439
+2025,1,2025-09-07,2025_01_SF_SEA,Seattle Seahawks,San Francisco 49ers,AJ Barner,TE,1,0.37850076947089994,0.31511255594608456,0.0,0.37850076947089994
+2025,1,2025-09-07,2025_01_SF_SEA,Seattle Seahawks,San Francisco 49ers,Sam Darnold,QB,1,0.16595934149708955,0.1529193254786808,0.16595934149708955,0.0
+2025,1,2025-09-07,2025_01_SF_SEA,Seattle Seahawks,San Francisco 49ers,Brady Russell,TE,1,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_SF_SEA,Seattle Seahawks,San Francisco 49ers,Cody White,WR,1,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_SF_SEA,Seattle Seahawks,San Francisco 49ers,Cooper Kupp,WR,1,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_SF_SEA,Seattle Seahawks,San Francisco 49ers,Dareke Young,WR,1,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_SF_SEA,Seattle Seahawks,San Francisco 49ers,Drew Lock,QB,1,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_SF_SEA,Seattle Seahawks,San Francisco 49ers,Elijah Arroyo,TE,1,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_SF_SEA,Seattle Seahawks,San Francisco 49ers,Eric Saubert,TE,1,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_SF_SEA,Seattle Seahawks,San Francisco 49ers,George Holani,RB,1,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_SF_SEA,Seattle Seahawks,San Francisco 49ers,Jake Bobo,WR,1,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_SF_SEA,Seattle Seahawks,San Francisco 49ers,Jalen Milroe,QB,1,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_SF_SEA,Seattle Seahawks,San Francisco 49ers,Nick Kallerup,TE,1,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_SF_SEA,Seattle Seahawks,San Francisco 49ers,Robbie Ouzts,RB,1,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_SF_SEA,Seattle Seahawks,San Francisco 49ers,Tory Horton,WR,1,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_SF_SEA,Seattle Seahawks,San Francisco 49ers,Zach Charbonnet,RB,1,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_TB_ATL,Atlanta Falcons,Tampa Bay Buccaneers,Jamal Agnew,WR,1,0.860970275896019,0.5772483025253767,0.0,0.860970275896019
+2025,1,2025-09-07,2025_01_TB_ATL,Atlanta Falcons,Tampa Bay Buccaneers,Bijan Robinson,RB,1,0.6851133171228274,0.4959668892433041,0.4004277891176379,0.28468552800518954
+2025,1,2025-09-07,2025_01_TB_ATL,Atlanta Falcons,Tampa Bay Buccaneers,Charlie Woerner,TE,1,0.49954890587195994,0.3931956761487915,0.0,0.49954890587195994
+2025,1,2025-09-07,2025_01_TB_ATL,Atlanta Falcons,Tampa Bay Buccaneers,Michael Penix Jr.,QB,1,0.24107112954723153,0.21421426818283384,0.24107112954723153,0.0
+2025,1,2025-09-07,2025_01_TB_ATL,Atlanta Falcons,Tampa Bay Buccaneers,Casey Washington,WR,1,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_TB_ATL,Atlanta Falcons,Tampa Bay Buccaneers,Darnell Mooney,WR,1,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_TB_ATL,Atlanta Falcons,Tampa Bay Buccaneers,David Sills,WR,1,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_TB_ATL,Atlanta Falcons,Tampa Bay Buccaneers,Drake London,WR,1,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_TB_ATL,Atlanta Falcons,Tampa Bay Buccaneers,Feleipe Franks,TE,1,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_TB_ATL,Atlanta Falcons,Tampa Bay Buccaneers,KhaDarel Hodge,WR,1,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_TB_ATL,Atlanta Falcons,Tampa Bay Buccaneers,Kirk Cousins,QB,1,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_TB_ATL,Atlanta Falcons,Tampa Bay Buccaneers,Kyle Pitts,TE,1,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_TB_ATL,Atlanta Falcons,Tampa Bay Buccaneers,Nate Carter,RB,1,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_TB_ATL,Atlanta Falcons,Tampa Bay Buccaneers,Ray-Ray McCloud,WR,1,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_TB_ATL,Atlanta Falcons,Tampa Bay Buccaneers,Teagan Quitoriano,TE,1,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_TB_ATL,Atlanta Falcons,Tampa Bay Buccaneers,Tyler Allgeier,RB,1,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_TB_ATL,Tampa Bay Buccaneers,Atlanta Falcons,Mike Evans,WR,0,1.0429926867921173,0.6476015159764337,0.0,1.0429926867921173
+2025,1,2025-09-07,2025_01_TB_ATL,Tampa Bay Buccaneers,Atlanta Falcons,Sean Tucker,RB,0,0.8702331956504277,0.5811461370409341,0.49752642253244983,0.37270677311797784
+2025,1,2025-09-07,2025_01_TB_ATL,Tampa Bay Buccaneers,Atlanta Falcons,Cade Otton,TE,0,0.5518411956384376,0.4241114897635677,0.0,0.5518411956384376
+2025,1,2025-09-07,2025_01_TB_ATL,Tampa Bay Buccaneers,Atlanta Falcons,Baker Mayfield,QB,0,0.26965786490955107,0.23635928206647372,0.26965786490955107,0.0
+2025,1,2025-09-07,2025_01_TB_ATL,Tampa Bay Buccaneers,Atlanta Falcons,Bucky Irving,RB,0,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_TB_ATL,Tampa Bay Buccaneers,Atlanta Falcons,Chris Godwin Jr.,WR,0,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_TB_ATL,Tampa Bay Buccaneers,Atlanta Falcons,Devin Culp,TE,0,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_TB_ATL,Tampa Bay Buccaneers,Atlanta Falcons,Emeka Egbuka,WR,0,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_TB_ATL,Tampa Bay Buccaneers,Atlanta Falcons,Josh Williams,RB,0,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_TB_ATL,Tampa Bay Buccaneers,Atlanta Falcons,Kameron Johnson,WR,0,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_TB_ATL,Tampa Bay Buccaneers,Atlanta Falcons,Ko Kieft,TE,0,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_TB_ATL,Tampa Bay Buccaneers,Atlanta Falcons,Payne Durham,TE,0,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_TB_ATL,Tampa Bay Buccaneers,Atlanta Falcons,Rachaad White,RB,0,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_TB_ATL,Tampa Bay Buccaneers,Atlanta Falcons,Ryan Miller,WR,0,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_TB_ATL,Tampa Bay Buccaneers,Atlanta Falcons,Sterling Shepard,WR,0,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_TB_ATL,Tampa Bay Buccaneers,Atlanta Falcons,Teddy Bridgewater,QB,0,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_TB_ATL,Tampa Bay Buccaneers,Atlanta Falcons,Tez Johnson,WR,0,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_TEN_DEN,Denver Broncos,Tennessee Titans,Courtland Sutton,WR,1,0.851799986200618,0.5733537170443967,0.0,0.851799986200618
+2025,1,2025-09-07,2025_01_TEN_DEN,Denver Broncos,Tennessee Titans,J.K. Dobbins,RB,1,0.699936155466097,0.5033829909392336,0.4033096304422545,0.2966265250238425
+2025,1,2025-09-07,2025_01_TEN_DEN,Denver Broncos,Tennessee Titans,Evan Engram,TE,1,0.44844665974489545,0.3613806252484374,0.0,0.44844665974489545
+2025,1,2025-09-07,2025_01_TEN_DEN,Denver Broncos,Tennessee Titans,Bo Nix,QB,1,0.2193438341001735,0.19695444376682125,0.2193438341001735,0.0
+2025,1,2025-09-07,2025_01_TEN_DEN,Denver Broncos,Tennessee Titans,Adam Trautman,TE,1,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_TEN_DEN,Denver Broncos,Tennessee Titans,Jaleel McLaughlin,RB,1,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_TEN_DEN,Denver Broncos,Tennessee Titans,Jarrett Stidham,QB,1,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_TEN_DEN,Denver Broncos,Tennessee Titans,Lucas Krull,TE,1,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_TEN_DEN,Denver Broncos,Tennessee Titans,Marvin Mims Jr.,WR,1,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_TEN_DEN,Denver Broncos,Tennessee Titans,Nate Adkins,TE,1,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_TEN_DEN,Denver Broncos,Tennessee Titans,Pat Bryant,WR,1,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_TEN_DEN,Denver Broncos,Tennessee Titans,RJ Harvey,RB,1,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_TEN_DEN,Denver Broncos,Tennessee Titans,Trent Sherfield,WR,1,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_TEN_DEN,Denver Broncos,Tennessee Titans,Troy Franklin,WR,1,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_TEN_DEN,Denver Broncos,Tennessee Titans,Tyler Badie,RB,1,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_TEN_DEN,Tennessee Titans,Denver Broncos,Calvin Ridley,WR,0,0.8041625275187203,0.5525374927768317,0.0,0.8041625275187203
+2025,1,2025-09-07,2025_01_TEN_DEN,Tennessee Titans,Denver Broncos,Tony Pollard,RB,0,0.7411173112134364,0.5234188715069765,0.42431471362003964,0.3168025975933967
+2025,1,2025-09-07,2025_01_TEN_DEN,Tennessee Titans,Denver Broncos,Chig Okonkwo,TE,0,0.5146180834168909,0.40227116641491134,0.0,0.5146180834168909
+2025,1,2025-09-07,2025_01_TEN_DEN,Tennessee Titans,Denver Broncos,Cam Ward,QB,0,0.21343258519631095,0.1921933835605718,0.21343258519631095,0.0
+2025,1,2025-09-07,2025_01_TEN_DEN,Tennessee Titans,Denver Broncos,Brandon Allen,QB,0,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_TEN_DEN,Tennessee Titans,Denver Broncos,Bryce Oliver,WR,0,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_TEN_DEN,Tennessee Titans,Denver Broncos,Chimere Dike,WR,0,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_TEN_DEN,Tennessee Titans,Denver Broncos,David Martin-Robinson,TE,0,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_TEN_DEN,Tennessee Titans,Denver Broncos,Elic Ayomanor,WR,0,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_TEN_DEN,Tennessee Titans,Denver Broncos,Gunnar Helm,TE,0,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_TEN_DEN,Tennessee Titans,Denver Broncos,Julius Chestnut,RB,0,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_TEN_DEN,Tennessee Titans,Denver Broncos,Kalel Mullings,RB,0,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_TEN_DEN,Tennessee Titans,Denver Broncos,Tyler Lockett,WR,0,0.0,0.0,0.0,0.0
+2025,1,2025-09-07,2025_01_TEN_DEN,Tennessee Titans,Denver Broncos,Van Jefferson,WR,0,0.0,0.0,0.0,0.0

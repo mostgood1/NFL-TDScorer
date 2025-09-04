@@ -1,0 +1,39 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "Run Flask app (NFL-Touchdown)",
+			"type": "shell",
+			"command": "${config:python.pythonPath}",
+			"args": [
+				"-m",
+				"flask",
+				"run",
+				"--port",
+				"5001"
+			],
+			"isBackground": true,
+			"problemMatcher": [
+				"$eslint-stylish"
+			],
+			"group": "build"
+		},
+		{
+			"label": "Run Flask app (NFL-Touchdown)",
+			"type": "shell",
+			"command": "C:/Users/mostg/OneDrive/Coding/NFL-Touchdown/.venv/Scripts/python.exe",
+			"args": [
+				"-m",
+				"flask",
+				"run",
+				"--port",
+				"5001"
+			],
+			"isBackground": true,
+			"problemMatcher": [
+				"$eslint-stylish"
+			],
+			"group": "build"
+		}
+	]
+}

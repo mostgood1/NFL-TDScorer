@@ -1,0 +1,36 @@
+<div class="row g-3">
+  {% if not cards %}
+    <div class="col-12"><div class="alert alert-info">No QB data available.</div></div>
+  {% endif %}
+  {% for c in cards %}
+    <div class="col-12 col-md-6 col-lg-4">
+      <div class="card shadow-sm">
+        <div class="card-body">
+          <div class="d-flex align-items-center mb-2">
+            {% if c.headshot %}
+              <img class="headshot me-2" src="{{ c.headshot }}" alt="{{ c.player }}" />
+            {% else %}
+              <div class="player-avatar me-2 {{ c.team_class }}">{{ c.team_abbr }}</div>
+            {% endif %}
+            <div class="flex-grow-1">
+              <div class="d-flex align-items-center justify-content-between">
+                <h5 class="card-title mb-0">{{ c.player }}</h5>
+                <span class="badge bg-primary card-badge">Pass TDs: {{ c.exp_pass_tds|fmt2 }}</span>
+              </div>
+              <div class="small text-muted mb-1">
+                <span>{% if c.logo_url %}<img class="team-logo-sm" src="{{ c.logo_url }}" alt="{{ c.team_abbr }}" />{% else %}<strong>{{ c.team_abbr }}</strong>{% endif %} {{ c.team }}</span>
+                {% if c.opp %}<span class="ms-2">vs {{ c.opp }}</span>{% endif %}
+                {% if c.depth_rank %}<span class="ms-2">QB{{ c.depth_rank }}</span>{% endif %}
+              </div>
+              <div class="d-flex flex-wrap gap-2">
+                <span class="badge bg-secondary">QB rush TD%: {{ (c.qb_rush_prob*100)|fmt2 }}%</span>
+                <span class="badge bg-light text-dark">2024: {{ c.td24_thrown }} pass • {{ c.td24_rushed }} rush</span>
+                <span class="badge bg-light text-dark">Career: {{ c.career_thrown }} pass • {{ c.career_rushed }} rush</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  {% endfor %}
+</div>

@@ -1,0 +1,60 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Player Likelihoods</title>
+    <style>
+      body { font-family: Arial, sans-serif; margin: 24px; }
+      table { border-collapse: collapse; width: 100%; }
+      th, td { border: 1px solid #ddd; padding: 8px; }
+      th { background: #f5f5f5; }
+      .controls { margin-bottom: 12px; }
+      .controls input, .controls select { margin-right: 8px; }
+    </style>
+  </head>
+  <body>
+    <h1>Player Likelihoods</h1>
+    <p><a href="/">Home</a></p>
+    <form method="get" class="controls">
+      <label>Season <input type="number" name="season" value="{{ season or '' }}" /></label>
+      <label>Week <input type="number" name="week" value="{{ week or '' }}" /></label>
+      <label>Team <input type="text" name="team" value="{{ team_filter or '' }}" placeholder="e.g., Eagles" /></label>
+      <label>Pos <input type="text" name="position" value="{{ pos_filter or '' }}" placeholder="WR/RB/TE/QB"/></label>
+      <label>Sort
+        <select name="sort">
+          {% for c in columns %}<option value="{{ c }}" {% if c==sort %}selected{% endif %}>{{ c }}</option>{% endfor %}
+        </select>
+      </label>
+      <label>Order
+        <select name="order">
+          <option value="desc" {% if order=='desc' %}selected{% endif %}>desc</option>
+          <option value="asc" {% if order=='asc' %}selected{% endif %}>asc</option>
+        </select>
+      </label>
+      <button type="submit">Apply</button>
+    </form>
+    {% if message %}<p>{{ message }}</p>{% endif %}
+    {% if file_name %}<p>Source: {{ file_name }}</p>{% endif %}
+    <table>
+      <thead>
+        <tr>
+          {% for c in columns %}<th>{{ c }}</th>{% endfor %}
+        </tr>
+      </thead>
+      <tbody>
+        {% for r in rows %}
+          <tr>
+            {% for c in columns %}
+              {% set v = r[c] %}
+              {% if v is number %}
+                <td>{{ v|fmt2 }}</td>
+              {% else %}
+                <td>{{ v }}</td>
+              {% endif %}
+            {% endfor %}
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </body>
+  </html>

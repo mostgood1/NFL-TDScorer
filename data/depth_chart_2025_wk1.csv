@@ -1,0 +1,533 @@
+season,week,team,position,player,depth_rank,depth_size,status,active
+2025,1,Arizona Cardinals,QB,Kyler Murray,1,2,,True
+2025,1,Arizona Cardinals,QB,Jacoby Brissett,2,2,,True
+2025,1,Arizona Cardinals,RB,James Conner,1,4,,True
+2025,1,Arizona Cardinals,RB,Trey Benson,2,4,,True
+2025,1,Arizona Cardinals,RB,Emari Demercado,3,4,,True
+2025,1,Arizona Cardinals,RB,Bam Knight,4,4,,True
+2025,1,Arizona Cardinals,WR,Marvin Harrison Jr.,1,6,,True
+2025,1,Arizona Cardinals,WR,Michael Wilson,2,6,,True
+2025,1,Arizona Cardinals,WR,Zay Jones,3,6,,True
+2025,1,Arizona Cardinals,WR,Greg Dortch,4,6,,True
+2025,1,Arizona Cardinals,WR,Xavier Weaver,5,6,,True
+2025,1,Arizona Cardinals,WR,Trishton Jackson,6,6,,True
+2025,1,Arizona Cardinals,TE,Trey McBride,1,4,,True
+2025,1,Arizona Cardinals,TE,Elijah Higgins,2,4,,True
+2025,1,Arizona Cardinals,TE,Tip Reiman,3,4,,True
+2025,1,Arizona Cardinals,TE,Travis Vokolek,4,4,,True
+2025,1,Atlanta Falcons,QB,Michael Penix Jr.,1,3,,True
+2025,1,Atlanta Falcons,QB,Kirk Cousins,2,3,,True
+2025,1,Atlanta Falcons,QB,Emory Jones,3,3,,True
+2025,1,Atlanta Falcons,RB,Bijan Robinson,1,3,,True
+2025,1,Atlanta Falcons,RB,Tyler Allgeier,2,3,,True
+2025,1,Atlanta Falcons,RB,Nathan Carter,3,3,,True
+2025,1,Atlanta Falcons,WR,Drake London,1,7,,True
+2025,1,Atlanta Falcons,WR,Darnell Mooney,2,7,,True
+2025,1,Atlanta Falcons,WR,Ray-Ray McCloud III,3,7,,True
+2025,1,Atlanta Falcons,WR,KhaDarel Hodge,4,7,,True
+2025,1,Atlanta Falcons,WR,Casey Washington,5,7,,True
+2025,1,Atlanta Falcons,WR,Jamal Agnew,6,7,,True
+2025,1,Atlanta Falcons,WR,David Sills V,7,7,,True
+2025,1,Atlanta Falcons,TE,Kyle Pitts Sr.,1,4,,True
+2025,1,Atlanta Falcons,TE,Charlie Woerner,2,4,,True
+2025,1,Atlanta Falcons,TE,Teagan Quitoriano,3,4,,True
+2025,1,Atlanta Falcons,TE,Feleipe Franks,4,4,,True
+2025,1,Baltimore Ravens,QB,Lamar Jackson,1,2,,True
+2025,1,Baltimore Ravens,QB,Cooper Rush,2,2,,True
+2025,1,Baltimore Ravens,RB,Derrick Henry,1,4,,True
+2025,1,Baltimore Ravens,RB,Justice Hill,2,4,,True
+2025,1,Baltimore Ravens,RB,Keaton Mitchell,3,4,,True
+2025,1,Baltimore Ravens,RB,Rasheen Ali,4,4,,True
+2025,1,Baltimore Ravens,WR,Zay Flowers,1,7,,True
+2025,1,Baltimore Ravens,WR,Rashod Bateman,2,7,,True
+2025,1,Baltimore Ravens,WR,DeAndre Hopkins,3,7,,True
+2025,1,Baltimore Ravens,WR,Tylan Wallace,4,7,,True
+2025,1,Baltimore Ravens,WR,Devontez Walker,5,7,,True
+2025,1,Baltimore Ravens,WR,LaJohntay Wester,6,7,,True
+2025,1,Baltimore Ravens,WR,Dayton Wade,7,7,,True
+2025,1,Baltimore Ravens,TE,Mark Andrews,1,3,,True
+2025,1,Baltimore Ravens,TE,Isaiah Likely,2,3,,True
+2025,1,Baltimore Ravens,TE,Charlie Kolar,3,3,,True
+2025,1,Buffalo Bills,QB,Josh Allen,1,2,,True
+2025,1,Buffalo Bills,QB,Mitchell Trubisky,2,2,,True
+2025,1,Buffalo Bills,RB,James Cook,1,3,,True
+2025,1,Buffalo Bills,RB,Ray Davis,2,3,,True
+2025,1,Buffalo Bills,RB,Ty Johnson,3,3,,True
+2025,1,Buffalo Bills,WR,Khalil Shakir,1,6,,True
+2025,1,Buffalo Bills,WR,Keon Coleman,2,6,,True
+2025,1,Buffalo Bills,WR,Joshua Palmer,3,6,,True
+2025,1,Buffalo Bills,WR,Elijah Moore,4,6,,True
+2025,1,Buffalo Bills,WR,Curtis Samuel,5,6,,True
+2025,1,Buffalo Bills,WR,Tyrell Shavers,6,6,,True
+2025,1,Buffalo Bills,TE,Dalton Kincaid,1,3,,True
+2025,1,Buffalo Bills,TE,Dawson Knox,2,3,,True
+2025,1,Buffalo Bills,TE,Jackson Hawes,3,3,,True
+2025,1,Carolina Panthers,QB,Bryce Young,1,2,,True
+2025,1,Carolina Panthers,QB,Andy Dalton,2,2,,True
+2025,1,Carolina Panthers,RB,Chuba Hubbard,1,4,,True
+2025,1,Carolina Panthers,RB,Rico Dowdle,2,4,,True
+2025,1,Carolina Panthers,RB,Trevor Etienne,3,4,,True
+2025,1,Carolina Panthers,RB,Jonathon Brooks,4,4,,True
+2025,1,Carolina Panthers,WR,Tetairoa McMillan,1,8,,True
+2025,1,Carolina Panthers,WR,Xavier Legette,2,8,,True
+2025,1,Carolina Panthers,WR,Hunter Renfrow,3,8,,True
+2025,1,Carolina Panthers,WR,David Moore,4,8,,True
+2025,1,Carolina Panthers,WR,Brycen Tremayne,5,8,,True
+2025,1,Carolina Panthers,WR,Jimmy Horn Jr.,6,8,,True
+2025,1,Carolina Panthers,WR,Dalevon Campbell,7,8,,True
+2025,1,Carolina Panthers,WR,Jalen Coker,8,8,,True
+2025,1,Carolina Panthers,TE,Ja'Tavion Sanders,1,4,,True
+2025,1,Carolina Panthers,TE,Tommy Tremble,2,4,,True
+2025,1,Carolina Panthers,TE,Mitchell Evans,3,4,,True
+2025,1,Carolina Panthers,TE,James Mitchell,4,4,,True
+2025,1,Chicago Bears,QB,Caleb Williams,1,3,,True
+2025,1,Chicago Bears,QB,Tyson Bagent,2,3,,True
+2025,1,Chicago Bears,QB,Case Keenum,3,3,,True
+2025,1,Chicago Bears,RB,D'Andre Swift,1,4,,True
+2025,1,Chicago Bears,RB,Roschon Johnson,2,4,,True
+2025,1,Chicago Bears,RB,Kyle Monangai,3,4,,True
+2025,1,Chicago Bears,RB,Travis Homer,4,4,,True
+2025,1,Chicago Bears,WR,DJ Moore,1,6,,True
+2025,1,Chicago Bears,WR,Rome Odunze,2,6,,True
+2025,1,Chicago Bears,WR,Luther Burden III,3,6,,True
+2025,1,Chicago Bears,WR,Olamide Zaccheaus,4,6,,True
+2025,1,Chicago Bears,WR,Jahdae Walker,5,6,,True
+2025,1,Chicago Bears,WR,Devin Duvernay,6,6,,True
+2025,1,Chicago Bears,TE,Colston Loveland,1,3,,True
+2025,1,Chicago Bears,TE,Cole Kmet,2,3,,True
+2025,1,Chicago Bears,TE,Durham Smythe,3,3,,True
+2025,1,Cincinnati Bengals,QB,Joe Burrow,1,2,,True
+2025,1,Cincinnati Bengals,QB,Jake Browning,2,2,,True
+2025,1,Cincinnati Bengals,RB,Chase Brown,1,3,,True
+2025,1,Cincinnati Bengals,RB,Samaje Perine,2,3,,True
+2025,1,Cincinnati Bengals,RB,Tahj Brooks,3,3,,True
+2025,1,Cincinnati Bengals,WR,Ja'Marr Chase,1,6,,True
+2025,1,Cincinnati Bengals,WR,Tee Higgins,2,6,,True
+2025,1,Cincinnati Bengals,WR,Andrei Iosivas,3,6,,True
+2025,1,Cincinnati Bengals,WR,Jermaine Burton,4,6,,True
+2025,1,Cincinnati Bengals,WR,Charlie Jones,5,6,,True
+2025,1,Cincinnati Bengals,WR,Mitchell Tinsley,6,6,,True
+2025,1,Cincinnati Bengals,TE,Mike Gesicki,1,4,,True
+2025,1,Cincinnati Bengals,TE,Noah Fant,2,4,,True
+2025,1,Cincinnati Bengals,TE,Drew Sample,3,4,,True
+2025,1,Cincinnati Bengals,TE,Tanner Hudson,4,4,,True
+2025,1,Cleveland Browns,QB,Joe Flacco,1,4,,True
+2025,1,Cleveland Browns,QB,Dillon Gabriel,2,4,,True
+2025,1,Cleveland Browns,QB,Shedeur Sanders,3,4,,True
+2025,1,Cleveland Browns,QB,Deshaun Watson,4,4,,True
+2025,1,Cleveland Browns,RB,Jerome Ford,1,4,,True
+2025,1,Cleveland Browns,RB,Dylan Sampson,2,4,,True
+2025,1,Cleveland Browns,RB,Quinshon Judkins,3,4,,True
+2025,1,Cleveland Browns,RB,Raheim Sanders,4,4,,True
+2025,1,Cleveland Browns,WR,Jerry Jeudy,1,8,,True
+2025,1,Cleveland Browns,WR,Cedric Tillman,2,8,,True
+2025,1,Cleveland Browns,WR,Jamari Thrash,3,8,,True
+2025,1,Cleveland Browns,WR,Isaiah Bond,4,8,,True
+2025,1,Cleveland Browns,WR,DeAndre Carter,5,8,,True
+2025,1,Cleveland Browns,WR,Gage Larvadain,6,8,,True
+2025,1,Cleveland Browns,WR,David Bell,7,8,,True
+2025,1,Cleveland Browns,WR,Cade McDonald,8,8,,True
+2025,1,Cleveland Browns,TE,David Njoku,1,3,,True
+2025,1,Cleveland Browns,TE,Harold Fannin Jr.,2,3,,True
+2025,1,Cleveland Browns,TE,Blake Whiteheart,3,3,,True
+2025,1,Dallas Cowboys,QB,Dak Prescott,1,2,,True
+2025,1,Dallas Cowboys,QB,Joe Milton III,2,2,,True
+2025,1,Dallas Cowboys,RB,Javonte Williams,1,4,,True
+2025,1,Dallas Cowboys,RB,Miles Sanders,2,4,,True
+2025,1,Dallas Cowboys,RB,Jaydon Blue,3,4,,True
+2025,1,Dallas Cowboys,RB,Phil Mafah,4,4,,True
+2025,1,Dallas Cowboys,WR,CeeDee Lamb,1,5,,True
+2025,1,Dallas Cowboys,WR,George Pickens,2,5,,True
+2025,1,Dallas Cowboys,WR,Jalen Tolbert,3,5,,True
+2025,1,Dallas Cowboys,WR,KaVontae Turpin,4,5,,True
+2025,1,Dallas Cowboys,WR,Jonathan Mingo,5,5,,True
+2025,1,Dallas Cowboys,TE,Jake Ferguson,1,4,,True
+2025,1,Dallas Cowboys,TE,Luke Schoonmaker,2,4,,True
+2025,1,Dallas Cowboys,TE,Brevyn Spann-Ford,3,4,,True
+2025,1,Dallas Cowboys,TE,John Stephens Jr.,4,4,,True
+2025,1,Denver Broncos,QB,Bo Nix,1,2,,True
+2025,1,Denver Broncos,QB,Jarrett Stidham,2,2,,True
+2025,1,Denver Broncos,RB,J.K. Dobbins,1,4,,True
+2025,1,Denver Broncos,RB,RJ Harvey,2,4,,True
+2025,1,Denver Broncos,RB,Tyler Badie,3,4,,True
+2025,1,Denver Broncos,RB,Jaleel McLaughlin,4,4,,True
+2025,1,Denver Broncos,WR,Courtland Sutton,1,5,,True
+2025,1,Denver Broncos,WR,Marvin Mims Jr.,2,5,,True
+2025,1,Denver Broncos,WR,Troy Franklin,3,5,,True
+2025,1,Denver Broncos,WR,Pat Bryant,4,5,,True
+2025,1,Denver Broncos,WR,Trent Sherfield Sr.,5,5,,True
+2025,1,Denver Broncos,TE,Evan Engram,1,4,,True
+2025,1,Denver Broncos,TE,Adam Trautman,2,4,,True
+2025,1,Denver Broncos,TE,Nate Adkins,3,4,,True
+2025,1,Denver Broncos,TE,Lucas Krull,4,4,,True
+2025,1,Detroit Lions,QB,Jared Goff,1,2,,True
+2025,1,Detroit Lions,QB,Kyle Allen,2,2,,True
+2025,1,Detroit Lions,RB,Jahmyr Gibbs,1,4,,True
+2025,1,Detroit Lions,RB,David Montgomery,2,4,,True
+2025,1,Detroit Lions,RB,Craig Reynolds,3,4,,True
+2025,1,Detroit Lions,RB,Sione Vaki,4,4,,True
+2025,1,Detroit Lions,WR,Amon-Ra St. Brown,1,5,,True
+2025,1,Detroit Lions,WR,Jameson Williams,2,5,,True
+2025,1,Detroit Lions,WR,Kalif Raymond,3,5,,True
+2025,1,Detroit Lions,WR,Isaac TeSlaa,4,5,,True
+2025,1,Detroit Lions,WR,Dominic Lovett,5,5,,True
+2025,1,Detroit Lions,TE,Sam LaPorta,1,4,,True
+2025,1,Detroit Lions,TE,Brock Wright,2,4,,True
+2025,1,Detroit Lions,TE,Shane Zylstra,3,4,,True
+2025,1,Detroit Lions,TE,Kenny Yeboah,4,4,,True
+2025,1,Green Bay Packers,QB,Jordan Love,1,2,,True
+2025,1,Green Bay Packers,QB,Malik Willis,2,2,,True
+2025,1,Green Bay Packers,RB,Josh Jacobs,1,4,,True
+2025,1,Green Bay Packers,RB,Emanuel Wilson,2,4,,True
+2025,1,Green Bay Packers,RB,Chris Brooks,3,4,,True
+2025,1,Green Bay Packers,RB,MarShawn Lloyd,4,4,,True
+2025,1,Green Bay Packers,WR,Jayden Reed,1,7,,True
+2025,1,Green Bay Packers,WR,Matthew Golden,2,7,,True
+2025,1,Green Bay Packers,WR,Romeo Doubs,3,7,,True
+2025,1,Green Bay Packers,WR,Dontayvion Wicks,4,7,,True
+2025,1,Green Bay Packers,WR,Savion Williams,5,7,,True
+2025,1,Green Bay Packers,WR,Malik Heath,6,7,,True
+2025,1,Green Bay Packers,WR,Christian Watson,7,7,,True
+2025,1,Green Bay Packers,TE,Tucker Kraft,1,4,,True
+2025,1,Green Bay Packers,TE,Luke Musgrave,2,4,,True
+2025,1,Green Bay Packers,TE,Ben Sims,3,4,,True
+2025,1,Green Bay Packers,TE,John FitzPatrick,4,4,,True
+2025,1,Houston Texans,QB,C.J. Stroud,1,3,,True
+2025,1,Houston Texans,QB,Davis Mills,2,3,,True
+2025,1,Houston Texans,QB,Graham Mertz,3,3,,True
+2025,1,Houston Texans,RB,Nick Chubb,1,4,,True
+2025,1,Houston Texans,RB,Dameon Pierce,2,4,,True
+2025,1,Houston Texans,RB,Dare Ogunbowale,3,4,,True
+2025,1,Houston Texans,RB,Woody Marks,4,4,,True
+2025,1,Houston Texans,WR,Nico Collins,1,8,,True
+2025,1,Houston Texans,WR,Christian Kirk,2,8,,True
+2025,1,Houston Texans,WR,Jayden Higgins,3,8,,True
+2025,1,Houston Texans,WR,Jaylin Noel,4,8,,True
+2025,1,Houston Texans,WR,Xavier Hutchinson,5,8,,True
+2025,1,Houston Texans,WR,Justin Watson,6,8,,True
+2025,1,Houston Texans,WR,Braxton Berrios,7,8,,True
+2025,1,Houston Texans,WR,Tank Dell,8,8,,True
+2025,1,Houston Texans,TE,Dalton Schultz,1,4,,True
+2025,1,Houston Texans,TE,Cade Stover,2,4,,True
+2025,1,Houston Texans,TE,Brevin Jordan,3,4,,True
+2025,1,Houston Texans,TE,Irv Smith Jr.,4,4,,True
+2025,1,Indianapolis Colts,QB,Daniel Jones,1,3,,True
+2025,1,Indianapolis Colts,QB,Anthony Richardson Sr.,2,3,,True
+2025,1,Indianapolis Colts,QB,Riley Leonard,3,3,,True
+2025,1,Indianapolis Colts,RB,Jonathan Taylor,1,4,,True
+2025,1,Indianapolis Colts,RB,Tyler Goodson,2,4,,True
+2025,1,Indianapolis Colts,RB,DJ Giddens,3,4,,True
+2025,1,Indianapolis Colts,RB,Salvon Ahmed,4,4,,True
+2025,1,Indianapolis Colts,WR,Michael Pittman Jr.,1,7,,True
+2025,1,Indianapolis Colts,WR,Josh Downs,2,7,,True
+2025,1,Indianapolis Colts,WR,Alec Pierce,3,7,,True
+2025,1,Indianapolis Colts,WR,Adonai Mitchell,4,7,,True
+2025,1,Indianapolis Colts,WR,Ashton Dulin,5,7,,True
+2025,1,Indianapolis Colts,WR,Anthony Gould,6,7,,True
+2025,1,Indianapolis Colts,WR,D.J. Montgomery,7,7,,True
+2025,1,Indianapolis Colts,TE,Tyler Warren,1,4,,True
+2025,1,Indianapolis Colts,TE,Mo Alie-Cox,2,4,,True
+2025,1,Indianapolis Colts,TE,Drew Ogletree,3,4,,True
+2025,1,Indianapolis Colts,TE,Will Mallory,4,4,,True
+2025,1,Jacksonville Jaguars,QB,Trevor Lawrence,1,2,,True
+2025,1,Jacksonville Jaguars,QB,Nick Mullens,2,2,,True
+2025,1,Jacksonville Jaguars,RB,Travis Etienne Jr.,1,4,,True
+2025,1,Jacksonville Jaguars,RB,Tank Bigsby,2,4,,True
+2025,1,Jacksonville Jaguars,RB,Bhayshul Tuten,3,4,,True
+2025,1,Jacksonville Jaguars,RB,LeQuint Allen Jr.,4,4,,True
+2025,1,Jacksonville Jaguars,WR,Brian Thomas Jr.,1,6,,True
+2025,1,Jacksonville Jaguars,WR,Travis Hunter,2,6,,True
+2025,1,Jacksonville Jaguars,WR,Dyami Brown,3,6,,True
+2025,1,Jacksonville Jaguars,WR,Parker Washington,4,6,,True
+2025,1,Jacksonville Jaguars,WR,Tim Patrick,5,6,,True
+2025,1,Jacksonville Jaguars,WR,Joshua Cephus,6,6,,True
+2025,1,Jacksonville Jaguars,TE,Brenton Strange,1,3,,True
+2025,1,Jacksonville Jaguars,TE,Johnny Mundt,2,3,,True
+2025,1,Jacksonville Jaguars,TE,Hunter Long,3,3,,True
+2025,1,Kansas City Chiefs,QB,Patrick Mahomes,1,2,,True
+2025,1,Kansas City Chiefs,QB,Gardner Minshew,2,2,,True
+2025,1,Kansas City Chiefs,RB,Isiah Pacheco,1,4,,True
+2025,1,Kansas City Chiefs,RB,Kareem Hunt,2,4,,True
+2025,1,Kansas City Chiefs,RB,Elijah Mitchell,3,4,,True
+2025,1,Kansas City Chiefs,RB,Brashard Smith,4,4,,True
+2025,1,Kansas City Chiefs,WR,Xavier Worthy,1,8,,True
+2025,1,Kansas City Chiefs,WR,Hollywood Brown,2,8,,True
+2025,1,Kansas City Chiefs,WR,JuJu Smith-Schuster,3,8,,True
+2025,1,Kansas City Chiefs,WR,Jalen Royals,4,8,,True
+2025,1,Kansas City Chiefs,WR,Tyquan Thornton,5,8,,True
+2025,1,Kansas City Chiefs,WR,Jason Brownlee,6,8,,True
+2025,1,Kansas City Chiefs,WR,Nikko Remigio,7,8,,True
+2025,1,Kansas City Chiefs,WR,Rashee Rice,8,8,,True
+2025,1,Kansas City Chiefs,TE,Travis Kelce,1,4,,True
+2025,1,Kansas City Chiefs,TE,Noah Gray,2,4,,True
+2025,1,Kansas City Chiefs,TE,Robert Tonyan,3,4,,True
+2025,1,Kansas City Chiefs,TE,Jared Wiley,4,4,,True
+2025,1,Las Vegas Raiders,QB,Geno Smith,1,3,,True
+2025,1,Las Vegas Raiders,QB,Kenny Pickett,2,3,,True
+2025,1,Las Vegas Raiders,QB,Aidan O'Connell,3,3,,True
+2025,1,Las Vegas Raiders,RB,Ashton Jeanty,1,4,,True
+2025,1,Las Vegas Raiders,RB,Raheem Mostert,2,4,,True
+2025,1,Las Vegas Raiders,RB,Zamir White,3,4,,True
+2025,1,Las Vegas Raiders,RB,Dylan Laube,4,4,,True
+2025,1,Las Vegas Raiders,WR,Jakobi Meyers,1,5,,True
+2025,1,Las Vegas Raiders,WR,Tre Tucker,2,5,,True
+2025,1,Las Vegas Raiders,WR,Dont'e Thornton Jr.,3,5,,True
+2025,1,Las Vegas Raiders,WR,Amari Cooper,4,5,,True
+2025,1,Las Vegas Raiders,WR,Jack Bech,5,5,,True
+2025,1,Las Vegas Raiders,TE,Brock Bowers,1,3,,True
+2025,1,Las Vegas Raiders,TE,Michael Mayer,2,3,,True
+2025,1,Las Vegas Raiders,TE,Ian Thomas,3,3,,True
+2025,1,Los Angeles Chargers,QB,Justin Herbert,1,2,,True
+2025,1,Los Angeles Chargers,QB,Trey Lance,2,2,,True
+2025,1,Los Angeles Chargers,RB,Omarion Hampton,1,3,,True
+2025,1,Los Angeles Chargers,RB,Najee Harris,2,3,,True
+2025,1,Los Angeles Chargers,RB,Hassan Haskins,3,3,,True
+2025,1,Los Angeles Chargers,WR,Ladd McConkey,1,6,,True
+2025,1,Los Angeles Chargers,WR,Quentin Johnston,2,6,,True
+2025,1,Los Angeles Chargers,WR,Keenan Allen,3,6,,True
+2025,1,Los Angeles Chargers,WR,Tre' Harris,4,6,,True
+2025,1,Los Angeles Chargers,WR,KeAndre Lambert-Smith,5,6,,True
+2025,1,Los Angeles Chargers,WR,Derius Davis,6,6,,True
+2025,1,Los Angeles Chargers,TE,Will Dissly,1,4,,True
+2025,1,Los Angeles Chargers,TE,Tyler Conklin,2,4,,True
+2025,1,Los Angeles Chargers,TE,Oronde Gadsden II,3,4,,True
+2025,1,Los Angeles Chargers,TE,Tucker Fisk,4,4,,True
+2025,1,Los Angeles Rams,QB,Matthew Stafford,1,3,,True
+2025,1,Los Angeles Rams,QB,Jimmy Garoppolo,2,3,,True
+2025,1,Los Angeles Rams,QB,Stetson Bennett IV,3,3,,True
+2025,1,Los Angeles Rams,RB,Kyren Williams,1,3,,True
+2025,1,Los Angeles Rams,RB,Blake Corum,2,3,,True
+2025,1,Los Angeles Rams,RB,Jarquez Hunter,3,3,,True
+2025,1,Los Angeles Rams,WR,Puka Nacua,1,6,,True
+2025,1,Los Angeles Rams,WR,Davante Adams,2,6,,True
+2025,1,Los Angeles Rams,WR,Tutu Atwell,3,6,,True
+2025,1,Los Angeles Rams,WR,Jordan Whittington,4,6,,True
+2025,1,Los Angeles Rams,WR,Konata Mumpfield,5,6,,True
+2025,1,Los Angeles Rams,WR,Xavier Smith,6,6,,True
+2025,1,Los Angeles Rams,TE,Tyler Higbee,1,4,,True
+2025,1,Los Angeles Rams,TE,Terrance Ferguson,2,4,,True
+2025,1,Los Angeles Rams,TE,Colby Parkinson,3,4,,True
+2025,1,Los Angeles Rams,TE,Davis Allen,4,4,,True
+2025,1,Miami Dolphins,QB,Tua Tagovailoa,1,3,,True
+2025,1,Miami Dolphins,QB,Zach Wilson,2,3,,True
+2025,1,Miami Dolphins,QB,Quinn Ewers,3,3,,True
+2025,1,Miami Dolphins,RB,De'Von Achane,1,4,,True
+2025,1,Miami Dolphins,RB,Jaylen Wright,2,4,,True
+2025,1,Miami Dolphins,RB,Ollie Gordon II,3,4,,True
+2025,1,Miami Dolphins,RB,Alexander Mattison,4,4,,True
+2025,1,Miami Dolphins,WR,Tyreek Hill,1,6,,True
+2025,1,Miami Dolphins,WR,Jaylen Waddle,2,6,,True
+2025,1,Miami Dolphins,WR,Malik Washington,3,6,,True
+2025,1,Miami Dolphins,WR,Nick Westbrook-Ikhine,4,6,,True
+2025,1,Miami Dolphins,WR,Dee Eskridge,5,6,,True
+2025,1,Miami Dolphins,WR,Tahj Washington,6,6,,True
+2025,1,Miami Dolphins,TE,Darren Waller,1,4,,True
+2025,1,Miami Dolphins,TE,Julian Hill,2,4,,True
+2025,1,Miami Dolphins,TE,Tanner Conner,3,4,,True
+2025,1,Miami Dolphins,TE,Jalin Conyers,4,4,,True
+2025,1,Minnesota Vikings,QB,J.J. McCarthy,1,3,,True
+2025,1,Minnesota Vikings,QB,Carson Wentz,2,3,,True
+2025,1,Minnesota Vikings,QB,Max Brosmer,3,3,,True
+2025,1,Minnesota Vikings,RB,Aaron Jones Sr.,1,4,,True
+2025,1,Minnesota Vikings,RB,Jordan Mason,2,4,,True
+2025,1,Minnesota Vikings,RB,Ty Chandler,3,4,,True
+2025,1,Minnesota Vikings,RB,Zavier Scott,4,4,,True
+2025,1,Minnesota Vikings,WR,Justin Jefferson,1,7,,True
+2025,1,Minnesota Vikings,WR,Jordan Addison,2,7,,True
+2025,1,Minnesota Vikings,WR,Adam Thielen,3,7,,True
+2025,1,Minnesota Vikings,WR,Jalen Nailor,4,7,,True
+2025,1,Minnesota Vikings,WR,Tai Felton,5,7,,True
+2025,1,Minnesota Vikings,WR,Myles Price,6,7,,True
+2025,1,Minnesota Vikings,WR,Rondale Moore,7,7,,True
+2025,1,Minnesota Vikings,TE,T.J. Hockenson,1,3,,True
+2025,1,Minnesota Vikings,TE,Josh Oliver,2,3,,True
+2025,1,Minnesota Vikings,TE,Gavin Bartholomew,3,3,,True
+2025,1,New England Patriots,QB,Drake Maye,1,3,,True
+2025,1,New England Patriots,QB,Joshua Dobbs,2,3,,True
+2025,1,New England Patriots,QB,Tommy DeVito,3,3,,True
+2025,1,New England Patriots,RB,Rhamondre Stevenson,1,4,,True
+2025,1,New England Patriots,RB,TreVeyon Henderson,2,4,,True
+2025,1,New England Patriots,RB,Antonio Gibson,3,4,,True
+2025,1,New England Patriots,RB,Lan Larison,4,4,,True
+2025,1,New England Patriots,WR,Stefon Diggs,1,7,,True
+2025,1,New England Patriots,WR,DeMario Douglas,2,7,,True
+2025,1,New England Patriots,WR,Kayshon Boutte,3,7,,True
+2025,1,New England Patriots,WR,Mack Hollins,4,7,,True
+2025,1,New England Patriots,WR,Kyle Williams,5,7,,True
+2025,1,New England Patriots,WR,Efton Chism III,6,7,,True
+2025,1,New England Patriots,WR,Ja'Lynn Polk,7,7,,True
+2025,1,New England Patriots,TE,Hunter Henry,1,2,,True
+2025,1,New England Patriots,TE,Austin Hooper,2,2,,True
+2025,1,New Orleans Saints,QB,Spencer Rattler,1,3,,True
+2025,1,New Orleans Saints,QB,Tyler Shough,2,3,,True
+2025,1,New Orleans Saints,QB,Jake Haener,3,3,,True
+2025,1,New Orleans Saints,RB,Alvin Kamara,1,4,,True
+2025,1,New Orleans Saints,RB,Kendre Miller,2,4,,True
+2025,1,New Orleans Saints,RB,Devin Neal,3,4,,True
+2025,1,New Orleans Saints,RB,Velus Jones Jr.,4,4,,True
+2025,1,New Orleans Saints,WR,Chris Olave,1,7,,True
+2025,1,New Orleans Saints,WR,Rashid Shaheed,2,7,,True
+2025,1,New Orleans Saints,WR,Brandin Cooks,3,7,,True
+2025,1,New Orleans Saints,WR,Devaughn Vele,4,7,,True
+2025,1,New Orleans Saints,WR,Trey Palmer,5,7,,True
+2025,1,New Orleans Saints,WR,Mason Tipton,6,7,,True
+2025,1,New Orleans Saints,WR,Bub Means,7,7,,True
+2025,1,New Orleans Saints,TE,Juwan Johnson,1,4,,True
+2025,1,New Orleans Saints,TE,Moliki Matavao,2,4,,True
+2025,1,New Orleans Saints,TE,Taysom Hill,3,4,,True
+2025,1,New Orleans Saints,TE,Foster Moreau,4,4,,True
+2025,1,New York Giants,QB,Russell Wilson,1,3,,True
+2025,1,New York Giants,QB,Jaxson Dart,2,3,,True
+2025,1,New York Giants,QB,Jameis Winston,3,3,,True
+2025,1,New York Giants,RB,Tyrone Tracy Jr.,1,4,,True
+2025,1,New York Giants,RB,Devin Singletary,2,4,,True
+2025,1,New York Giants,RB,Cam Skattebo,3,4,,True
+2025,1,New York Giants,RB,Eric Gray,4,4,,True
+2025,1,New York Giants,WR,Malik Nabers,1,8,,True
+2025,1,New York Giants,WR,Wan'Dale Robinson,2,8,,True
+2025,1,New York Giants,WR,Darius Slayton,3,8,,True
+2025,1,New York Giants,WR,Jalin Hyatt,4,8,,True
+2025,1,New York Giants,WR,Beaux Collins,5,8,,True
+2025,1,New York Giants,WR,Gunner Olszewski,6,8,,True
+2025,1,New York Giants,WR,Bryce Ford-Wheaton,7,8,,True
+2025,1,New York Giants,WR,Da'Quan Felton,8,8,,True
+2025,1,New York Giants,TE,Theo Johnson,1,4,,True
+2025,1,New York Giants,TE,Daniel Bellinger,2,4,,True
+2025,1,New York Giants,TE,Chris Manhertz,3,4,,True
+2025,1,New York Giants,TE,Thomas Fidone II,4,4,,True
+2025,1,New York Jets,QB,Justin Fields,1,2,,True
+2025,1,New York Jets,QB,Tyrod Taylor,2,2,,True
+2025,1,New York Jets,RB,Breece Hall,1,4,,True
+2025,1,New York Jets,RB,Braelon Allen,2,4,,True
+2025,1,New York Jets,RB,Isaiah Davis,3,4,,True
+2025,1,New York Jets,RB,Kene Nwangwu,4,4,,True
+2025,1,New York Jets,WR,Garrett Wilson,1,6,,True
+2025,1,New York Jets,WR,Josh Reynolds,2,6,,True
+2025,1,New York Jets,WR,Allen Lazard,3,6,,True
+2025,1,New York Jets,WR,Xavier Gipson,4,6,,True
+2025,1,New York Jets,WR,Arian Smith,5,6,,True
+2025,1,New York Jets,WR,Irvin Charles,6,6,,True
+2025,1,New York Jets,TE,Mason Taylor,1,4,,True
+2025,1,New York Jets,TE,Jeremy Ruckert,2,4,,True
+2025,1,New York Jets,TE,Stone Smartt,3,4,,True
+2025,1,New York Jets,TE,Jelani Woods,4,4,,True
+2025,1,Philadelphia Eagles,QB,Jalen Hurts,1,3,,True
+2025,1,Philadelphia Eagles,QB,Tanner McKee,2,3,,True
+2025,1,Philadelphia Eagles,QB,Sam Howell,3,3,,True
+2025,1,Philadelphia Eagles,RB,Saquon Barkley,1,3,,True
+2025,1,Philadelphia Eagles,RB,Will Shipley,2,3,,True
+2025,1,Philadelphia Eagles,RB,AJ Dillon,3,3,,True
+2025,1,Philadelphia Eagles,WR,A.J. Brown,1,6,,True
+2025,1,Philadelphia Eagles,WR,DeVonta Smith,2,6,,True
+2025,1,Philadelphia Eagles,WR,Jahan Dotson,3,6,,True
+2025,1,Philadelphia Eagles,WR,John Metchie III,4,6,,True
+2025,1,Philadelphia Eagles,WR,Darius Cooper,5,6,,True
+2025,1,Philadelphia Eagles,WR,Johnny Wilson,6,6,,True
+2025,1,Philadelphia Eagles,TE,Dallas Goedert,1,3,,True
+2025,1,Philadelphia Eagles,TE,Grant Calcaterra,2,3,,True
+2025,1,Philadelphia Eagles,TE,Kylen Granson,3,3,,True
+2025,1,Pittsburgh Steelers,QB,Aaron Rodgers,1,4,,True
+2025,1,Pittsburgh Steelers,QB,Mason Rudolph,2,4,,True
+2025,1,Pittsburgh Steelers,QB,Skylar Thompson,3,4,,True
+2025,1,Pittsburgh Steelers,QB,Will Howard,4,4,,True
+2025,1,Pittsburgh Steelers,RB,Jaylen Warren,1,3,,True
+2025,1,Pittsburgh Steelers,RB,Kaleb Johnson,2,3,,True
+2025,1,Pittsburgh Steelers,RB,Kenneth Gainwell,3,3,,True
+2025,1,Pittsburgh Steelers,WR,DK Metcalf,1,5,,True
+2025,1,Pittsburgh Steelers,WR,Calvin Austin III,2,5,,True
+2025,1,Pittsburgh Steelers,WR,Roman Wilson,3,5,,True
+2025,1,Pittsburgh Steelers,WR,Scotty Miller,4,5,,True
+2025,1,Pittsburgh Steelers,WR,Ben Skowronek,5,5,,True
+2025,1,Pittsburgh Steelers,TE,Pat Freiermuth,1,4,,True
+2025,1,Pittsburgh Steelers,TE,Jonnu Smith,2,4,,True
+2025,1,Pittsburgh Steelers,TE,Darnell Washington,3,4,,True
+2025,1,Pittsburgh Steelers,TE,Donald Parham Jr.,4,4,,True
+2025,1,San Francisco 49ers,QB,Brock Purdy,1,4,,True
+2025,1,San Francisco 49ers,QB,Mac Jones,2,4,,True
+2025,1,San Francisco 49ers,QB,Kurtis Rourke,3,4,,True
+2025,1,San Francisco 49ers,QB,Carter Bradley,4,4,,True
+2025,1,San Francisco 49ers,RB,Christian McCaffrey,1,4,,True
+2025,1,San Francisco 49ers,RB,Brian Robinson Jr.,2,4,,True
+2025,1,San Francisco 49ers,RB,Isaac Guerendo,3,4,,True
+2025,1,San Francisco 49ers,RB,Jordan James,4,4,,True
+2025,1,San Francisco 49ers,WR,Jauan Jennings,1,9,,True
+2025,1,San Francisco 49ers,WR,Ricky Pearsall,2,9,,True
+2025,1,San Francisco 49ers,WR,Marquez Valdes-Scantling,3,9,,True
+2025,1,San Francisco 49ers,WR,Skyy Moore,4,9,,True
+2025,1,San Francisco 49ers,WR,Jordan Watkins,5,9,,True
+2025,1,San Francisco 49ers,WR,Demarcus Robinson,6,9,,True
+2025,1,San Francisco 49ers,WR,Brandon Aiyuk,7,9,,True
+2025,1,San Francisco 49ers,WR,Jacob Cowing,8,9,,True
+2025,1,San Francisco 49ers,WR,Trent Taylor,9,9,,True
+2025,1,San Francisco 49ers,TE,George Kittle,1,3,,True
+2025,1,San Francisco 49ers,TE,Luke Farrell,2,3,,True
+2025,1,San Francisco 49ers,TE,Jake Tonges,3,3,,True
+2025,1,Seattle Seahawks,QB,Sam Darnold,1,3,,True
+2025,1,Seattle Seahawks,QB,Drew Lock,2,3,,True
+2025,1,Seattle Seahawks,QB,Jalen Milroe,3,3,,True
+2025,1,Seattle Seahawks,RB,Kenneth Walker III,1,4,,True
+2025,1,Seattle Seahawks,RB,Zach Charbonnet,2,4,,True
+2025,1,Seattle Seahawks,RB,George Holani,3,4,,True
+2025,1,Seattle Seahawks,RB,Kenny McIntosh,4,4,,True
+2025,1,Seattle Seahawks,WR,Jaxon Smith-Njigba,1,6,,True
+2025,1,Seattle Seahawks,WR,Cooper Kupp,2,6,,True
+2025,1,Seattle Seahawks,WR,Tory Horton,3,6,,True
+2025,1,Seattle Seahawks,WR,Jake Bobo,4,6,,True
+2025,1,Seattle Seahawks,WR,Dareke Young,5,6,,True
+2025,1,Seattle Seahawks,WR,Cody White,6,6,,True
+2025,1,Seattle Seahawks,TE,AJ Barner,1,4,,True
+2025,1,Seattle Seahawks,TE,Elijah Arroyo,2,4,,True
+2025,1,Seattle Seahawks,TE,Eric Saubert,3,4,,True
+2025,1,Seattle Seahawks,TE,Nick Kallerup,4,4,,True
+2025,1,Tampa Bay Buccaneers,QB,Baker Mayfield,1,2,,True
+2025,1,Tampa Bay Buccaneers,QB,Teddy Bridgewater,2,2,,True
+2025,1,Tampa Bay Buccaneers,RB,Bucky Irving,1,4,,True
+2025,1,Tampa Bay Buccaneers,RB,Rachaad White,2,4,,True
+2025,1,Tampa Bay Buccaneers,RB,Sean Tucker,3,4,,True
+2025,1,Tampa Bay Buccaneers,RB,Josh Williams,4,4,,True
+2025,1,Tampa Bay Buccaneers,WR,Mike Evans,1,9,,True
+2025,1,Tampa Bay Buccaneers,WR,Chris Godwin Jr.,2,9,,True
+2025,1,Tampa Bay Buccaneers,WR,Emeka Egbuka,3,9,,True
+2025,1,Tampa Bay Buccaneers,WR,Tez Johnson,4,9,,True
+2025,1,Tampa Bay Buccaneers,WR,Sterling Shepard,5,9,,True
+2025,1,Tampa Bay Buccaneers,WR,Kameron Johnson,6,9,,True
+2025,1,Tampa Bay Buccaneers,WR,Ryan Miller,7,9,,True
+2025,1,Tampa Bay Buccaneers,WR,Jalen McMillan,8,9,,True
+2025,1,Tampa Bay Buccaneers,WR,Jaden Smith,9,9,,True
+2025,1,Tampa Bay Buccaneers,TE,Cade Otton,1,4,,True
+2025,1,Tampa Bay Buccaneers,TE,Payne Durham,2,4,,True
+2025,1,Tampa Bay Buccaneers,TE,Ko Kieft,3,4,,True
+2025,1,Tampa Bay Buccaneers,TE,Devin Culp,4,4,,True
+2025,1,Tennessee Titans,QB,Cam Ward,1,3,,True
+2025,1,Tennessee Titans,QB,Brandon Allen,2,3,,True
+2025,1,Tennessee Titans,QB,Will Levis,3,3,,True
+2025,1,Tennessee Titans,RB,Tony Pollard,1,4,,True
+2025,1,Tennessee Titans,RB,Julius Chestnut,2,4,,True
+2025,1,Tennessee Titans,RB,Kalel Mullings,3,4,,True
+2025,1,Tennessee Titans,RB,Tyjae Spears,4,4,,True
+2025,1,Tennessee Titans,WR,Calvin Ridley,1,7,,True
+2025,1,Tennessee Titans,WR,Tyler Lockett,2,7,,True
+2025,1,Tennessee Titans,WR,Elic Ayomanor,3,7,,True
+2025,1,Tennessee Titans,WR,Van Jefferson,4,7,,True
+2025,1,Tennessee Titans,WR,Chimere Dike,5,7,,True
+2025,1,Tennessee Titans,WR,Bryce Oliver,6,7,,True
+2025,1,Tennessee Titans,WR,Treylon Burks,7,7,,True
+2025,1,Tennessee Titans,TE,Chig Okonkwo,1,3,,True
+2025,1,Tennessee Titans,TE,Gunnar Helm,2,3,,True
+2025,1,Tennessee Titans,TE,David Martin-Robinson,3,3,,True
+2025,1,Washington Commanders,QB,Jayden Daniels,1,3,,True
+2025,1,Washington Commanders,QB,Marcus Mariota,2,3,,True
+2025,1,Washington Commanders,QB,Josh Johnson,3,3,,True
+2025,1,Washington Commanders,RB,Austin Ekeler,1,4,,True
+2025,1,Washington Commanders,RB,Jacory Croskey-Merritt,2,4,,True
+2025,1,Washington Commanders,RB,Jeremy McNichols,3,4,,True
+2025,1,Washington Commanders,RB,Chris Rodriguez Jr.,4,4,,True
+2025,1,Washington Commanders,WR,Terry McLaurin,1,5,,True
+2025,1,Washington Commanders,WR,Deebo Samuel,2,5,,True
+2025,1,Washington Commanders,WR,Noah Brown,3,5,,True
+2025,1,Washington Commanders,WR,Luke McCaffrey,4,5,,True
+2025,1,Washington Commanders,WR,Jaylin Lane,5,5,,True
+2025,1,Washington Commanders,TE,Zach Ertz,1,4,,True
+2025,1,Washington Commanders,TE,John Bates,2,4,,True
+2025,1,Washington Commanders,TE,Ben Sinnott,3,4,,True
+2025,1,Washington Commanders,TE,Colson Yankoff,4,4,,True

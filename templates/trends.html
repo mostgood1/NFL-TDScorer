@@ -1,0 +1,56 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8"/>
+    <title>Team TD Trends</title>
+    <style>
+      body { font-family: Arial, sans-serif; margin: 1rem 2rem; }
+      table { border-collapse: collapse; width: 100%; }
+      th, td { border: 1px solid #ddd; padding: 6px 8px; }
+      th { background: #f7f7f7; cursor: pointer; }
+      .toolbar { margin-bottom: 1rem; }
+      .msg { color: #666; margin: .5rem 0; }
+    </style>
+  </head>
+  <body>
+    <h2>Team TD Trends (5-year shares)</h2>
+    <div class="toolbar">
+      <form method="get" action="/trends">
+        <label>Team filter: <input type="text" name="team" value="{{ team_filter or '' }}"/></label>
+        <label>Sort: <input type="text" name="sort" value="{{ sort or 'team' }}"/></label>
+        <label>Order:
+          <select name="order">
+            <option value="asc" {% if order == 'asc' %}selected{% endif %}>asc</option>
+            <option value="desc" {% if order == 'desc' %}selected{% endif %}>desc</option>
+          </select>
+        </label>
+        <button type="submit">Apply</button>
+      </form>
+      {% if file_name %}<div class="msg">Source: {{ file_name }}</div>{% endif %}
+      {% if message %}<div class="msg">{{ message }}</div>{% endif %}
+    </div>
+
+    {% if rows and columns %}
+      <table>
+        <thead>
+          <tr>
+            {% for c in columns %}<th>{{ c }}</th>{% endfor %}
+          </tr>
+        </thead>
+        <tbody>
+          {% for r in rows %}
+          <tr>
+            {% for c in columns %}
+              <td>{{ r[c] }}</td>
+            {% endfor %}
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    {% else %}
+      <div class="msg">No trend rows.</div>
+    {% endif %}
+
+    <p style="margin-top:1rem"><a href="/">Home</a> · <a href="/teams">Teams</a> · <a href="/players">Players</a></p>
+  </body>
+  </html>

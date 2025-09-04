@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Touchdown Likelihood</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" />
+  <style>
+    .nav-tabs .nav-link.active { font-weight: 600; }
+    .team-avatar, .player-avatar { width: 48px; height: 48px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-weight: 700; }
+    .card-badge { font-size: 0.85rem; }
+    .card-title { display: flex; align-items: center; gap: 12px; }
+    .headshot { width: 48px; height: 48px; border-radius: 50%; object-fit: cover; border: 2px solid #eee; }
+    .muted { color: #666; }
+  .team-logo-sm { width: 20px; height: 20px; object-fit: contain; border-radius: 3px; background: #fff; }
+
+  /* 12 hue buckets to avoid inline styles */
+  .hue-0  { background: hsl(  0,60%,40%); color: #fff; }
+  .hue-1  { background: hsl( 30,60%,40%); color: #fff; }
+  .hue-2  { background: hsl( 60,60%,40%); color: #fff; }
+  .hue-3  { background: hsl( 90,60%,40%); color: #fff; }
+  .hue-4  { background: hsl(120,60%,40%); color: #fff; }
+  .hue-5  { background: hsl(150,60%,40%); color: #fff; }
+  .hue-6  { background: hsl(180,60%,40%); color: #fff; }
+  .hue-7  { background: hsl(210,60%,40%); color: #fff; }
+  .hue-8  { background: hsl(240,60%,40%); color: #fff; }
+  .hue-9  { background: hsl(270,60%,40%); color: #fff; }
+  .hue-10 { background: hsl(300,60%,40%); color: #fff; }
+  .hue-11 { background: hsl(330,60%,40%); color: #fff; }
+  </style>
+</head>
+<body class="bg-light">
+  <div class="container py-3">
+    <h3 class="mb-3">TD Likelihood</h3>
+    {% if (env and (env.get('TD_ADMIN')|default('')|lower in ['1','true','yes'])) %}
+    <form class="mb-3" method="post" action="/admin/rebuild-meta" onsubmit="return confirm('Rebuild player_meta.csv now?');">
+      <button class="btn btn-sm btn-warning">Rebuild Player Meta</button>
+    </form>
+    {% endif %}
+    <ul class="nav nav-tabs" id="tdTabs" role="tablist">
+      <li class="nav-item" role="presentation">
+        <a class="nav-link {{ 'active' if tab == 'players' else '' }}" href="/ui?tab=players&season={{ season }}&week={{ week }}">Players</a>
+      </li>
+      <li class="nav-item" role="presentation">
+        <a class="nav-link {{ 'active' if tab == 'teams' else '' }}" href="/ui?tab=teams&season={{ season }}&week={{ week }}">Teams</a>
+      </li>
+      <li class="nav-item" role="presentation">
+        <a class="nav-link {{ 'active' if tab == 'qbs' else '' }}" href="/ui?tab=qbs&season={{ season }}&week={{ week }}">QB Passing</a>
+      </li>
+    </ul>
+    <div class="tab-content pt-3">
+      {% if tab == 'players' %}
+        {% include 'players_cards.html' %}
+      {% elif tab == 'teams' %}
+        {% include 'teams_cards.html' %}
+      {% else %}
+        {% include 'qbs_cards.html' %}
+      {% endif %}
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
