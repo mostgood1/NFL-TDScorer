@@ -1,33 +1,31 @@
-# Python
+## Python
 __pycache__/
 *.py[cod]
 *$py.class
+*.pyo
+*.pyd
+.Python
 
-# Environments
+## Environments
 .env
+.env.*
 .venv/
 venv/
 ENV/
+env/
 
-# OS
-.DS_Store
-Thumbs.db
-
-# Editor/project
+## Editors/IDEs
 .vscode/
 .idea/
 
-# Logs
+## OS files
+.DS_Store
+Thumbs.db
+
+## Logs
 *.log
 
-# Byte-compiled / cache
-*.pyo
-*.pyd
-
-# Build artifacts
+## Build artifacts
 build/
 dist/
 *.egg-info/
-
-# Large local datasets (keep local; don’t commit)
-data/pbp_*.csv
