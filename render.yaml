@@ -5,4 +5,13 @@ services:
     plan: free
     buildCommand: pip install -r requirements.txt
     startCommand: gunicorn "app:create_app()"
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.9services:
+  - type: web
+    name: nfl-tdscorer
+    env: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn "app:create_app()"
     autoDeploy: true

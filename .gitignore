@@ -29,3 +29,6 @@ Thumbs.db
 build/
 dist/
 *.egg-info/
+
+## Large local datasets (do not commit)
+data/pbp_*.csv
