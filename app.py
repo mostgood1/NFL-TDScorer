@@ -63,6 +63,20 @@ def create_app() -> Flask:
         except Exception as e:
             return {"ok": False, "error": str(e)}, 500
 
+    @app.route("/admin/refresh-live-tds", methods=["POST"])
+    def admin_refresh_live_tds():
+        if os.environ.get("TD_ADMIN", "").lower() not in {"1","true","yes"}:
+            return {"ok": False, "error": "unauthorized"}, 403
+        try:
+            s = int(request.args.get("season") or request.form.get("season") or 2025)
+            w = int(request.args.get("week") or request.form.get("week") or 1)
+            names = _fetch_espn_td_scorers(s, w)
+            from datetime import datetime
+            _save_live_td_scorers(s, w, names, meta={"refreshed_at": datetime.utcnow().isoformat() + "Z", "source": "espn"})
+            return {"ok": True, "count": len(names)}
+        except Exception as e:
+            return {"ok": False, "error": str(e)}, 500
+
     def _latest_csv(prefix: str) -> Optional[Path]:
         if not DATA_DIR.exists():
             return None
@@ -464,6 +478,84 @@ def create_app() -> Flask:
         key_full = str(team_name).lower()
         key_abbr = _team_abbrev(team_name).lower()
         return _TEAM_LOGO_MAP.get(key_full) or _TEAM_LOGO_MAP.get(key_abbr)
+
+    # Live TD scorers (weekly) — cache to data/live_td_{season}_wk{week}.json
+    def _live_td_file(season: int, week: int) -> Path:
+        return DATA_DIR / f"live_td_{season}_wk{week}.json"
+
+    def _save_live_td_scorers(season: int, week: int, names: list[str], meta: Optional[dict] = None) -> None:
+        try:
+            DATA_DIR.mkdir(parents=True, exist_ok=True)
+            payload = {
+                "names": sorted(list({str(n).strip() for n in names if str(n).strip()})),
+                "meta": meta or {},
+            }
+            with open(_live_td_file(season, week), "w", encoding="utf-8") as f:
+                json.dump(payload, f)
+        except Exception:
+            pass
+
+    def _load_live_td_scorers(season: int, week: int) -> set[str]:
+        try:
+            fp = _live_td_file(season, week)
+            if not fp.exists():
+                return set()
+            with open(fp, "r", encoding="utf-8") as f:
+                obj = json.load(f)
+            names = obj.get("names") or []
+            return {str(n).strip().lower() for n in names if str(n).strip()}
+        except Exception:
+            return set()
+
+    def _fetch_espn_td_scorers(season: int, week: int) -> list[str]:
+        """Fetch this week's TD scorers via ESPN scoreboard/summary endpoints (best-effort)."""
+        try:
+            import requests  # type: ignore
+        except Exception:
+            return []
+        base = "https://site.api.espn.com/apis/v2/sports/football/nfl"
+        names: set[str] = set()
+        # Get events for the week
+        event_ids: list[str] = []
+        try:
+            sb_url = f"{base}/scoreboard?week={int(week)}&season={int(season)}&seasontype=2"
+            r = requests.get(sb_url, timeout=10)
+            if r.status_code == 200:
+                data = r.json()
+                events = data.get("events") or []
+                event_ids = [str(e.get("id")) for e in events if e and e.get("id")]
+        except Exception:
+            event_ids = []
+        # For each event, parse scoring plays for touchdowns
+        for eid in event_ids:
+            try:
+                s_url = f"{base}/summary?event={eid}"
+                rs = requests.get(s_url, timeout=10)
+                if rs.status_code != 200:
+                    continue
+                summ = rs.json()
+                scoring = summ.get("scoringPlays") or []
+                for p in scoring:
+                    txt = str(p.get("text") or "").lower()
+                    stype = (p.get("scoringType") or {}).get("displayName") or (p.get("type") or {}).get("text")
+                    if ("touchdown" not in txt) and (not stype or "touchdown" not in str(stype).lower()):
+                        continue
+                    # Prefer player list with roles
+                    players = p.get("players") or []
+                    for pl in players:
+                        role = str(pl.get("type") or "").lower()
+                        ath = (pl.get("athlete") or {})
+                        nm = str(ath.get("displayName") or "").strip()
+                        if nm and any(k in role for k in ["rush", "rushing", "reception", "catch", "return", "run"]):
+                            names.add(nm)
+                    # Fallback: top-level athlete
+                    ath = (p.get("athlete") or {})
+                    nm = str(ath.get("displayName") or "").strip()
+                    if nm:
+                        names.add(nm)
+            except Exception:
+                continue
+        return sorted(list(names))
 
     # 2024 team TD distribution caches
     _TEAM_TD24_KIND: Optional[dict[str, dict[str, float]]] = None  # team -> {pass, rush}
@@ -1048,6 +1140,8 @@ def create_app() -> Flask:
             career_rush_map = {k: v.get("career_rush", 0) for k, v in meta.items()}
             career_rec_map = {k: v.get("career_rec", 0) for k, v in meta.items()}
             career_total_map = {k: v.get("career_total", 0) for k, v in meta.items()}
+        # Load live TD scorers for badge
+        live_names = _load_live_td_scorers(season, week)
         cards: list[dict] = []
         for _, r in df.iterrows():
             p = str(r.get("player"))
@@ -1107,6 +1201,7 @@ def create_app() -> Flask:
                 "headshot": headshot,
                 "logo_url": logo_url,
                 "game_id": game_id,
+                "td_scored": (str(p or "").strip().lower() in live_names),
             }
             cards.append(card)
         # Apply filters

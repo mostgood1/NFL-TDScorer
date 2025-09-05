@@ -90,6 +90,9 @@
                 {% if c.logo_url %}
                 <img class="team-logo-sm" src="{{ c.logo_url }}" alt="{{ c.team }} logo" />
                 {% endif %}
+                {% if c.td_scored %}
+                <span class="badge text-bg-danger card-badge">TD Scored</span>
+                {% endif %}
                 <span class="badge text-bg-success card-badge">ATD {{ (c.atd*100)|fmt2 }}%</span>
               </div>
             </div>
