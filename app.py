@@ -907,6 +907,12 @@ def create_app() -> Flask:
             return redirect(url_for("ui_qbs", season=season, week=week))
         return redirect(url_for("ui_players", season=season, week=week))
 
+    # Root: redirect to UI
+    @app.route("/")
+    def root():
+        from flask import redirect, url_for
+        return redirect(url_for("ui_home"))
+
     @app.route("/ui/players")
     def ui_players():
         season = int(request.args.get("season", "2025"))
