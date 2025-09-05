@@ -63,19 +63,81 @@ def create_app() -> Flask:
         except Exception as e:
             return {"ok": False, "error": str(e)}, 500
 
-    @app.route("/admin/refresh-live-tds", methods=["POST"])
+    @app.route("/admin/refresh-live-tds", methods=["POST", "GET"])
     def admin_refresh_live_tds():
-        if os.environ.get("TD_ADMIN", "").lower() not in {"1","true","yes"}:
-            return {"ok": False, "error": "unauthorized"}, 403
+        env_flag = os.environ.get("TD_ADMIN", "").lower()
+        # Fallbacks: query param admin=1 or key match (if ADMIN_KEY env set)
+        qp_admin = (request.args.get("admin") or request.form.get("admin") or "").lower()
+        admin_key_env = os.environ.get("ADMIN_KEY", "")
+        supplied_key = request.args.get("key") or request.form.get("key") or ""
+        authorized = False
+        if env_flag in {"1","true","yes"}:
+            authorized = True
+        elif qp_admin in {"1","true","yes"}:
+            authorized = True
+        elif admin_key_env and supplied_key and (admin_key_env == supplied_key):
+            authorized = True
+        if not authorized:
+            # Debug hint header so we can see what server sees
+            return ({"ok": False, "error": "unauthorized", "debug_env_flag": env_flag, "hint": "set TD_ADMIN=1 or pass ?admin=1"}, 403)
         try:
             s = int(request.args.get("season") or request.form.get("season") or 2025)
             w = int(request.args.get("week") or request.form.get("week") or 1)
-            names = _fetch_espn_td_scorers(s, w)
+            names = _fetch_espn_td_scorers(s, w, sweep=bool(request.args.get('sweep') or request.form.get('sweep')))
             from datetime import datetime
             _save_live_td_scorers(s, w, names, meta={"refreshed_at": datetime.utcnow().isoformat() + "Z", "source": "espn"})
             return {"ok": True, "count": len(names)}
         except Exception as e:
             return {"ok": False, "error": str(e)}, 500
+
+    @app.route("/admin/live-log")
+    def admin_live_log():
+        if os.environ.get("TD_ADMIN", "").lower() not in {"1","true","yes"}:
+            return {"ok": False, "error": "unauthorized"}, 403
+        try:
+            s = int(request.args.get("season") or 2025)
+            w = int(request.args.get("week") or 1)
+            fp = _live_td_log_file(s, w)
+            if not fp.exists():
+                return {"ok": False, "error": "log not found"}, 404
+            from flask import send_file
+            return send_file(str(fp), mimetype="text/csv", as_attachment=True, download_name=fp.name)
+        except Exception as e:
+            return {"ok": False, "error": str(e)}, 500
+
+    @app.route("/admin/seed-live-tds", methods=["POST","GET"])
+    def admin_seed_live_tds():
+        if os.environ.get("TD_ADMIN", "").lower() not in {"1","true","yes"}:
+            return {"ok": False, "error": "unauthorized"}, 403
+        try:
+            s = int(request.args.get("season") or request.form.get("season") or 2025)
+            w = int(request.args.get("week") or request.form.get("week") or 1)
+            raw = request.args.get("names") or request.form.get("names") or ""
+            # Accept comma or newline separated
+            parts = [p.strip() for p in raw.replace("\n", ",").split(",") if p.strip()]
+            if not parts:
+                return {"ok": False, "error": "no names provided"}, 400
+            existing = _load_live_td_scorers(s, w)
+            before_ct = len(existing)
+            # Merge case-insensitive
+            for nm in parts:
+                if nm.lower() not in existing:
+                    existing.add(nm.lower())
+            merged_list = sorted({p for p in parts} | {n for n in existing})
+            from datetime import datetime as _dt
+            _save_live_td_scorers(s, w, list(merged_list), meta={"refreshed_at": _dt.utcnow().isoformat()+"Z", "source": "manual_seed", "added": parts})
+            return {"ok": True, "added": parts, "total": len(merged_list), "previous": before_ct}
+        except Exception as e:
+            return {"ok": False, "error": str(e)}, 500
+
+    @app.route("/health")
+    def health():
+        started = False
+        try:
+            started = bool(globals().get("_LIVE_BG_THREAD_STARTED"))
+        except Exception:
+            started = False
+        return {"ok": True, "live_thread": started}
 
     def _latest_csv(prefix: str) -> Optional[Path]:
         if not DATA_DIR.exists():
@@ -467,6 +529,92 @@ def create_app() -> Flask:
         except Exception:
             pass
         _TEAM_LOGO_MAP = m
+        # Build abbr map too from same assets
+        nonlocal _TEAM_ABBR_MAP
+        am: dict[str, str] = {}
+        try:
+            fp = DATA_DIR / "nfl_team_assets.json"
+            if fp.exists():
+                data = json.load(open(fp, "r", encoding="utf-8"))
+                items = []
+                def add_abbr_entry(name: Optional[str], abbr: Optional[str]):
+                    if not name or not abbr:
+                        return
+                    am[str(name).lower()] = str(abbr).upper()
+                    am[str(abbr).lower()] = str(abbr).upper()
+                if isinstance(data, list):
+                    items = data
+                elif isinstance(data, dict):
+                    items = data.get("teams") or data.get("data") or []
+                    if not isinstance(items, list):
+                        # try dict mapping
+                        for k, v in data.items():
+                            if isinstance(v, dict):
+                                add_abbr_entry(k, v.get("abbr") or v.get("abbreviation"))
+                        items = []
+                for it in items:
+                    if not isinstance(it, dict):
+                        continue
+                    name = it.get("display_name") or it.get("full_name") or it.get("team") or it.get("name")
+                    abbr = it.get("abbr") or it.get("abbreviation")
+                    add_abbr_entry(name, abbr)
+        except Exception:
+            pass
+        _TEAM_ABBR_MAP = am
+
+    # Also keep a name->abbr map for robust keying across datasets
+    _TEAM_ABBR_MAP: dict[str, str] = {}
+
+    # Hard fallback map for full team names and common variants -> standard abbreviations
+    _HARD_ABBR_MAP: dict[str, str] = {
+        # NFC
+        "arizona cardinals": "ARI",
+        "atlanta falcons": "ATL",
+        "carolina panthers": "CAR",
+        "chicago bears": "CHI",
+        "dallas cowboys": "DAL",
+        "detroit lions": "DET",
+        "green bay packers": "GB",
+        "los angeles rams": "LAR",
+        "minnesota vikings": "MIN",
+        "new orleans saints": "NO",
+        "new york giants": "NYG",
+        "philadelphia eagles": "PHI",
+        "san francisco 49ers": "SF",
+        "seattle seahawks": "SEA",
+        "tampa bay buccaneers": "TB",
+        "washington commanders": "WAS",
+        # AFC
+        "baltimore ravens": "BAL",
+        "buffalo bills": "BUF",
+        "cincinnati bengals": "CIN",
+        "cleveland browns": "CLE",
+        "denver broncos": "DEN",
+        "houston texans": "HOU",
+        "indianapolis colts": "IND",
+        "jacksonville jaguars": "JAX",
+        "kansas city chiefs": "KC",
+        "las vegas raiders": "LV",
+        "los angeles chargers": "LAC",
+        "miami dolphins": "MIA",
+        "new england patriots": "NE",
+        "new york jets": "NYJ",
+        "pittsburgh steelers": "PIT",
+        "tennessee titans": "TEN",
+        # Common abbr/legacy aliases
+        "la": "LAR",
+        "lar": "LAR",
+        "lac": "LAC",
+        "lv": "LV",
+        "oak": "LV",
+        "sd": "LAC",
+        "nof": "NO",
+        "nor": "NO",
+        "was": "WAS",
+        "wsh": "WAS",
+        "sf": "SF",
+        "gb": "GB",
+    }
 
     def _logo_for_team(team_name: str) -> Optional[str]:
         if not team_name:
@@ -479,9 +627,34 @@ def create_app() -> Flask:
         key_abbr = _team_abbrev(team_name).lower()
         return _TEAM_LOGO_MAP.get(key_full) or _TEAM_LOGO_MAP.get(key_abbr)
 
+    def _team_std_abbr(team_name: str) -> Optional[str]:
+        # Try assets-provided abbr mapping first
+        nonlocal _TEAM_ABBR_MAP
+        if not _TEAM_ABBR_MAP:
+            _load_team_logos()
+        if _TEAM_ABBR_MAP:
+            ab = _TEAM_ABBR_MAP.get(str(team_name).lower())
+            if ab:
+                return ab.upper()
+        # Fallback to hardcoded full-name map
+        t = str(team_name or "").strip()
+        if t:
+            ab2 = _HARD_ABBR_MAP.get(t.lower())
+            if ab2:
+                return ab2
+        # Fallback heuristic (may not be standard)
+        parts = t.split()
+        if len(parts) == 1:
+            return parts[0][:3].upper()
+        return None
+
     # Live TD scorers (weekly) — cache to data/live_td_{season}_wk{week}.json
     def _live_td_file(season: int, week: int) -> Path:
         return DATA_DIR / f"live_td_{season}_wk{week}.json"
+
+    # Event log file (append scoring events with timestamp + player names)
+    def _live_td_log_file(season: int, week: int) -> Path:
+        return DATA_DIR / f"live_td_log_{season}_wk{week}.csv"
 
     def _save_live_td_scorers(season: int, week: int, names: list[str], meta: Optional[dict] = None) -> None:
         try:
@@ -492,6 +665,23 @@ def create_app() -> Flask:
             }
             with open(_live_td_file(season, week), "w", encoding="utf-8") as f:
                 json.dump(payload, f)
+        except Exception:
+            pass
+
+    def _append_live_td_events(season: int, week: int, new_names: list[str]) -> None:
+        """Append newly seen TD scorer names to a CSV log with UTC timestamp."""
+        if not new_names:
+            return
+        try:
+            from datetime import datetime, timezone
+            fp = _live_td_log_file(season, week)
+            exists = fp.exists()
+            with open(fp, "a", encoding="utf-8") as f:
+                if not exists:
+                    f.write("ts_utc,player\n")
+                now = datetime.now(timezone.utc).isoformat().replace("+00:00", "Z")
+                for nm in sorted({n for n in new_names if n}):
+                    f.write(f"{now},{nm}\n")
         except Exception:
             pass
 
@@ -507,8 +697,49 @@ def create_app() -> Flask:
         except Exception:
             return set()
 
-    def _fetch_espn_td_scorers(season: int, week: int) -> list[str]:
-        """Fetch this week's TD scorers via ESPN scoreboard/summary endpoints (best-effort)."""
+    def _live_td_age_secs(season: int, week: int) -> Optional[float]:
+        try:
+            fp = _live_td_file(season, week)
+            if not fp.exists():
+                return None
+            import time
+            return max(0.0, time.time() - fp.stat().st_mtime)
+        except Exception:
+            return None
+
+    # Helper: are we currently within typical NFL game windows (ET)?
+    def _is_game_window_now_et() -> bool:
+        try:
+            from datetime import datetime
+            try:
+                from zoneinfo import ZoneInfo  # py3.9+
+                tz = ZoneInfo("America/New_York")
+            except Exception:
+                # Fallback: naive local time
+                tz = None
+            now = datetime.now(tz) if tz else datetime.now()
+            day = now.weekday()  # 0=Mon .. 6=Sun
+            hr = now.hour
+            # Windows (ET): Sun 09:00-23:59, Mon 19:00-23:59, Thu 19:00-23:59, Sat 13:00-23:59
+            if day == 6 and hr >= 9:  # Sunday
+                return True
+            if day == 0 and hr >= 19:  # Monday
+                return True
+            if day == 3 and hr >= 19:  # Thursday
+                return True
+            if day == 5 and hr >= 13:  # Saturday
+                return True
+            return False
+        except Exception:
+            return False
+
+    def _fetch_espn_td_scorers(season: int, week: int, sweep: bool = False) -> list[str]:
+        """Fetch this week's TD scorers via ESPN scoreboard/summary endpoints.
+
+        sweep=True widens search if normal probes return nothing:
+          - Tries nearby weeks (week-1, week, week+1) with season types 1,2,3
+          - Uses date-based scoreboard queries for yesterday & today (UTC)
+        """
         try:
             import requests  # type: ignore
         except Exception:
@@ -518,14 +749,106 @@ def create_app() -> Flask:
         # Get events for the week
         event_ids: list[str] = []
         try:
-            sb_url = f"{base}/scoreboard?week={int(week)}&season={int(season)}&seasontype=2"
-            r = requests.get(sb_url, timeout=10)
-            if r.status_code == 200:
-                data = r.json()
-                events = data.get("events") or []
-                event_ids = [str(e.get("id")) for e in events if e and e.get("id")]
+            # Expanded probe set: prioritize regular season (seasontype=2), include group=80 (NFL), then fallbacks.
+            probe_primary = [
+                f"{base}/scoreboard?week={int(week)}&season={int(season)}&seasontype=2&groups=80",
+                f"{base}/scoreboard?week={int(week)}&year={int(season)}&seasontype=2&groups=80",
+                f"{base}/scoreboard?week={int(week)}&season={int(season)}&seasontype=2",
+                f"{base}/scoreboard?week={int(week)}&year={int(season)}&seasontype=2",
+                f"{base}/scoreboard?seasontype=2&week={int(week)}&groups=80",
+                f"{base}/scoreboard?seasontype=2&week={int(week)}",
+                f"{base}/scoreboard?year={int(season)}&groups=80",
+                f"{base}/scoreboard?season={int(season)}&groups=80",
+                f"{base}/scoreboard?year={int(season)}",
+                f"{base}/scoreboard?season={int(season)}",
+            ]
+            collected: list[str] = []
+            for sb_url in probe_primary:
+                try:
+                    r = requests.get(sb_url, timeout=10)
+                except Exception:
+                    continue
+                if r.status_code == 200:
+                    try:
+                        data = r.json()
+                    except Exception:
+                        continue
+                    events = data.get("events") or []
+                    if events:
+                        collected.extend([str(e.get("id")) for e in events if e and e.get("id")])
+                        if collected:
+                            break
+            # If still empty, probe preseason (1) and postseason (3)
+            if not collected:
+                for st in (1, 3):
+                    fallback_urls = [
+                        f"{base}/scoreboard?week={int(week)}&season={int(season)}&seasontype={st}&groups=80",
+                        f"{base}/scoreboard?week={int(week)}&year={int(season)}&seasontype={st}&groups=80",
+                        f"{base}/scoreboard?seasontype={st}&week={int(week)}&groups=80",
+                    ]
+                    for sb_url in fallback_urls:
+                        try:
+                            r = requests.get(sb_url, timeout=10)
+                        except Exception:
+                            continue
+                        if r.status_code == 200:
+                            try:
+                                data = r.json()
+                            except Exception:
+                                continue
+                            events = data.get("events") or []
+                            if events:
+                                collected.extend([str(e.get("id")) for e in events if e and e.get("id")])
+                                if collected:
+                                    break
+                    if collected:
+                        break
+            # Deduplicate preserving order
+            seen = set()
+            event_ids = []
+            for eid in collected:
+                if eid not in seen:
+                    seen.add(eid)
+                    event_ids.append(eid)
         except Exception:
             event_ids = []
+        # If no events and sweep requested, broaden search heuristically
+        if (not event_ids) and sweep:
+            try:
+                import datetime as _dt
+                today = _dt.datetime.utcnow().date()
+                dates = [today - _dt.timedelta(days=1), today]
+                date_strs = [d.strftime('%Y%m%d') for d in dates]
+                nearby_weeks = sorted({w for w in [week, week-1, week+1] if w >= 0})
+                seasontypes = [2,1,3]  # regular, preseason, postseason
+                extra_urls: list[str] = []
+                for ds in date_strs:
+                    extra_urls.append(f"{base}/scoreboard?dates={ds}&groups=80")
+                for st in seasontypes:
+                    for wk in nearby_weeks:
+                        extra_urls.append(f"{base}/scoreboard?week={int(wk)}&season={int(season)}&seasontype={st}&groups=80")
+                for url in extra_urls:
+                    try:
+                        r = requests.get(url, timeout=10)
+                    except Exception:
+                        continue
+                    if r.status_code != 200:
+                        continue
+                    try:
+                        data = r.json()
+                    except Exception:
+                        continue
+                    events = data.get('events') or []
+                    if events:
+                        for e in events:
+                            eid = str(e.get('id')) if e and e.get('id') else None
+                            if eid:
+                                event_ids.append(eid)
+                # Deduplicate
+                event_ids = list(dict.fromkeys(event_ids))
+            except Exception:
+                pass
+
         # For each event, parse scoring plays for touchdowns
         for eid in event_ids:
             try:
@@ -536,7 +859,8 @@ def create_app() -> Flask:
                 summ = rs.json()
                 scoring = summ.get("scoringPlays") or []
                 for p in scoring:
-                    txt = str(p.get("text") or "").lower()
+                    txt_raw = str(p.get("text") or "")
+                    txt = txt_raw.lower()
                     stype = (p.get("scoringType") or {}).get("displayName") or (p.get("type") or {}).get("text")
                     if ("touchdown" not in txt) and (not stype or "touchdown" not in str(stype).lower()):
                         continue
@@ -553,31 +877,279 @@ def create_app() -> Flask:
                     nm = str(ath.get("displayName") or "").strip()
                     if nm:
                         names.add(nm)
+                    # Fallback 2: parse from text when structures are missing
+                    if not nm and not players:
+                        try:
+                            import re as _re
+                            # Receiver TD: "Name pass from Name" => first name is scorer
+                            m = _re.search(r"([A-Z][A-Za-z\.'-]+\s+[A-Z][A-Za-z\.'-]+)\s+pass\s+from\s+([A-Z][A-Za-z\.'-]+\s+[A-Z][A-Za-z\.'-]+)", txt_raw)
+                            if m:
+                                names.add(m.group(1))
+                            else:
+                                # Rush TD: "Name X Yd Run" or contains 'rush'/'run'
+                                m2 = _re.search(r"^([A-Z][A-Za-z\.'-]+\s+[A-Z][A-Za-z\.'-]+).*(?:run|rush)", txt_raw)
+                                if m2:
+                                    names.add(m2.group(1))
+                                else:
+                                    # Return TD: "Name return" patterns
+                                    m3 = _re.search(r"^([A-Z][A-Za-z\.'-]+\s+[A-Z][A-Za-z\.'-]+).*(?:return)", txt_raw)
+                                    if m3:
+                                        names.add(m3.group(1))
+                        except Exception:
+                            pass
             except Exception:
                 continue
         return sorted(list(names))
 
+    def _fetch_nfl_liveupdate_td_scorers(dates: Optional[list[str]] = None) -> list[str]:
+        """Fallback: gather TD scorers from NFL legacy liveupdate (scorestrip + game-center).
+
+        Args:
+            dates: list of YYYYMMDD strings (UTC) to filter; if None uses today,yesterday,2 days ago.
+        Returns:
+            Sorted list of scorer names (best-effort, may be partial or empty).
+        """
+        try:
+            import requests, re, datetime as _dt
+        except Exception:
+            return []
+        if dates is None:
+            today = _dt.datetime.utcnow().date()
+            dates = [(today - _dt.timedelta(days=i)).strftime('%Y%m%d') for i in range(0,3)]
+        # Fetch scorestrip from multiple known endpoints, aggregate games
+        games: set[str] = set()
+        endpoints = [
+            "https://www.nfl.com/liveupdate/scorestrip/scorestrip.json",
+            "https://www.nfl.com/liveupdate/scorestrip/ss.json",
+        ]
+        for ep in endpoints:
+            try:
+                r = requests.get(ep, timeout=10)
+                if r.status_code != 200:
+                    continue
+                js = r.json()
+                # Known containers: 'ss', 'scores', 'gms', 'games'
+                cands = []
+                for key in ['ss','scores','gms','games']:
+                    arr = js.get(key)
+                    if isinstance(arr, list) and arr:
+                        cands = arr
+                        break
+                if not cands:
+                    continue
+                for g in cands:
+                    try:
+                        # Accept list or dict forms
+                        if isinstance(g, list):
+                            eid = str(g[0]) if g else None
+                        elif isinstance(g, dict):
+                            eid = str(g.get('eid') or g.get('game_id') or g.get('id') or '')
+                        else:
+                            eid = None
+                        if not eid or len(eid) < 8:
+                            continue
+                        if any(eid.startswith(d) for d in dates):
+                            games.add(eid)
+                    except Exception:
+                        continue
+            except Exception:
+                continue
+        if not games:
+            return []
+        names: set[str] = set()
+        for eid in sorted(games):
+            try:
+                gc_url_candidates = [
+                    f"https://www.nfl.com/liveupdate/game-center/{eid}/{eid}_gtd.json",
+                    f"https://www.nfl.com/liveupdate/game-center/{eid}/{eid}.json",
+                ]
+                gj = None
+                for u in gc_url_candidates:
+                    try:
+                        gr = requests.get(u, timeout=10)
+                    except Exception:
+                        continue
+                    if gr.status_code == 200:
+                        try:
+                            gj = gr.json()
+                        except Exception:
+                            gj = None
+                    if gj:
+                        break
+                if not gj:
+                    continue
+                game_obj = gj.get(eid) or gj  # some variants root at eid, others direct
+                drives = game_obj.get('drives') or {}
+                for dv in drives.values():
+                    if not isinstance(dv, dict):
+                        continue
+                    plays = dv.get('plays') or {}
+                    for pv in plays.values():
+                        if not isinstance(pv, dict):
+                            continue
+                        desc = str(pv.get('desc') or '')
+                        if 'touchdown' not in desc.lower():
+                            continue
+                        # Extract name heuristically: first capitalized two-word sequence
+                        m = re.search(r"([A-Z][A-Za-z\.'-]+\s+[A-Z][A-Za-z\.'-]+)", desc)
+                        if m:
+                            names.add(m.group(1))
+            except Exception:
+                continue
+        return sorted(names)
+
+    # Background polling thread (env-gated) to keep live TD file warm without admin page reloads
+    _LIVE_BG_THREAD_STARTED = False
+    def _maybe_start_live_thread():
+        """Start background live TD polling if ENABLE_LIVE_THREAD env is truthy.
+
+        Safeguards:
+        - Only starts once per process.
+        - Creates a lock file inside DATA_DIR to reduce duplicate starts across multi-worker setups.
+        - Lock file is best-effort; if creation fails (already exists), we skip.
+        """
+        nonlocal _LIVE_BG_THREAD_STARTED
+        if _LIVE_BG_THREAD_STARTED:
+            return
+        if os.environ.get("ENABLE_LIVE_THREAD", "").lower() not in {"1", "true", "yes"}:
+            return
+        lock_path = DATA_DIR / "live_thread.lock"
+        try:
+            if lock_path.exists():
+                # Another worker likely started it; mark as started logically for health reporting
+                _LIVE_BG_THREAD_STARTED = True
+                return
+            # Attempt atomic creation
+            with open(lock_path, "x", encoding="utf-8") as _lk:
+                _lk.write(str(os.getpid()))
+        except Exception:
+            # Can't create lock: assume already running elsewhere
+            _LIVE_BG_THREAD_STARTED = True
+            return
+
+        import threading, time
+        def _loop():
+            while True:
+                try:
+                    if _is_game_window_now_et():
+                        try:
+                            s = int(os.environ.get("TD_LIVE_SEASON", "2025"))
+                        except Exception:
+                            s = 2025
+                        try:
+                            w = int(os.environ.get("TD_LIVE_WEEK", "1"))
+                        except Exception:
+                            w = 1
+                        existing = _load_live_td_scorers(s, w)
+                        fresh = _fetch_espn_td_scorers(s, w, sweep=False)
+                        if fresh:
+                            new = [n for n in fresh if n.lower() not in existing]
+                            merged = sorted(list({*(n for n in existing), *fresh}))
+                            _save_live_td_scorers(s, w, merged, meta={"bg_thread": True})
+                            if new:
+                                _append_live_td_events(s, w, new)
+                        sleep_for = int(os.environ.get("LIVE_THREAD_ACTIVE_SLEEP", "15"))
+                    else:
+                        sleep_for = int(os.environ.get("LIVE_THREAD_IDLE_SLEEP", "60"))
+                except Exception:
+                    sleep_for = 60
+                time.sleep(max(5, sleep_for))
+        try:
+            t = threading.Thread(target=_loop, name="live-td-bg", daemon=True)
+            t.start()
+            _LIVE_BG_THREAD_STARTED = True
+        except Exception:
+            # Cleanup lock on failure
+            try:
+                if lock_path.exists():
+                    lock_path.unlink()
+            except Exception:
+                pass
+    # Attempt to start background thread (non-blocking, env-gated)
+    try:
+        _maybe_start_live_thread()
+    except Exception:
+        pass
+
+    # Warm 2024 team distributions cache at startup (best-effort)
+    try:
+        _get_team_2024_distributions(force_rebuild=False)
+    except Exception:
+        pass
+
     # 2024 team TD distribution caches
-    _TEAM_TD24_KIND: Optional[dict[str, dict[str, float]]] = None  # team -> {pass, rush}
+    _TEAM_TD24_KIND: Optional[dict[str, dict[str, float]]] = None  # team -> {pass, rush} shares
+    _TEAM_TD24_KIND_COUNTS: Optional[dict[str, dict[str, int]]] = None  # team -> {pass, rush} counts
     _TEAM_TD24_POS: Optional[dict[str, dict[str, float]]] = None   # team -> {RB,WR,TE,QB} shares
     _TEAM_TD24_POS_COUNTS: Optional[dict[str, dict[str, int]]] = None  # team -> {RB,WR,TE,QB} counts
-    def _get_team_2024_distributions() -> tuple[dict[str, dict[str, float]], dict[str, dict[str, float]], dict[str, dict[str, int]]]:
+    def _get_team_2024_distributions(force_rebuild: bool = False) -> tuple[dict[str, dict[str, float]], dict[str, dict[str, float]], dict[str, dict[str, int]], dict[str, dict[str, int]]]:
         """Compute team-level 2024 TD distributions.
 
         - Kind shares: pass vs rush
         - Position shares: WR/TE/RB/QB, mapped via seasonal_rosters positions
         Results are normalized to 1.0 when possible.
         """
-        nonlocal _TEAM_TD24_KIND, _TEAM_TD24_POS, _TEAM_TD24_POS_COUNTS
-        if _TEAM_TD24_KIND is not None and _TEAM_TD24_POS is not None and _TEAM_TD24_POS_COUNTS is not None:
-            return _TEAM_TD24_KIND, _TEAM_TD24_POS, _TEAM_TD24_POS_COUNTS
+        nonlocal _TEAM_TD24_KIND, _TEAM_TD24_POS, _TEAM_TD24_POS_COUNTS, _TEAM_TD24_KIND_COUNTS
+        # Return cached only if all present and non-empty (avoid sticky empty cache from earlier failures)
+        if (not force_rebuild) and (
+            isinstance(_TEAM_TD24_KIND, dict) and _TEAM_TD24_KIND and
+            isinstance(_TEAM_TD24_POS, dict) and _TEAM_TD24_POS and
+            isinstance(_TEAM_TD24_POS_COUNTS, dict) and _TEAM_TD24_POS_COUNTS and
+            isinstance(_TEAM_TD24_KIND_COUNTS, dict) and _TEAM_TD24_KIND_COUNTS
+        ):
+            return _TEAM_TD24_KIND, _TEAM_TD24_POS, _TEAM_TD24_POS_COUNTS, _TEAM_TD24_KIND_COUNTS
+        # Try loading from cached CSVs first (local or sibling NFL-Betting repo)
+        try:
+            ks_fp = DATA_DIR / "team_td_2024_kind_shares.csv"
+            kc_fp = DATA_DIR / "team_td_2024_kind_counts.csv"
+            ps_fp = DATA_DIR / "team_td_2024_pos_shares.csv"
+            pc_fp = DATA_DIR / "team_td_2024_pos_counts.csv"
+            # sibling path fallback
+            if not (ks_fp.exists() and kc_fp.exists() and ps_fp.exists() and pc_fp.exists()):
+                sib = BASE_DIR.parent / "NFL-Betting" / "nfl_compare" / "data"
+                ks2 = sib / "team_td_2024_kind_shares.csv"
+                kc2 = sib / "team_td_2024_kind_counts.csv"
+                ps2 = sib / "team_td_2024_pos_shares.csv"
+                pc2 = sib / "team_td_2024_pos_counts.csv"
+                if ks2.exists() and kc2.exists() and ps2.exists() and pc2.exists():
+                    ks_fp, kc_fp, ps_fp, pc_fp = ks2, kc2, ps2, pc2
+            if (not force_rebuild) and ks_fp.exists() and kc_fp.exists() and ps_fp.exists() and pc_fp.exists():
+                ksd = pd.read_csv(ks_fp)
+                kcd = pd.read_csv(kc_fp)
+                psd = pd.read_csv(ps_fp)
+                pcd = pd.read_csv(pc_fp)
+                kind_out = {}
+                kind_counts_out = {}
+                pos_out = {}
+                pos_counts_out = {}
+                for _, rr in ksd.iterrows():
+                    tm = str(rr.get("team") or "").strip()
+                    if tm:
+                        kind_out[tm] = {"pass": float(rr.get("pass", 0.0)), "rush": float(rr.get("rush", 0.0))}
+                for _, rr in kcd.iterrows():
+                    tm = str(rr.get("team") or "").strip()
+                    if tm:
+                        kind_counts_out[tm] = {"pass": int(rr.get("pass", 0) or 0), "rush": int(rr.get("rush", 0) or 0)}
+                for _, rr in psd.iterrows():
+                    tm = str(rr.get("team") or "").strip()
+                    if tm:
+                        pos_out[tm] = {k: float(rr.get(k, 0.0) or 0.0) for k in ["RB","WR","TE","QB"]}
+                for _, rr in pcd.iterrows():
+                    tm = str(rr.get("team") or "").strip()
+                    if tm:
+                        pos_counts_out[tm] = {k: int(rr.get(k, 0) or 0) for k in ["RB","WR","TE","QB"]}
+                if kind_out and pos_out and pos_counts_out and kind_counts_out:
+                    _TEAM_TD24_KIND, _TEAM_TD24_POS, _TEAM_TD24_POS_COUNTS, _TEAM_TD24_KIND_COUNTS = kind_out, pos_out, pos_counts_out, kind_counts_out
+                    return _TEAM_TD24_KIND, _TEAM_TD24_POS, _TEAM_TD24_POS_COUNTS, _TEAM_TD24_KIND_COUNTS
+        except Exception:
+            pass
         kind: dict[str, dict[str, int]] = {}
         pos: dict[str, dict[str, int]] = {}
         # Load PBP 2024
         pbp_fp = DATA_DIR / "pbp_2024.csv"
         if not pbp_fp.exists():
-            _TEAM_TD24_KIND, _TEAM_TD24_POS, _TEAM_TD24_POS_COUNTS = {}, {}, {}
-            return _TEAM_TD24_KIND, _TEAM_TD24_POS, _TEAM_TD24_POS_COUNTS
+            _TEAM_TD24_KIND, _TEAM_TD24_POS, _TEAM_TD24_POS_COUNTS, _TEAM_TD24_KIND_COUNTS = {}, {}, {}, {}
+            return _TEAM_TD24_KIND, _TEAM_TD24_POS, _TEAM_TD24_POS_COUNTS, _TEAM_TD24_KIND_COUNTS
         try:
             pbp = _read_csv_cached(
                 pbp_fp,
@@ -591,11 +1163,11 @@ def create_app() -> Flask:
             try:
                 pbp = _read_csv_cached(pbp_fp)
             except Exception:
-                _TEAM_TD24_KIND, _TEAM_TD24_POS, _TEAM_TD24_POS_COUNTS = {}, {}, {}
-                return _TEAM_TD24_KIND, _TEAM_TD24_POS, _TEAM_TD24_POS_COUNTS
+                _TEAM_TD24_KIND, _TEAM_TD24_POS, _TEAM_TD24_POS_COUNTS, _TEAM_TD24_KIND_COUNTS = {}, {}, {}, {}
+                return _TEAM_TD24_KIND, _TEAM_TD24_POS, _TEAM_TD24_POS_COUNTS, _TEAM_TD24_KIND_COUNTS
         if pbp is None or pbp.empty:
-            _TEAM_TD24_KIND, _TEAM_TD24_POS, _TEAM_TD24_POS_COUNTS = {}, {}, {}
-            return _TEAM_TD24_KIND, _TEAM_TD24_POS, _TEAM_TD24_POS_COUNTS
+            _TEAM_TD24_KIND, _TEAM_TD24_POS, _TEAM_TD24_POS_COUNTS, _TEAM_TD24_KIND_COUNTS = {}, {}, {}, {}
+            return _TEAM_TD24_KIND, _TEAM_TD24_POS, _TEAM_TD24_POS_COUNTS, _TEAM_TD24_KIND_COUNTS
         # Identify team column
         team_col = None
         for c in ["posteam", "offense_team", "team"]:
@@ -603,8 +1175,8 @@ def create_app() -> Flask:
                 team_col = c
                 break
         if team_col is None:
-            _TEAM_TD24_KIND, _TEAM_TD24_POS, _TEAM_TD24_POS_COUNTS = {}, {}, {}
-            return _TEAM_TD24_KIND, _TEAM_TD24_POS, _TEAM_TD24_POS_COUNTS
+            _TEAM_TD24_KIND, _TEAM_TD24_POS, _TEAM_TD24_POS_COUNTS, _TEAM_TD24_KIND_COUNTS = {}, {}, {}, {}
+            return _TEAM_TD24_KIND, _TEAM_TD24_POS, _TEAM_TD24_POS_COUNTS, _TEAM_TD24_KIND_COUNTS
         # Coerce flags
         pbp = pbp.copy()
         for c in ["rush_touchdown", "pass_touchdown"]:
@@ -640,45 +1212,104 @@ def create_app() -> Flask:
                             pos_map[nm] = p
             except Exception:
                 pos_map = {}
+        # Build alias map to handle pbp name styles like "A.Brown" vs roster "A.J. Brown"
+        pos_map_alias: dict[str, str] = dict(pos_map)
+        def _add_alias(key: str, val: str):
+            k = (key or "").strip().lower()
+            if k and k not in pos_map_alias:
+                pos_map_alias[k] = val
+        for nm, p in list(pos_map.items()):
+            raw = nm
+            nm2 = raw.replace(".", "").replace(",", "").replace("-", " ").strip()
+            parts = [t for t in nm2.split() if t]
+            if parts:
+                last = parts[-1]
+                initials = "".join([t[0] for t in parts[:-1]]) if len(parts) > 1 else (parts[0][0] if parts[0] else "")
+                # Common alias variants
+                variants = set()
+                if initials:
+                    variants.add(f"{initials}.{last}".lower())
+                    variants.add(f"{initials}{last}".lower())
+                    variants.add(f"{initials} {last}".lower())
+                variants.add(f"{parts[0][0]}.{last}".lower())
+                variants.add(f"{parts[0][0]}{last}".lower())
+                variants.add(f"{parts[0][0]} {last}".lower())
+                variants.add(f"{parts[0]} {last}".lower())
+                variants.add(f"{parts[0]}{last}".lower())
+                variants.add(f"{raw}".lower())
+                variants.add(raw.replace(" ", "").lower())
+                for v in variants:
+                    _add_alias(v, p)
         # Iterate plays and build counts
         for _, r in pbp.iterrows():
             tm = str(r.get(team_col) or "").strip()
             if not tm:
                 continue
+            ab_tm = _team_std_abbr(tm) or _team_abbrev(tm) or tm
             # kind shares
             if int(r.get("rush_touchdown") or 0) == 1:
-                kind.setdefault(tm, {"pass": 0, "rush": 0})["rush"] += 1
+                kind.setdefault(ab_tm, {"pass": 0, "rush": 0})["rush"] += 1
                 n = str(r.get("rusher_player_name") or "").strip().lower()
-                p = pos_map.get(n)
-                if p in {"RB", "WR", "TE", "QB"}:
-                    pos.setdefault(tm, {}).setdefault(p, 0)
-                    pos[tm][p] += 1
+                p = pos_map_alias.get(n) or pos_map_alias.get(n.replace(".", "").replace(" ", ""))
+                if p not in {"RB", "WR", "TE", "QB"}:
+                    # Default rusher to RB when unknown
+                    p = "RB"
+                pos.setdefault(ab_tm, {}).setdefault(p, 0)
+                pos[ab_tm][p] += 1
             if int(r.get("pass_touchdown") or 0) == 1:
-                kind.setdefault(tm, {"pass": 0, "rush": 0})["pass"] += 1
+                kind.setdefault(ab_tm, {"pass": 0, "rush": 0})["pass"] += 1
                 n = str(r.get("receiver_player_name") or "").strip().lower()
-                p = pos_map.get(n)
-                if p in {"RB", "WR", "TE", "QB"}:
-                    pos.setdefault(tm, {}).setdefault(p, 0)
-                    pos[tm][p] += 1
+                p = pos_map_alias.get(n) or pos_map_alias.get(n.replace(".", "").replace(" ", ""))
+                if p not in {"RB", "WR", "TE", "QB"}:
+                    # Default receiver to WR when unknown
+                    p = "WR"
+                pos.setdefault(ab_tm, {}).setdefault(p, 0)
+                pos[ab_tm][p] += 1
         # Normalize to shares
         kind_out: dict[str, dict[str, float]] = {}
+        kind_counts_out: dict[str, dict[str, int]] = {}
         pos_out: dict[str, dict[str, float]] = {}
         pos_counts_out: dict[str, dict[str, int]] = {}
         for tm, kv in kind.items():
             tot = float(kv.get("pass", 0) + kv.get("rush", 0))
             if tot > 0:
                 kind_out[tm] = {"pass": kv.get("pass", 0) / tot, "rush": kv.get("rush", 0) / tot}
+            kind_counts_out[tm] = {"pass": int(kv.get("pass", 0)), "rush": int(kv.get("rush", 0))}
         for tm, kv in pos.items():
             tot = float(sum(kv.values()))
             if tot > 0:
                 pos_out[tm] = {k: v / tot for k, v in kv.items() if k in {"RB", "WR", "TE", "QB"}}
                 pos_counts_out[tm] = {k: int(v) for k, v in kv.items() if k in {"RB", "WR", "TE", "QB"}}
-                # ensure all keys present
-                for k in ["RB", "WR", "TE", "QB"]:
-                    pos_out[tm][k] = float(pos_out[tm].get(k, 0.0))
-                    pos_counts_out[tm][k] = int(pos_counts_out[tm].get(k, 0))
-        _TEAM_TD24_KIND, _TEAM_TD24_POS, _TEAM_TD24_POS_COUNTS = kind_out, pos_out, pos_counts_out
-        return _TEAM_TD24_KIND, _TEAM_TD24_POS, _TEAM_TD24_POS_COUNTS
+            # ensure all keys present
+            if tm not in pos_out:
+                pos_out[tm] = {}
+            if tm not in pos_counts_out:
+                pos_counts_out[tm] = {}
+            for k in ["RB", "WR", "TE", "QB"]:
+                pos_out[tm][k] = float(pos_out[tm].get(k, 0.0))
+                pos_counts_out[tm][k] = int(pos_counts_out[tm].get(k, 0))
+        _TEAM_TD24_KIND, _TEAM_TD24_POS, _TEAM_TD24_POS_COUNTS, _TEAM_TD24_KIND_COUNTS = kind_out, pos_out, pos_counts_out, kind_counts_out
+        # Persist to CSVs for faster future loads
+        try:
+            ks_fp = DATA_DIR / "team_td_2024_kind_shares.csv"
+            kc_fp = DATA_DIR / "team_td_2024_kind_counts.csv"
+            ps_fp = DATA_DIR / "team_td_2024_pos_shares.csv"
+            pc_fp = DATA_DIR / "team_td_2024_pos_counts.csv"
+            pd.DataFrame([
+                {"team": tm, "pass": v.get("pass", 0.0), "rush": v.get("rush", 0.0)} for tm, v in _TEAM_TD24_KIND.items()
+            ]).to_csv(ks_fp, index=False)
+            pd.DataFrame([
+                {"team": tm, "pass": v.get("pass", 0), "rush": v.get("rush", 0)} for tm, v in _TEAM_TD24_KIND_COUNTS.items()
+            ]).to_csv(kc_fp, index=False)
+            pd.DataFrame([
+                {"team": tm, **{k: _TEAM_TD24_POS[tm].get(k, 0.0) for k in ["RB","WR","TE","QB"]}} for tm in _TEAM_TD24_POS.keys()
+            ]).to_csv(ps_fp, index=False)
+            pd.DataFrame([
+                {"team": tm, **{k: _TEAM_TD24_POS_COUNTS[tm].get(k, 0) for k in ["RB","WR","TE","QB"]}} for tm in _TEAM_TD24_POS_COUNTS.keys()
+            ]).to_csv(pc_fp, index=False)
+        except Exception:
+            pass
+        return _TEAM_TD24_KIND, _TEAM_TD24_POS, _TEAM_TD24_POS_COUNTS, _TEAM_TD24_KIND_COUNTS
 
     # Quick per-player TD counts for a given season from local pbp csv if present
     _TD_SEASON_CACHE: dict[int, dict[str,int]] = {}
@@ -1020,6 +1651,26 @@ def create_app() -> Flask:
         if fp is None or not fp.exists():
             return render_template("ui.html", tab="players", cards=[], season=season, week=week, pos=pos_filter, sort=sort_by, team=team_filter, game=game_filter, teams=[], games=[], env=os.environ)
         df = pd.read_csv(fp)
+        # Load Bovada ATD snapshot (optional)
+        bovada_map: dict[tuple[str,str], dict] = {}
+        try:
+            bovada_fp = DATA_DIR / f"bovada_atd_{season}_wk{week}.csv"
+            if bovada_fp.exists():
+                bdf = pd.read_csv(bovada_fp)
+                # normalize
+                for _, rr in bdf.iterrows():
+                    player = str(rr.get("player") or '').strip()
+                    team = str(rr.get("team") or '').strip()
+                    if not player:
+                        continue
+                    key = (player.lower(), team.upper())
+                    bovada_map[key] = {
+                        "american": None if pd.isna(rr.get("american_odds")) else int(rr.get("american_odds")),
+                        "implied_prob": None if pd.isna(rr.get("implied_prob")) else float(rr.get("implied_prob")),
+                        "decimal": None if pd.isna(rr.get("decimal_odds")) else float(rr.get("decimal_odds")),
+                    }
+        except Exception:
+            bovada_map = {}
         # supplement with per-season TD counts
         td_2024 = _player_td_counts_for_season(2024)
         td_2025 = _player_td_counts_for_season(2025)
@@ -1142,6 +1793,24 @@ def create_app() -> Flask:
             career_total_map = {k: v.get("career_total", 0) for k, v in meta.items()}
         # Load live TD scorers for badge
         live_names = _load_live_td_scorers(season, week)
+        # If empty or stale, try on-demand fetch as a fallback (not strictly gated by window)
+        stale = _live_td_age_secs(season, week)
+        if ((not live_names) or (stale is None) or (stale > 15)):
+            try:
+                fetched = _fetch_espn_td_scorers(season, week, sweep=False)
+                if fetched:
+                    live_names = {str(n).strip().lower() for n in fetched if str(n).strip()}
+                    _save_live_td_scorers(season, week, list(live_names), meta={"on_demand": True})
+                else:
+                    # Ensure we don't loop: keep any existing names
+                    live_names = _load_live_td_scorers(season, week)
+            except Exception:
+                pass
+        # Build a variant key set for robust matching (e.g., Ken/Kenneth, particles, hyphens)
+        live_keys: set[str] = set()
+        for nm in list(live_names):
+            for key in _name_key_variants(nm):
+                live_keys.add(key)
         cards: list[dict] = []
         for _, r in df.iterrows():
             p = str(r.get("player"))
@@ -1169,6 +1838,34 @@ def create_app() -> Flask:
             import math
             raw_atd = 0.0 if raw_exp_td <= 0 else (1.0 - math.exp(-raw_exp_td))
             adj_atd = 0.0 if adj_exp_td <= 0 else (1.0 - math.exp(-adj_exp_td))
+            # Bovada odds lookup
+            # Original join used (full team name).upper(), but snapshot stores true abbreviations (KC, LAC, etc.).
+            # Normalize to a standard abbreviation and try several variants plus player-only fallback.
+            bovada_rec = None
+            t_up_full = (team or '').upper()
+            # Standard abbreviation from helper / hard map
+            try:
+                team_abbr_std = _team_std_abbr(team)  # type: ignore
+            except Exception:
+                team_abbr_std = None
+            # Candidate team tokens in priority order
+            cand_tokens: list[str] = []
+            if team_abbr_std:
+                cand_tokens.append(team_abbr_std.upper())
+                # Handle Rams edge case where some feeds use LA vs LAR
+                if team_abbr_std.upper() == 'LAR':
+                    cand_tokens.append('LA')
+            # Add raw uppercase full token (may coincidentally match if snapshot used it)
+            if t_up_full and t_up_full not in cand_tokens:
+                cand_tokens.append(t_up_full)
+            # Always finish with empty token (player-only key)
+            cand_tokens.append('')
+            pl_key = p.lower()
+            for tk in cand_tokens:
+                key = (pl_key, tk)
+                if key in bovada_map:
+                    bovada_rec = bovada_map[key]
+                    break
             card = {
                 "player": p,
                 "team": team,
@@ -1200,8 +1897,16 @@ def create_app() -> Flask:
                 "team_class": _team_avatar_class(team),
                 "headshot": headshot,
                 "logo_url": logo_url,
+                # opponent visuals
+                "opp_logo_url": _logo_for_team(opp) if opp else None,
+                "opp_abbr": _team_abbrev(opp) if opp else None,
                 "game_id": game_id,
-                "td_scored": (str(p or "").strip().lower() in live_names),
+                "td_scored": any((k in live_keys) for k in _name_key_variants(str(p or ""))),
+                "bovada_american": None if not bovada_rec else bovada_rec.get("american"),
+                "bovada_implied": None if not bovada_rec else bovada_rec.get("implied_prob"),
+                "bovada_decimal": None if not bovada_rec else bovada_rec.get("decimal"),
+                # difference between model ATD and market implied probability (pct points)
+                "atd_edge_pct": None if (not bovada_rec or bovada_rec.get("implied_prob") is None) else round((adj_atd - bovada_rec.get("implied_prob")) * 100, 1),
             }
             cards.append(card)
         # Apply filters
@@ -1240,7 +1945,20 @@ def create_app() -> Flask:
         if sort_by in ("team", "player", "name", "depth", "depth_rank"):
             reverse = False
         cards.sort(key=sort_key, reverse=reverse)
-        return render_template("ui.html", tab="players", cards=cards, season=season, week=week, pos=pos_filter, sort=sort_by, team=team_filter, game=game_filter, teams=teams, games=games, env=os.environ)
+        # Include last fetch time if present
+        last_fetch_iso = None
+        try:
+            lf = _live_td_file(season, week)
+            if lf.exists():
+                with open(lf, "r", encoding="utf-8") as f:
+                    obj = json.load(f)
+                meta_block = obj.get("meta") or {}
+                # Attempt known keys
+                last_fetch_iso = meta_block.get("refreshed_at") or meta_block.get("fetched_at") or meta_block.get("updated_at")
+        except Exception:
+            last_fetch_iso = None
+        live_meta = {"count": len(live_keys), "age": stale, "last": last_fetch_iso}
+        return render_template("ui.html", tab="players", cards=cards, season=season, week=week, pos=pos_filter, sort=sort_by, team=team_filter, game=game_filter, teams=teams, games=games, env=os.environ, live_meta=live_meta)
 
     @app.route("/ui/teams")
     def ui_teams():
@@ -1263,75 +1981,302 @@ def create_app() -> Flask:
             denom = league_avg_tpp if league_avg_tpp > 0 else 0.06
             scale = blended / denom if blended and denom else 1.0
             return float(base) * float(scale)
-        # Ensure required columns as strings
+        # Ensure required columns and adjusted values
         df = df.copy()
         if "expected_tds" not in df.columns:
             df["expected_tds"] = 0.0
         if "opponent" not in df.columns:
             df["opponent"] = None
         df["__adj_expected_tds"] = df.apply(lambda r: _adj_team_tds(str(r.get("team")), str(r.get("opponent")) if r.get("opponent") is not None else None, float(r.get("expected_tds") or 0.0)), axis=1)
-        # Load team position shares (last N seasons)
+        # Load team position shares (last N seasons); if missing, fallback later to 2024 shares
         tps_files = sorted(DATA_DIR.glob("team_pos_td_shares_*.csv"), key=lambda p: p.stat().st_mtime, reverse=True)
         tps = pd.read_csv(tps_files[0]) if tps_files else pd.DataFrame()
         def get_pos_shares(team: str, kind: str) -> dict[str, float]:
             if tps is None or tps.empty:
                 return {}
-            m = tps[(tps.get("team").astype(str) == team) & (tps.get("kind").astype(str) == kind)]
+            tt = tps.copy()
+            tt["team"] = tt["team"].astype(str)
+            tt["kind"] = tt["kind"].astype(str)
+            m = tt[(tt["team"] == team) & (tt["kind"] == kind)]
+            if m.empty:
+                ab = _team_std_abbr(team) or _team_abbrev(team)
+                m = tt[(tt["team"] == ab) & (tt["kind"] == kind)]
             if m.empty:
                 return {}
             row = m.iloc[0]
             keys = ["WR","TE","RB","QB"]
             out = {k: float(row.get(k) or 0.0) for k in keys}
-            # normalize selected keys
             s = sum(out.values())
             if s > 0:
                 out = {k: v/s for k, v in out.items()}
             return out
-        # default pass/rush split when not present in CSV
+        # Default pass/rush split when not present
         PASS_FRAC = 0.58
         RUSH_FRAC = 1.0 - PASS_FRAC
-        # 2024 historical shares
-        kind24, pos24, pos24_counts = _get_team_2024_distributions()
-        # Build cards
-        # First, group by game to compute projected game TDs (adjusted)
+        # Default position shares when team-specific data missing
+        DEFAULT_PASS_SH = {"WR": 0.65, "TE": 0.2, "RB": 0.15, "QB": 0.0}
+        DEFAULT_RUSH_SH = {"RB": 0.85, "QB": 0.15, "WR": 0.0, "TE": 0.0}
+        # 2024 historical distributions
+        kind24, pos24, pos24_counts, kind24_counts = _get_team_2024_distributions()
+        if not kind24:
+            kind24 = {}
+        if not pos24:
+            pos24 = {}
+        if not pos24_counts:
+            pos24_counts = {}
+        if not kind24_counts:
+            kind24_counts = {}
+        # Load market lines for the week (spread/total/moneyline)
+        lines_map: dict[str, dict] = {}
+        real_lines_map: dict[tuple[str, str], dict] = {}
+        try:
+            # Primary: CSV pre-joined by game_id
+            lines_fp = DATA_DIR / "lines.csv"
+            if lines_fp.exists():
+                ldf = pd.read_csv(lines_fp)
+                if "game_id" in ldf.columns:
+                    for _, lr in ldf.iterrows():
+                        gid = str(lr.get("game_id") or "")
+                        if gid:
+                            lines_map[gid] = {k: lr.get(k) for k in lr.index}
+            # Fallback: parse real_betting_lines_*.json and key by (home_full, away_full)
+            json_files = sorted(DATA_DIR.glob("real_betting_lines_*.json"), key=lambda p: p.stat().st_mtime, reverse=True)
+            for jf in json_files:
+                try:
+                    with open(jf, "r", encoding="utf-8") as f:
+                        obj = json.load(f)
+                except Exception:
+                    continue
+                lines_obj = obj.get("lines") if isinstance(obj, dict) else None
+                if not isinstance(lines_obj, dict):
+                    continue
+                for matchup, payload in lines_obj.items():
+                    # Expect format: "Away Team @ Home Team"
+                    try:
+                        if " @ " not in matchup:
+                            continue
+                        away_name, home_name = matchup.split(" @ ", 1)
+                        home = str(home_name).strip()
+                        away = str(away_name).strip()
+                        markets = payload.get("markets") or []
+                        total_val = None
+                        spread_home = None
+                        money_home = None
+                        money_away = None
+                        # Try direct fields
+                        ml = payload.get("moneyline") or {}
+                        if isinstance(ml, dict):
+                            money_home = ml.get("home")
+                            money_away = ml.get("away")
+                        tr = payload.get("total_runs") or {}
+                        if isinstance(tr, dict):
+                            total_val = tr.get("line")
+                        rl = payload.get("run_line") or {}
+                        if isinstance(rl, dict):
+                            spread_home = rl.get("home")
+                        # Parse standard markets if present
+                        if markets and isinstance(markets, list):
+                            for mkt in markets:
+                                key = str(mkt.get("key") or "").lower()
+                                outs = mkt.get("outcomes") or []
+                                if key == "totals" and outs:
+                                    # take first point
+                                    try:
+                                        total_val = outs[0].get("point", total_val)
+                                    except Exception:
+                                        pass
+                                if key == "spreads" and outs:
+                                    # find home team record for spread
+                                    try:
+                                        for o in outs:
+                                            nm = str(o.get("name") or "").strip()
+                                            if nm == home:
+                                                spread_home = o.get("point", spread_home)
+                                                break
+                                    except Exception:
+                                        pass
+                                if key == "h2h" and outs:
+                                    try:
+                                        for o in outs:
+                                            nm = str(o.get("name") or "").strip()
+                                            if nm == home:
+                                                money_home = o.get("price", money_home)
+                                            elif nm == away:
+                                                money_away = o.get("price", money_away)
+                                    except Exception:
+                                        pass
+                        # Save latest per-matchup
+                        real_lines_map[(home, away)] = {
+                            "close_total": total_val,
+                            "close_spread_home": spread_home,
+                            "moneyline_home": money_home,
+                            "moneyline_away": money_away,
+                        }
+                    except Exception:
+                        continue
+        except Exception:
+            pass
+        # Group by game for game sum
         game_sum = df.groupby("game_id")["__adj_expected_tds"].sum().to_dict()
         cards: list[dict] = []
         for _, r in df.iterrows():
             team = str(r.get("team"))
             opp = str(r.get("opponent"))
-            # Use adjusted team TDs only
             exp_tds = float(r.get("__adj_expected_tds") or 0.0)
             gid = r.get("game_id")
             logo_url = _logo_for_team(team)
             # position projections
             pass_sh = get_pos_shares(team, "pass")
             rush_sh = get_pos_shares(team, "rush")
+            local_pass_frac = PASS_FRAC
+            local_rush_frac = RUSH_FRAC
+            if (not pass_sh or not rush_sh):
+                ab = _team_std_abbr(team) or _team_abbrev(team)
+                if ab in pos24:
+                    k = kind24.get(ab, {})
+                    local_pass_frac = float(k.get("pass", PASS_FRAC))
+                    local_rush_frac = float(k.get("rush", RUSH_FRAC))
+                    pshares = pos24.get(ab, {})
+                    pass_sh = {x: float(pshares.get(x, 0.0)) for x in ["WR","TE","RB","QB"]}
+                    rush_sh = {x: float(pshares.get(x, 0.0)) for x in ["RB","QB","WR","TE"]}
+                    sp = sum(pass_sh.values()) or 1.0
+                    pass_sh = {k2: v2/sp for k2, v2 in pass_sh.items()}
+                    sr = sum(rush_sh.values()) or 1.0
+                    rush_sh = {k2: v2/sr for k2, v2 in rush_sh.items()}
+            # Absolute fallback if still missing
+            if not pass_sh:
+                pass_sh = DEFAULT_PASS_SH.copy()
+            if not rush_sh:
+                rush_sh = DEFAULT_RUSH_SH.copy()
             # expected by position
             by_pos = {"RB":0.0,"WR":0.0,"TE":0.0,"QB":0.0}
             for pos in ["WR","TE","RB"]:
-                by_pos[pos] += PASS_FRAC * exp_tds * float(pass_sh.get(pos, 0.0))
+                by_pos[pos] += local_pass_frac * exp_tds * float(pass_sh.get(pos, 0.0))
             for pos in ["RB","QB","WR","TE"]:
-                by_pos[pos] += RUSH_FRAC * exp_tds * float(rush_sh.get(pos, 0.0))
-            # round for display
+                by_pos[pos] += local_rush_frac * exp_tds * float(rush_sh.get(pos, 0.0))
             for k in by_pos:
                 by_pos[k] = round(by_pos[k], 2)
-            # shares to present
             proj_kind = {
-                "pass": round(PASS_FRAC, 2),
-                "rush": round(RUSH_FRAC, 2),
+                "pass": round(local_pass_frac, 2),
+                "rush": round(local_rush_frac, 2),
             }
+            # 2024 historical shares/counts using standard abbr
+            _ab = _team_std_abbr(team) or _team_abbrev(team)
             hist_kind = None
-            if team in kind24:
+            hist_kind_counts = None
+            if _ab in kind24:
                 hist_kind = {
-                    "pass": round(float(kind24[team].get("pass", 0.0)), 2),
-                    "rush": round(float(kind24[team].get("rush", 0.0)), 2),
+                    "pass": round(float(kind24[_ab].get("pass", 0.0)), 2),
+                    "rush": round(float(kind24[_ab].get("rush", 0.0)), 2),
+                }
+            else:
+                # If we lack 2024 kind shares, mirror current projection as a placeholder
+                hist_kind = {"pass": round(float(proj_kind["pass"]), 2), "rush": round(float(proj_kind["rush"]), 2)}
+            if _ab in kind24_counts:
+                hist_kind_counts = {
+                    "pass": int(kind24_counts[_ab].get("pass", 0)),
+                    "rush": int(kind24_counts[_ab].get("rush", 0)),
                 }
             hist_pos = None
             hist_pos_counts = None
-            if team in pos24:
-                hist_pos = {k: round(float(pos24[team].get(k, 0.0)), 2) for k in ["RB","WR","TE","QB"]}
-            if team in pos24_counts:
-                hist_pos_counts = {k: int(pos24_counts[team].get(k, 0)) for k in ["RB","WR","TE","QB"]}
+            if _ab in pos24:
+                hist_pos = {k: round(float(pos24[_ab].get(k, 0.0)), 2) for k in ["RB","WR","TE","QB"]}
+            if _ab in pos24_counts:
+                hist_pos_counts = {k: int(pos24_counts[_ab].get(k, 0)) for k in ["RB","WR","TE","QB"]}
+            # Ensure team_tds is non-zero if base is present but adjustment failed
+            team_tds_val = round(exp_tds if exp_tds and exp_tds > 0 else float(r.get("expected_tds") or 0.0), 2)
+            # Market lines
+            mkt = None
+            try:
+                row = lines_map.get(gid)
+                if row:
+                    # prefer close_ fields, fallback to current
+                    total = row.get("close_total")
+                    if pd.isna(total) if isinstance(total, float) else total is None:
+                        total = row.get("total")
+                    spr_home = row.get("close_spread_home")
+                    if pd.isna(spr_home) if isinstance(spr_home, float) else spr_home is None:
+                        spr_home = row.get("spread_home")
+                    # coerce to float
+                    try:
+                        total_f = float(total) if total is not None else None
+                    except Exception:
+                        total_f = None
+                    try:
+                        spr_home_f = float(spr_home) if spr_home is not None else None
+                    except Exception:
+                        spr_home_f = None
+                    is_home = bool(int(r.get("is_home") or 0) == 1)
+                    # team spread from home perspective
+                    team_spread = None
+                    if spr_home_f is not None:
+                        team_spread = spr_home_f if is_home else -spr_home_f
+                    # moneyline
+                    ml_home = row.get("moneyline_home")
+                    ml_away = row.get("moneyline_away")
+                    try:
+                        ml = int(ml_home) if is_home else int(ml_away)
+                    except Exception:
+                        try:
+                            ml = int(float(ml_home)) if is_home else int(float(ml_away))
+                        except Exception:
+                            ml = None
+                    # implied points
+                    imp_pts = None
+                    if total_f is not None and spr_home_f is not None:
+                        if is_home:
+                            imp_pts = total_f/2 - spr_home_f/2
+                        else:
+                            imp_pts = total_f/2 + spr_home_f/2
+                    mkt = {
+                        "total": total_f,
+                        "spread": team_spread,
+                        "moneyline": ml,
+                        "implied_pts": None if imp_pts is None else round(float(imp_pts), 1),
+                    }
+                else:
+                    # Fallback: match from real_lines_map using home/away names
+                    is_home = bool(int(r.get("is_home") or 0) == 1)
+                    home_name = team if is_home else opp
+                    away_name = opp if is_home else team
+                    row2 = real_lines_map.get((home_name, away_name))
+                    if row2:
+                        total = row2.get("close_total")
+                        spr_home = row2.get("close_spread_home")
+                        try:
+                            total_f = float(total) if total is not None else None
+                        except Exception:
+                            total_f = None
+                        try:
+                            spr_home_f = float(spr_home) if spr_home is not None else None
+                        except Exception:
+                            spr_home_f = None
+                        team_spread = None
+                        if spr_home_f is not None:
+                            team_spread = spr_home_f if is_home else -spr_home_f
+                        ml_home = row2.get("moneyline_home")
+                        ml_away = row2.get("moneyline_away")
+                        try:
+                            ml = int(ml_home) if is_home else int(ml_away)
+                        except Exception:
+                            try:
+                                ml = int(float(ml_home)) if is_home else int(float(ml_away))
+                            except Exception:
+                                ml = None
+                        imp_pts = None
+                        if total_f is not None and spr_home_f is not None:
+                            if is_home:
+                                imp_pts = total_f/2 - spr_home_f/2
+                            else:
+                                imp_pts = total_f/2 + spr_home_f/2
+                        mkt = {
+                            "total": total_f,
+                            "spread": team_spread,
+                            "moneyline": ml,
+                            "implied_pts": None if imp_pts is None else round(float(imp_pts), 1),
+                        }
+            except Exception:
+                mkt = None
             card = {
                 "team": team,
                 "opp": opp,
@@ -1339,21 +2284,32 @@ def create_app() -> Flask:
                 "team_class": _team_avatar_class(team),
                 "logo_url": logo_url,
                 "game_tds": round(float(game_sum.get(gid, 0.0)), 2),
-                "team_tds": round(exp_tds, 2),
+                "team_tds": team_tds_val,
                 "by_pos": by_pos,
                 "proj_kind": proj_kind,
                 "hist_kind": hist_kind,
                 "hist_pos": hist_pos,
                 "hist_pos_counts": hist_pos_counts,
+                "hist_kind_counts": hist_kind_counts,
+                "market": mkt,
                 "game_id": gid,
                 "date": r.get("date"),
                 "is_home": int(r.get("is_home") or 0) == 1,
             }
             cards.append(card)
-        # sort by team_tds desc
         cards.sort(key=lambda x: x["team_tds"], reverse=True)
-        # render full UI shell
         return render_template("ui.html", tab="teams", cards=cards, season=season, week=week, env=os.environ)
+
+    @app.route("/admin/rebuild-2024", methods=["POST", "GET"])
+    def admin_rebuild_2024():
+        # Simple admin gate by env var
+        if not (os.environ.get("TD_ADMIN", "").lower() in ("1","true","yes")):
+            return ("forbidden", 403)
+        try:
+            _get_team_2024_distributions(force_rebuild=True)
+            return ("ok", 200)
+        except Exception as e:
+            return (f"error: {e}", 500)
 
     @app.route("/ui/qbs")
     def ui_qbs():

@@ -52,6 +52,11 @@
       {% if tab == 'players' %}
         {% include 'players_cards.html' %}
       {% elif tab == 'teams' %}
+        {% if (env and (env.get('TD_ADMIN')|default('')|lower in ['1','true','yes'])) %}
+        <form class="mb-3" method="post" action="/admin/rebuild-2024" onsubmit="return confirm('Force rebuild 2024 distributions now?');">
+          <button class="btn btn-sm btn-warning">Rebuild 2024 Distributions</button>
+        </form>
+        {% endif %}
         {% include 'teams_cards.html' %}
       {% else %}
         {% include 'qbs_cards.html' %}
@@ -102,10 +107,8 @@
       function schedule(){
         const et = nowET();
         if (!inGameWindow(et)) return; // only during game windows
-        // Every 3 minutes during game windows
-        setInterval(refreshAndReload, 3 * 60 * 1000);
-        // Kick off a first refresh shortly after load
-        setTimeout(refreshAndReload, 2000);
+        // Every 10 seconds during game windows (no immediate kick to avoid tight loops)
+        setInterval(refreshAndReload, 10 * 1000);
       }
       // Start after DOM load
       if (document.readyState === 'complete' || document.readyState === 'interactive') {

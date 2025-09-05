@@ -25,53 +25,71 @@
   <div class="col">
     <div class="card shadow-sm">
       <div class="card-body">
-        <div class="card-title d-flex align-items-center gap-2">
+        <!-- Header -->
+        <div class="d-flex align-items-center gap-2 mb-2">
           {% if c.logo_url %}
           <img class="headshot" src="{{ c.logo_url }}" alt="{{ c.team }} logo" />
           {% else %}
           <div class="team-avatar {{ c.team_class }}">{{ c.team_abbr }}</div>
           {% endif %}
           <div class="flex-grow-1">
-            <div class="d-flex justify-content-between">
-              <strong>{{ c.team }}</strong>
-              <span class="badge text-bg-primary">Team TDs {{ c.team_tds|fmt2 }}</span>
+            <div class="d-flex justify-content-between align-items-center">
+              <div class="fw-semibold">{{ c.team }}</div>
+              <span class="badge rounded-pill text-bg-primary">Team TDs {{ c.team_tds|fmt2 }}</span>
             </div>
-            <div class="muted">vs {{ c.opp }}</div>
+            <div class="text-muted small">
+              <div>{% if c.is_home %}vs{% else %}@{% endif %} {{ c.opp }}</div>
+            </div>
           </div>
         </div>
-        <div class="small mt-2">
-          <div class="d-flex justify-content-between">
-            <div>RB: <strong>{{ c.by_pos['RB']|fmt2 }}</strong></div>
-            <div>WR: <strong>{{ c.by_pos['WR']|fmt2 }}</strong></div>
-            <div>TE: <strong>{{ c.by_pos['TE']|fmt2 }}</strong></div>
-            <div>QB: <strong>{{ c.by_pos['QB']|fmt2 }}</strong></div>
+
+        <!-- Week projection by position -->
+        <div class="small">
+          <div class="text-muted fw-semibold mb-1">Week Projection</div>
+          <div class="row text-center g-2">
+            <div class="col-3"><div class="fw-bold">{{ c.by_pos['RB']|fmt2 }}</div><div class="text-muted">RB</div></div>
+            <div class="col-3"><div class="fw-bold">{{ c.by_pos['WR']|fmt2 }}</div><div class="text-muted">WR</div></div>
+            <div class="col-3"><div class="fw-bold">{{ c.by_pos['TE']|fmt2 }}</div><div class="text-muted">TE</div></div>
+            <div class="col-3"><div class="fw-bold">{{ c.by_pos['QB']|fmt2 }}</div><div class="text-muted">QB</div></div>
           </div>
         </div>
-        {% if c.hist_pos_counts or c.hist_pos %}
-        <div class="small mt-2">
-          <div class="fw-semibold">2024 Breakdown</div>
-          <div class="d-flex justify-content-between">
-            <div>
-              <span class="text-muted"># RB/WR/TE/QB</span>:
-              <strong>
-                {{ c.hist_pos_counts['RB'] if c.hist_pos_counts else 0 }} /
-                {{ c.hist_pos_counts['WR'] if c.hist_pos_counts else 0 }} /
-                {{ c.hist_pos_counts['TE'] if c.hist_pos_counts else 0 }} /
-                {{ c.hist_pos_counts['QB'] if c.hist_pos_counts else 0 }}
-              </strong>
+
+        {% if c.hist_pos_counts or c.hist_pos or c.hist_kind or c.hist_kind_counts %}
+        <div class="small mt-3">
+          <div class="text-muted fw-semibold mb-1">2024 Breakdown</div>
+          {% if c.hist_kind or c.hist_kind_counts %}
+          <div class="row text-center g-2 mb-1">
+            <div class="col-6">
+              <div class="fw-semibold">{{ c.hist_kind_counts['pass'] if c.hist_kind_counts else 0 }}</div>
+              <div class="text-muted">Pass ({{ ((c.hist_kind['pass']*100)|round|int) if c.hist_kind else 0 }}%)</div>
             </div>
-            <div>
-              <span class="text-muted">% RB/WR/TE/QB</span>:
-              <strong>
-                {{ ((c.hist_pos['RB']*100)|fmt2) if c.hist_pos else '0' }}% /
-                {{ ((c.hist_pos['WR']*100)|fmt2) if c.hist_pos else '0' }}% /
-                {{ ((c.hist_pos['TE']*100)|fmt2) if c.hist_pos else '0' }}% /
-                {{ ((c.hist_pos['QB']*100)|fmt2) if c.hist_pos else '0' }}%
-              </strong>
+            <div class="col-6">
+              <div class="fw-semibold">{{ c.hist_kind_counts['rush'] if c.hist_kind_counts else 0 }}</div>
+              <div class="text-muted">Rush ({{ ((c.hist_kind['rush']*100)|round|int) if c.hist_kind else 0 }}%)</div>
+            </div>
+          </div>
+          {% endif %}
+          <div class="row text-center g-2">
+            <div class="col-3">
+              <div class="fw-semibold">{{ c.hist_pos_counts['RB'] if c.hist_pos_counts else 0 }}</div>
+              <div class="text-muted">RB ({{ ((c.hist_pos['RB']*100)|round|int) if c.hist_pos else 0 }}%)</div>
+            </div>
+            <div class="col-3">
+              <div class="fw-semibold">{{ c.hist_pos_counts['WR'] if c.hist_pos_counts else 0 }}</div>
+              <div class="text-muted">WR ({{ ((c.hist_pos['WR']*100)|round|int) if c.hist_pos else 0 }}%)</div>
+            </div>
+            <div class="col-3">
+              <div class="fw-semibold">{{ c.hist_pos_counts['TE'] if c.hist_pos_counts else 0 }}</div>
+              <div class="text-muted">TE ({{ ((c.hist_pos['TE']*100)|round|int) if c.hist_pos else 0 }}%)</div>
+            </div>
+            <div class="col-3">
+              <div class="fw-semibold">{{ c.hist_pos_counts['QB'] if c.hist_pos_counts else 0 }}</div>
+              <div class="text-muted">QB ({{ ((c.hist_pos['QB']*100)|round|int) if c.hist_pos else 0 }}%)</div>
             </div>
           </div>
         </div>
         {% endif %}
+
         <div class="mt-3 d-flex justify-content-end">
           <button class="btn btn-sm btn-outline-primary" data-bs-toggle="modal" data-bs-target="#tmodal_{{ loop.index }}">Details</button>
         </div>
@@ -107,12 +125,15 @@
                 <li>TE: {{ c.by_pos['TE']|fmt2 }}</li>
                 <li>QB: {{ c.by_pos['QB']|fmt2 }}</li>
               </ul>
-              {% if c.hist_kind %}
-              <h6 class="mt-3">2024 Breakdown (shares)</h6>
+              {% if c.hist_kind or c.hist_pos %}
+              <h6 class="mt-3">2024 Breakdown</h6>
               <ul class="small">
-                <li>Pass/Rush: {{ (c.hist_kind.pass*100)|fmt2 }}% / {{ (c.hist_kind.rush*100)|fmt2 }}%</li>
+                {% if c.hist_kind or c.hist_kind_counts %}
+                <li>Pass: {{ c.hist_kind_counts['pass'] if c.hist_kind_counts else 0 }} {% if c.hist_kind %}({{ ((c.hist_kind['pass']*100)|round|int) }}%) {% endif %}</li>
+                <li>Rush: {{ c.hist_kind_counts['rush'] if c.hist_kind_counts else 0 }} {% if c.hist_kind %}({{ ((c.hist_kind['rush']*100)|round|int) }}%) {% endif %}</li>
+                {% endif %}
                 {% if c.hist_pos %}
-                <li>By Position — RB {{ (c.hist_pos.RB*100)|fmt2 }}% • WR {{ (c.hist_pos.WR*100)|fmt2 }}% • TE {{ (c.hist_pos.TE*100)|fmt2 }}% • QB {{ (c.hist_pos.QB*100)|fmt2 }}%</li>
+                <li>By Position — RB {{ ((c.hist_pos.RB*100)|round|int) }}% • WR {{ ((c.hist_pos.WR*100)|round|int) }}% • TE {{ ((c.hist_pos.TE*100)|round|int) }}% • QB {{ ((c.hist_pos.QB*100)|round|int) }}%</li>
                 {% endif %}
               </ul>
               {% endif %}
